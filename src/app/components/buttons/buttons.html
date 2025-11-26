@@ -1,0 +1,4 @@
+<div (click)="handleClick()" class="btn"
+     style="background-color: {{backgroundColor().includes('#') ? backgroundColor() : 'var(--' + backgroundColor() +')'}}">
+  <p class="btn-label">{{label()}}</p>
+</div>
