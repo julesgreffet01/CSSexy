@@ -1,0 +1,36 @@
+* h1{
+  padding-top: 0.5vw;
+  font-family: "Roboto Light", sans-serif;
+  font-weight: 100;
+  color: #F9FAFB;
+  font-size: 1.3vw;
+}
+.container-popup{
+
+  width: 30vw;
+  height: 17vw;
+  background-color: #582B58;
+  border-radius: 1vw;
+}
+
+.center-contain{
+  display: flex;
+  justify-content: center;
+}
+
+.contain-top{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 1.2vw;
+}
+
+.icon-alert{
+  width: 5vw;
+  height: 5vw;
+  background-color: #FF6B6B;
+  border-radius: 100vw;
+}
+
+
