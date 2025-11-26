@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
-import {PopUpError} from '../components/pop-up-error/pop-up-error';
+import {PopUpError} from '../components/popup/pop-up-error/pop-up-error';
+import {PopUpEditable} from '../components/popup/pop-up-editable/pop-up-editable';
 
 export const routes: Routes = [
-  {    path: 'popuperror',    component: PopUpError,  },
+  {    path: 'max',    component: PopUpEditable,  },
 ];
