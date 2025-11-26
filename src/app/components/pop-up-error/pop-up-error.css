@@ -1,9 +1,8 @@
 * h1{
-  padding-top: 0.5vw;
-  font-family: "Roboto Light", sans-serif;
+ font-family: "Roboto Light", sans-serif;
   font-weight: 100;
   color: #F9FAFB;
-  font-size: 1.3vw;
+  font-size: 1.4vw;
 }
 .container-popup{
 
@@ -26,11 +25,43 @@
   padding-top: 1.2vw;
 }
 
-.icon-alert{
+.icon-alert-delete{
   width: 5vw;
   height: 5vw;
   background-color: #FF6B6B;
   border-radius: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
+.icon-alert-error{
+  width: 5vw;
+  height: 5vw;
+  background-color: #FFD666;
+  border-radius: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.icon-alert-success{
+  width: 5vw;
+  height: 5vw;
+  background-color: #77ED8B;
+  border-radius: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.center-text{
+  display: flex;
+  text-align: center;
+  width: 18vw;
+}
+
+* img{
+  width: 2.5vw;
+  height: 2.5vw;
+}
