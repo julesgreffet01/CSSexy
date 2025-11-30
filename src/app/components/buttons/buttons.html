@@ -1,0 +1,9 @@
+<button
+  class="btn {{ size() }}"
+  (click)="handleClick()"
+  [style.--bg]="getBackgroundColor()"
+  [style.--bg-hover]="getBackgroundColorHover()"
+  [style.--text-color]="getTextColor()"
+  [style.--border-color]="getBorder()"
+>{{ label() }}
+</button>

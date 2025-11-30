@@ -1,0 +1,33 @@
+.btn {
+  width: 100%;
+  background-color: var(--bg);
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius);
+  color: var(--text-color);
+  border: solid 1px var(--border-color, transparent);
+}
+
+.btn:hover {
+  cursor: pointer;
+  background-color: var(--bg-hover, var(--bg));
+}
+
+.tiny {
+  padding: 2px 4px;
+  font-size: 20px;
+}
+
+.medium {
+  padding: 4px 12px;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.large {
+  padding: 6px 18px;
+  font-size: 30px;
+  font-weight: bold;
+}
