@@ -1,0 +1,9 @@
+#header {
+  background: linear-gradient(to right, #9213A7, #A16FA9);
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  height: 50px;
+}
