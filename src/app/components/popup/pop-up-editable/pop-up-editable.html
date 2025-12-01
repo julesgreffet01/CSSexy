@@ -2,8 +2,36 @@
 <div class="center-contain">
   <div class="container-popup">
     <div class="contain-top">
-    <h1>{{title}}</h1>
-    <div class="barre-horizontal"></div>
+      <h1>{{ getType() + " " + getAction() }}</h1>
+    </div>
+    <div class="">
+      @if (getType() == "Projet") {
+        <h2>Nom du projet :</h2>
+        <app-inputs></app-inputs>
+      } @else if (getType() == "Service") {
+        <div class="flex-cote">
+          <div class="left-contain">
+            <h2>Nom du service :</h2>
+            <app-inputs></app-inputs>
+            <h2>Image :</h2>
+            <app-inputs></app-inputs>
+          </div>
+          <div class="right-contain">
+            <h2>Port 1 :</h2>
+            <app-inputs></app-inputs>
+            <div class="">
+              <app-buttons label="+" backgroundColor="secondary-3" size="large"></app-buttons>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+    <div class="compressor-flex">
+      <div class="space-button">
+        <app-buttons [callback]=getcallback label="Annuler" backgroundColor="#" border="secondary-3"
+                     size="medium"></app-buttons>
+      </div>
+      <app-buttons [label]=getButtonName() backgroundColor="secondary-3" size="medium"></app-buttons>
     </div>
   </div>
 </div>
