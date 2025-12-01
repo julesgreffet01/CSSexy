@@ -22,4 +22,5 @@ export class PopUpError {
   public getcallback(){
       this.callback();
   }
+
 }
