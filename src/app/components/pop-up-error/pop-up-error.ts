@@ -1,4 +1,4 @@
-import {ApplicationConfig, Component} from '@angular/core';
+import {ApplicationConfig, Component, Input} from '@angular/core';
 
 @Component({
   selector: 'app-pop-up-error',
@@ -9,6 +9,6 @@ import {ApplicationConfig, Component} from '@angular/core';
 
 export class PopUpError {
 
-  message: string = "Attention, vous essayez de supprimer un projet";
-  type : "success" | "delete" | "error" = "success";
+  @Input({ required: true }) message!: string;
+  @Input({ required: true })  type : "success" | "delete" | "error" = "success";
 }
