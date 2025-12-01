@@ -1,4 +1,4 @@
-import {ApplicationConfig, Component, Input} from '@angular/core';
+import {ApplicationConfig, Component, input, Input} from '@angular/core';
 import {Buttons} from '../../buttons/buttons';
 
 @Component({
@@ -11,11 +11,15 @@ import {Buttons} from '../../buttons/buttons';
 })
 
 export class PopUpError {
+  callback = input< ((arg?: any) => void) | undefined >(undefined)
+  message = input<string>();
+  type = input<"success" | "delete" | "error">();
 
-  //message : input<string>();
-  //type : input<"success" | "delete" | "error">();
 
+  //message  = "Erreur en docuqopsfdzuqiehfi qsdfiozeoie"
+  //type : "success" | "delete" | "error" = "delete";
 
-  message  = "Erreur en docuqopsfdzuqiehfi qsdfiozeoie"
-  type : "success" | "delete" | "error" = "delete";
+  public getcallback(){
+      this.callback();
+  }
 }
