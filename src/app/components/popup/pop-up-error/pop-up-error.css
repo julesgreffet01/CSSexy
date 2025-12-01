@@ -29,6 +29,25 @@
   backdrop-filter: blur(10px);
 }
 
+.compressor{
+  position: absolute;
+  right: 5%;
+  bottom: 1vw;
+  width: 90%;
+}
+
+.space-button{
+  margin-right: 1vw;
+}
+
+.compressor-flex{
+  display: flex;
+  position: absolute;
+  right: 2%;
+  bottom: 1vw;
+  width: 78%;
+}
+
 .contain-top{
   display: flex;
   flex-direction: column;

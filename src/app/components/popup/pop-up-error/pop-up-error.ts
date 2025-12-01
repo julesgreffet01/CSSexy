@@ -1,18 +1,21 @@
 import {ApplicationConfig, Component, Input} from '@angular/core';
+import {Buttons} from '../../buttons/buttons';
 
 @Component({
   selector: 'app-pop-up-error',
-  imports: [],
+  imports: [
+    Buttons
+  ],
   templateUrl: './pop-up-error.html',
   styleUrl: './pop-up-error.css',
 })
 
 export class PopUpError {
 
-  //@Input({ required: true }) message : string;
-  //@Input({ required: true })  type : "success" | "delete" | "error" = "success";
+  //message : input<string>();
+  //type : input<"success" | "delete" | "error">();
 
 
   message  = "Erreur en docuqopsfdzuqiehfi qsdfiozeoie"
-  type : "success" | "delete" | "error" = "success";
+  type : "success" | "delete" | "error" = "delete";
 }
