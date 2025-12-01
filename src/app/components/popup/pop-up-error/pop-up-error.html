@@ -2,7 +2,7 @@
 <div class="center-contain">
   <div class="container-popup">
     <div class="contain-top">
-      @switch (type) {
+      @switch (gettype()) {
         @case ("delete") {
           <div class="icon-alert-delete">
             <img src="garbage.svg">
@@ -26,16 +26,16 @@
         </h1>
       </div>
     </div>
-    @if (type == "delete") {
+    @if (gettype() == "delete") {
       <div class="compressor-flex">
         <div class="space-button">
-          <app-buttons [callback]=getcallback label="Annuler" backgroundColor="#" border="#D47CC1" size="medium"></app-buttons>
+          <app-buttons [callback]=getcallback label="Annuler" backgroundColor="#" border="secondary-3" size="medium"></app-buttons>
         </div>
-        <app-buttons label="Oui, je veux supprimer" backgroundColor="#D47CC1" size="medium"></app-buttons>
+        <app-buttons label="Oui, je veux supprimer" backgroundColor="secondary-3" size="medium"></app-buttons>
       </div>
     } @else {
       <div class="compressor">
-        <app-buttons label="Continuer" backgroundColor="#D47CC1" size="large"></app-buttons>
+        <app-buttons label="Continuer" backgroundColor="secondary-3" size="large"></app-buttons>
       </div>
     }
   </div>

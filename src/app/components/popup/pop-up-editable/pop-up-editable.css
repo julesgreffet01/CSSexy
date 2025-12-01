@@ -6,18 +6,44 @@
 }
 
 .container-popup{
-  min-width: 35vw;
-  min-height: 20vw;
+  min-width: 40vw;
+  min-height: 22vw;
   z-index: 200;
   position: fixed;
   background-color: #582B58;
   border-radius: 1vw;
 }
 
+.space-button{
+  margin-right: 1vw;
+}
+
+.compressor-flex{
+  display: flex;
+  position: absolute;
+  right: 1%;
+  bottom: 1.5vw;
+  width: 40%;
+}
+
+.flex-cote{
+  padding-top: 1vw;
+  margin-left: 5%;
+  display: flex;
+  width: 90%;
+}
+
 .center-contain{
   padding-top: 11vw;
   display: flex;
   justify-content: center;
+}
+
+.left-contain{
+  width: 60%;
+}
+
+.right-contain{
 }
 
 .blur{
