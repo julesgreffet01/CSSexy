@@ -9,6 +9,10 @@ import {ApplicationConfig, Component, Input} from '@angular/core';
 
 export class PopUpError {
 
-  @Input({ required: true }) message!: string;
-  @Input({ required: true })  type : "success" | "delete" | "error" = "success";
+  //@Input({ required: true }) message : string;
+  //@Input({ required: true })  type : "success" | "delete" | "error" = "success";
+
+
+  message  = "Erreur en docuqopsfdzuqiehfi qsdfiozeoie"
+  type : "success" | "delete" | "error" = "success";
 }
