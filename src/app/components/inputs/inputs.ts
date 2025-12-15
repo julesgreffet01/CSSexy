@@ -11,7 +11,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 })
 export class Inputs {
 
-  public type = input<"text" | "number" | "date" | "select" | "checkbox" | "email" | "submit">("text")
+  public type = input<"text" | "number" | "date" | "select" | "checkbox" | "email" >("text")
   public id = input<string>('id')
   public placeholder = input<string>('')
   public formControlName = input<string>('')
