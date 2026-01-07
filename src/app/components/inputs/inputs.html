@@ -1,7 +1,9 @@
 <input
   class="input"
+  [value]="value"
+  (input)="handleInput($event)"
+  (blur)="handleBlur()"
   [id]="id()"
   [placeholder]="placeholder()"
   [type]="type()"
-  [formControlName]="formControlName()"
 />
