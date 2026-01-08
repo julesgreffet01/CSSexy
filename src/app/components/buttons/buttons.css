@@ -8,6 +8,9 @@
   border-radius: var(--radius);
   color: var(--text-color);
   border: solid 1px var(--border-color, transparent);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .btn:hover {
@@ -17,17 +20,17 @@
 
 .tiny {
   padding: 2px 4px;
-  font-size: 20px;
+  font-size: clamp(1em, 1.2vw, 1.4em);
 }
 
 .medium {
   padding: 4px 12px;
-  font-size: 25px;
+  font-size: clamp(1.2em, 1.5vw, 1.9em);
   font-weight: bold;
 }
 
 .large {
   padding: 6px 18px;
-  font-size: 30px;
+  font-size: clamp(1.4rem, 1.6vw, 2rem);
   font-weight: bold;
 }
