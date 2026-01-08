@@ -1,0 +1,10 @@
+.center-block{
+  justify-content: center;
+  text-align: center;
+  display: flex;
+}
+
+h1{
+  color: #201320;
+  font-size: 2.5vw;
+}

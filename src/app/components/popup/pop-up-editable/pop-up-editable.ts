@@ -15,7 +15,7 @@ export class PopUpEditable {
 
   //type = input<'Projet' | 'Service'>();
   //action = input<'Modification' | 'Ajout'>();
-  callback = input< ((arg?: string) => void)>()
+  callback = input<((arg?: string) => void)>()
 
 
   type = 'Service';
