@@ -1,16 +1,14 @@
 import { Component } from '@angular/core';
 import {RouterOutlet} from '@angular/router';
 import {Header} from '../components/header/header';
-import {Buttons} from '../components/buttons/buttons';
-import {LoginInput} from '../components/login-input/login-input';
+import {PopUpValidation} from '../components/popup/pop-up-validation/pop-up-validation';
 
 @Component({
   selector: 'app-layout',
   imports: [
     RouterOutlet,
     Header,
-    Buttons,
-    LoginInput,
+    PopUpValidation,
   ],
   templateUrl: './layout.html',
   styleUrl: './layout.css',
