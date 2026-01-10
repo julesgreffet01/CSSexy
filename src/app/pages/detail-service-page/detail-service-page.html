@@ -1,0 +1,19 @@
+<app-header></app-header>
+<div class="center-content">
+  <div class="flex">
+<h1>{{ Title }}</h1>
+    <a href=""></a>
+  </div>
+  <div class="name-and-content">
+    <div class="name">Image :</div>
+    <div class="content">php 8.2</div>
+  </div>
+  <div class="top">
+    @for (port of ports; track port; let idx = $index) {
+    <div class="name-and-content">
+      <div class="name">Port {{idx+1}}:</div>
+      <div class="content">{{port}}</div>
+    </div>
+    }
+  </div>
+</div>

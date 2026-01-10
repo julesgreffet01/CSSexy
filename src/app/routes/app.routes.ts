@@ -5,9 +5,10 @@ import {Layout} from '../layout/layout';
 import {HomePage} from '../pages/home-page/home-page';
 import {LoginPage} from '../pages/login-page/login-page';
 import { Tab } from '../components/tabs/tab/tab';
+import {DetailServicePage} from '../pages/detail-service-page/detail-service-page';
 
 export const routes: Routes = [
-  {path: 'max', component: LoginPage,},
+  {path: 'max', component: DetailServicePage,},
   {path: 'home', component: Tab},
 
 
