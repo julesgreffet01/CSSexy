@@ -16,11 +16,11 @@
 
             @if (type() == "Projet") {
               @if(oldObject().name !== newObject().name) {
-                <p><strong>name :</strong> {{ oldObject().name }}</p>
+                <p><strong>Nom :</strong> {{ oldObject().name }}</p>
               }
             } @else if (type() === "Service") {
               @if(oldObject().name !== newObject().name) {
-                <p><strong>name :</strong> {{ oldObject().name }}</p>
+                <p><strong>Nom :</strong> {{ oldObject().name }}</p>
               }
               @if(oldPorts().length) {
                 <p><strong>Ports supprimés :</strong></p>
@@ -40,11 +40,11 @@
 
             @if (type() == "Projet") {
               @if(oldObject().name !== newObject().name) {
-                <p><strong>name :</strong> {{ newObject().name }}</p>
+                <p><strong>Nom :</strong> {{ newObject().name }}</p>
               }
             } @else if (type() === "Service") {
               @if(oldObject().name !== newObject().name) {
-                <p><strong>name :</strong> {{ newObject().name }}</p>
+                <p><strong>Nom :</strong> {{ newObject().name }}</p>
               }
               @if(newPorts().length) {
                 <p><strong>Ports ajoutés :</strong></p>

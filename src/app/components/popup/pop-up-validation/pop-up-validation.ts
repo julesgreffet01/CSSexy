@@ -1,7 +1,7 @@
 import {Component, input, signal} from '@angular/core';
 import {Buttons} from '../../buttons/buttons';
 import {type ServiceModel, isService} from '../../../models/service-model';
-import {type ProjetModel, isProjet} from '../../../models/projet-interface';
+import {type ProjetModel, isProjet} from '../../../models/projet-model';
 
 @Component({
   selector: 'app-pop-up-validation',

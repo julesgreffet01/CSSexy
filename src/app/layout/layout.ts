@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {RouterOutlet} from '@angular/router';
 import {Header} from '../components/header/header';
 import {PopUpValidation} from '../components/popup/pop-up-validation/pop-up-validation';
-import {ProjetModel} from '../models/projet-interface';
+import {ProjetModel} from '../models/projet-model';
 import {ServiceModel} from '../models/service-model';
 
 @Component({
