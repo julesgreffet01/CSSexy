@@ -24,5 +24,7 @@ body {
 .bg{
   height: 100vh;
   width: 100vw;
-  background:  linear-gradient( #F4D4F4 0%, #E796F3 100%);
+  background:  linear-gradient( #F4D4F4 0%, #E796F3 50%, #92549C 100%);
+  overflow: hidden;
 }
+

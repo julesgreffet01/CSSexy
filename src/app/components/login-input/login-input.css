@@ -7,4 +7,6 @@
   color: var(--background);
   font-size: clamp(1em, 1vw, 1.2em);
   box-sizing: border-box;
+  font-weight: bold;
+  text-align: left;
 }
