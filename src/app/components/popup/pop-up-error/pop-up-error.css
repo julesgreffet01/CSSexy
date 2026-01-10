@@ -1,7 +1,7 @@
 * h1{
  font-family: "Roboto Light", sans-serif;
   font-weight: 100;
-  color: #F9FAFB;
+  color: var(--police-color);
   font-size: 1.4vw;
 }
 .container-popup{
@@ -9,7 +9,7 @@
   position: fixed;
   width: 30vw;
   height: 17vw;
-  background-color: #582B58;
+  background-color: var(--card-background);
   border-radius: 1vw;
 }
 
@@ -29,6 +29,25 @@
   backdrop-filter: blur(10px);
 }
 
+.compressor{
+  position: absolute;
+  right: 5%;
+  bottom: 1vw;
+  width: 90%;
+}
+
+.space-button{
+  margin-right: 1vw;
+}
+
+.compressor-flex{
+  display: flex;
+  position: absolute;
+  right: 2%;
+  bottom: 1vw;
+  width: 78%;
+}
+
 .contain-top{
   display: flex;
   flex-direction: column;
@@ -40,7 +59,7 @@
 .icon-alert-delete{
   width: 5vw;
   height: 5vw;
-  background-color: #FF6B6B;
+  background-color: var(--error);
   border-radius: 100vw;
   display: flex;
   justify-content: center;
@@ -50,7 +69,7 @@
 .icon-alert-error{
   width: 5vw;
   height: 5vw;
-  background-color: #FFD666;
+  background-color: var(--warning);
   border-radius: 100vw;
   display: flex;
   justify-content: center;
@@ -60,7 +79,7 @@
 .icon-alert-success{
   width: 5vw;
   height: 5vw;
-  background-color: #77ED8B;
+  background-color: var(--success);
   border-radius: 100vw;
   display: flex;
   justify-content: center;
@@ -70,7 +89,8 @@
 .center-text{
   display: flex;
   text-align: center;
-  width: 18vw;
+  justify-content: center;
+  width: 22vw;
 }
 
 * img{

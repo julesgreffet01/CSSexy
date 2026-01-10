@@ -1,5 +1,7 @@
 import { Routes } from '@angular/router';
-import {Layout} from '../layout/layout';
+import { PopUpError } from '../components/popup/pop-up-error/pop-up-error';
+import { PopUpEditable } from '../components/popup/pop-up-editable/pop-up-editable';
+import { Layout } from '../layout/layout';
 import { HomePage } from '../pages/home-page/home-page';
 import { UserStatus } from '../components/user-status/user-status';
 import { StatusTab } from '../components/status-tab/status-tab';

@@ -1,22 +1,24 @@
 import {Component, forwardRef, input} from '@angular/core';
-import {ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule} from '@angular/forms';
+import { type ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule} from "@angular/forms";
 
 @Component({
-  selector: 'app-inputs',
-  imports: [
-    ReactiveFormsModule
-  ],
-  templateUrl: './inputs.html',
-  styleUrl: './inputs.css',
+  selector: 'app-login-input',
+    imports: [
+      ReactiveFormsModule
+    ],
+  templateUrl: './login-input.html',
+  styleUrl: './login-input.css',
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => Inputs),
+      useExisting: forwardRef(() => LoginInput),
       multi: true
     }
   ]
 })
-export class Inputs implements ControlValueAccessor{
+export class LoginInput implements ControlValueAccessor {
+
+
   value = '';
 
   private onChange: (value: string) => void = () => {};
@@ -44,7 +46,8 @@ export class Inputs implements ControlValueAccessor{
     this.onTouched();
   }
 
-  public type = input<"text" | "number" | "date" | "select" | "checkbox" | "email" >("text")
+  public type = input<"text" | "password">("text")
   public id = input<string>('id')
-  public placeholder = input<string>('')
+  public placeholder = input<"Login" | "Password">('Login')
+
 }
