@@ -1,17 +1,19 @@
 import { Component, input, signal } from '@angular/core';
-import { isProjet, ProjetModel } from '../../../models/projet-interface';
+import { isProjet, ProjetModel } from '../../../models/projet-model';
 import { isService, ServiceModel } from '../../../models/service-model';
 import { isUtilisateur, UtilisateurModel } from '../../../models/utilisateur-model';
 import { CommonModule } from '@angular/common';
 import { UpDownButton } from '../up-down-button/up-down-button';
 import { StatusTab } from '../status-tab/status-tab';
+import { ReloadButton } from '../reload-button/reload-button';
 
 @Component({
   selector: 'app-tab',
   imports: [
     CommonModule,
     UpDownButton,
-    StatusTab
+    StatusTab,
+    ReloadButton
   ],
   templateUrl: './tab.html',
   styleUrl: './tab.css',

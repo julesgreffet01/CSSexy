@@ -5,10 +5,13 @@ import {Layout} from '../layout/layout';
 import {HomePage} from '../pages/home-page/home-page';
 import {LoginPage} from '../pages/login-page/login-page';
 import { Tab } from '../components/tabs/tab/tab';
+import { SwapTab } from '../components/swap-tab/swap-tab';
+import { Header } from '../components/header/header';
+import { ListProjectPage } from '../pages/list-project-page/list-project-page';
 
 export const routes: Routes = [
-  {path: 'max', component: LoginPage,},
-  {path: 'home', component: Tab},
+  {path: 'max', component: Tab,},
+  {path: 'Projects', component: ListProjectPage},
 
 
 ];
