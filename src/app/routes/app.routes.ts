@@ -4,8 +4,8 @@ import { PopUpEditable } from '../components/popup/pop-up-editable/pop-up-editab
 import { Layout } from '../layout/layout';
 import { HomePage } from '../pages/home-page/home-page';
 import { UserStatus } from '../components/user-status/user-status';
-import { StatusTab } from '../components/status-tab/status-tab';
-import { UpDownButton } from '../components/up-down-button/up-down-button';
+import { StatusTab } from '../components/tabs/status-tab/status-tab';
+import { UpDownButton } from '../components/tabs/up-down-button/up-down-button';
 
 export const routes: Routes = [
   {
