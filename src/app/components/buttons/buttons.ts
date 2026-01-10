@@ -10,7 +10,7 @@ export class Buttons {
 
   public callback = input< ((arg?: any) => void) | undefined >(undefined)
   public label = input<string>('buttons');
-  public size = input<"large" | "medium" | "tiny">('medium');
+  public size = input<"large" | "medium" | "tiny" | "connexion">('medium');
   public backgroundColor = input<string>('primary');
   public textColor = input<string>('police-color');
   public border = input<string>('');
