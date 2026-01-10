@@ -15,12 +15,12 @@
             <h3>Avant</h3>
 
             @if (type() == "Projet") {
-              @if(oldObject().nom !== newObject().nom) {
-                <p><strong>Nom :</strong> {{ oldObject().nom }}</p>
+              @if(oldObject().name !== newObject().name) {
+                <p><strong>name :</strong> {{ oldObject().name }}</p>
               }
             } @else if (type() === "Service") {
-              @if(oldObject().nom !== newObject().nom) {
-                <p><strong>Nom :</strong> {{ oldObject().nom }}</p>
+              @if(oldObject().name !== newObject().name) {
+                <p><strong>name :</strong> {{ oldObject().name }}</p>
               }
               @if(oldPorts().length) {
                 <p><strong>Ports supprimés :</strong></p>
@@ -39,12 +39,12 @@
             <h3>Après</h3>
 
             @if (type() == "Projet") {
-              @if(oldObject().nom !== newObject().nom) {
-                <p><strong>Nom :</strong> {{ newObject().nom }}</p>
+              @if(oldObject().name !== newObject().name) {
+                <p><strong>name :</strong> {{ newObject().name }}</p>
               }
             } @else if (type() === "Service") {
-              @if(oldObject().nom !== newObject().nom) {
-                <p><strong>Nom :</strong> {{ newObject().nom }}</p>
+              @if(oldObject().name !== newObject().name) {
+                <p><strong>name :</strong> {{ newObject().name }}</p>
               }
               @if(newPorts().length) {
                 <p><strong>Ports ajoutés :</strong></p>

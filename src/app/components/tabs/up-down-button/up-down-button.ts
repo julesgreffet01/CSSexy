@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, output, signal } from '@angular/core';
 
 @Component({
   selector: 'app-up-down-button',
@@ -8,13 +8,18 @@ import { Component, input } from '@angular/core';
 })
 export class UpDownButton {
   InitStat = input<boolean>(true);
-  protected UpDownStat: boolean;
+  protected UpDownStat = signal<boolean>(true);
+  toggle = output<boolean>();
 
   constructor() {
-    this.UpDownStat = this.InitStat();
+    this.UpDownStat.set(this.InitStat());
   }
 
-  SwitchState(){
-    this.UpDownStat = !this.UpDownStat;
-  }
+  SwitchState() {
+  this.UpDownStat.update(v => {
+    const next = !v;
+    this.toggle.emit(next);
+    return next;
+  });
+}
 }

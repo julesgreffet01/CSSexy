@@ -1,9 +1,9 @@
-@if(UpDownStat == true){
+@if(UpDownStat() == true){
 <button class="DownBtn" (click)="SwitchState()">
     <img src="/Down.svg">
  
 </button>
-}@else if(UpDownStat == false){
+}@else if(UpDownStat() == false){
 <button class="UpBtn" (click)="SwitchState()">
     <img src="/Up.svg">
    

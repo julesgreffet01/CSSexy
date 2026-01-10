@@ -1,6 +1,6 @@
 export interface ServiceModel {
   id: string;
-  nom: string;
+  name: string;
   image: string;
   status: "UP" | "DOWN" | "STARTING" | "STOP";
   startedSince?: Date;
@@ -11,7 +11,7 @@ export function isService(obj: any): obj is ServiceModel {
   const SERVICE_STATUS = ["UP", "DOWN", "STARTING", "STOP"];
   return (
     typeof obj.id === "string" &&
-    typeof obj.nom === "string" &&
+    typeof obj.name === "string" &&
     typeof obj.image === "string" &&
     SERVICE_STATUS.includes(obj.status) &&
     Array.isArray(obj.ports) &&

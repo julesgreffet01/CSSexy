@@ -19,21 +19,21 @@ export class Layout {
 
   project: ProjetModel = {
     id: 1,
-    nom: 'Mon Projet',
+    name: 'Mon Projet',
     services: [],
     createdAt: new Date(),
   }
 
   newProject: ProjetModel = {
     id: 1,
-    nom: 'Mon Projet Modifié',
+    name: 'Mon Projet Modifié',
     services: [],
     createdAt: new Date(),
   }
 
   service: ServiceModel = {
     id: '1',
-    nom: 'Mon Service',
+    name: 'Mon Service',
     ports: ['80', '443'],
     image: "bi",
     status: "UP",
@@ -41,7 +41,7 @@ export class Layout {
 
   newService: ServiceModel = {
     id: '1',
-    nom: 'Mon Service update',
+    name: 'Mon Service update',
     ports: ['20', '443', 'aa', 'bb', 'cc', 'dd', 'aa', 'aa', 'aa', 'aa',
     'aa', 'aa'],
     image: "bi",
