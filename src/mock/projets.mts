@@ -1,4 +1,4 @@
-import {ProjetModel} from "../app/models/projet-model";
+import type {ProjetModel} from "../app/models/projet-model";
 import {servicesMock} from "./services.mjs";
 
 export const projetsMock: ProjetModel[] = [
@@ -14,4 +14,4 @@ export const projetsMock: ProjetModel[] = [
     services: [servicesMock[2]],
     createdAt: new Date('2023-04-15T14:30:00Z')
   },
-  ];
+];

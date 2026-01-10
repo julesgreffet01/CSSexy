@@ -1,10 +1,32 @@
 .center-block{
   justify-content: center;
   text-align: center;
+  align-content: center;
   display: flex;
+  flex-direction: column;
+  margin-top: 4vw;
+}
+
+.textfield{
+  margin: auto;
+  width: 25%;
+  margin-top: 3vw;
 }
 
 h1{
   color: #201320;
   font-size: 2.5vw;
+}
+
+.button-size{
+  margin: auto;
+  width: 16%;
+  margin-top: 5vw;
+}
+
+.bubble{
+  height: 2vh;
+  width: 2vh;
+  border-radius: 10vh;
+  border: 3px solid white;
 }

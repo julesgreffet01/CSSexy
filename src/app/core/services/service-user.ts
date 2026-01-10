@@ -15,11 +15,11 @@ export class serviceUser {
         return this.http.get<any>(`${this.baseUrl}/`);
     }
 
-    public getUser(user_uuid: string): Observable<any> {   
+    public getUser(user_uuid: string): Observable<any> {
         return this.http.get<any>(`${this.baseUrl}/${user_uuid}`);
     }
 
-    public myUser(): Observable<any> {
-        return this.http.get<any>(`${this.baseUrl}/me`);
+    public myUser(): Observable<UtilisateurModel> {
+        return this.http.get<UtilisateurModel>(`${this.baseUrl}/me`);
     }
 }

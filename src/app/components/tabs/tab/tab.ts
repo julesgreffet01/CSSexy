@@ -27,18 +27,18 @@ export class Tab {
   };
   ServiceExample: ServiceModel = {
     id: 'service1',
-    name: 'Service Test', 
+    name: 'Service Test',
     image: 'service-image',
     status: 'DOWN',
     ports: ['8080', '443']
   };
   UserExample: UtilisateurModel = {
-    id: 1,  
+    id: 1,
     username: 'user1',
     name: 'User Test',
     role: 'ADMIN'
   };
-  
+
   InitStat = input<UtilisateurModel | ProjetModel | ServiceModel>(this.ServiceExample);
   projet = input<"PROJECT" | "USER" | "SERVICE">("SERVICE");
   PROJECT = signal<ProjetModel>({} as ProjetModel);
@@ -58,11 +58,11 @@ export class Tab {
 
     if (this.projet() == "PROJECT") {
       this.PROJECT.set(this.InitStat() as ProjetModel);
-    } 
+    }
     else if (this.projet() == "USER") {
       this.USER.set(this.InitStat() as UtilisateurModel);
-    } 
-    else if (this.projet() == "SERVICE") {  
+    }
+    else if (this.projet() == "SERVICE") {
       this.SERVICE.set(this.InitStat() as ServiceModel);
     }
   }
