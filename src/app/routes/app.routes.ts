@@ -1,6 +1,9 @@
 import { Routes } from '@angular/router';
 import {Layout} from '../layout/layout';
-import {HomePage} from '../pages/home-page/home-page';
+import { HomePage } from '../pages/home-page/home-page';
+import { UserStatus } from '../components/user-status/user-status';
+import { StatusTab } from '../components/status-tab/status-tab';
+import { UpDownButton } from '../components/up-down-button/up-down-button';
 
 export const routes: Routes = [
   {
@@ -9,5 +12,8 @@ export const routes: Routes = [
     children: [
       {path: 'home', component: HomePage},
       ]
-  }
+  },
+  { path: 'userstatus', component: UserStatus },
+  { path: 'statusTab', component: StatusTab},
+  { path: 'updown', component: UpDownButton}
 ];

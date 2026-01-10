@@ -1,0 +1,13 @@
+.UpBtn{
+    height: 40px;
+    width: 50px;
+    background-color: green;
+    border-radius: 40px;
+    
+}
+.DownBtn{
+    height: 40px;
+    width: 50px;
+    background-color: red;
+    border-radius: 40px;
+}
