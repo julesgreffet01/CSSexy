@@ -1,5 +1,71 @@
 <div class="blur"></div>
+
 <div class="center-contain">
   <div class="container-popup">
+
+    <div class="contain-top">
+      <h1>Validation</h1>
+    </div>
+
+    <div class="popup-content">
+      <div class="cote-a-cote">
+
+        <div class="side">
+          <div class="side-scroll">
+            <h3>Avant</h3>
+
+            @if (type() == "Projet") {
+              @if(oldObject().nom !== newObject().nom) {
+                <p><strong>Nom :</strong> {{ oldObject().nom }}</p>
+              }
+            } @else if (type() === "Service") {
+              @if(oldObject().nom !== newObject().nom) {
+                <p><strong>Nom :</strong> {{ oldObject().nom }}</p>
+              }
+              @if(oldPorts().length) {
+                <p><strong>Ports supprimés :</strong></p>
+                <ul class="ports">
+                  @for (port of oldPorts(); track $index) {
+                    <li>{{ port }}</li>
+                  }
+                </ul>
+              }
+            }
+          </div>
+        </div>
+
+        <div class="side">
+          <div class="side-scroll">
+            <h3>Après</h3>
+
+            @if (type() == "Projet") {
+              @if(oldObject().nom !== newObject().nom) {
+                <p><strong>Nom :</strong> {{ newObject().nom }}</p>
+              }
+            } @else if (type() === "Service") {
+              @if(oldObject().nom !== newObject().nom) {
+                <p><strong>Nom :</strong> {{ newObject().nom }}</p>
+              }
+              @if(newPorts().length) {
+                <p><strong>Ports ajoutés :</strong></p>
+                <ul class="ports">
+                  @for (port of newPorts(); track $index) {
+                    <li>{{ port }}</li>
+                  }
+                </ul>
+              }
+            }
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="popup-footer">
+      <div class="space-button">
+        <app-buttons label="Annuler" border="secondary-3" size="medium"></app-buttons>
+      </div>
+      <app-buttons backgroundColor="secondary-3" size="medium"></app-buttons>
+    </div>
+
   </div>
 </div>

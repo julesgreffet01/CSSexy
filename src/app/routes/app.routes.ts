@@ -8,14 +8,8 @@ import { StatusTab } from '../components/tabs/status-tab/status-tab';
 import { UpDownButton } from '../components/tabs/up-down-button/up-down-button';
 
 export const routes: Routes = [
-  {
-    path: '',
-    component: Layout,
-    children: [
-      {path: 'home', component: HomePage},
-      ]
-  },
-  { path: 'userstatus', component: UserStatus },
-  { path: 'statusTab', component: StatusTab},
-  { path: 'updown', component: UpDownButton}
+  {path: 'max', component: LoginPage,},
+  {path: 'home', component: HomePage},
+
+
 ];

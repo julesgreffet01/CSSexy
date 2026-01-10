@@ -36,6 +36,7 @@ export class Buttons {
     return color.includes('#') ? color : `var(--${color})`;
   }
 
+
   getBorder() {
     const border = this.border();
     return border ? (border.includes('#') ? border : `var(--${border})`) : undefined;
