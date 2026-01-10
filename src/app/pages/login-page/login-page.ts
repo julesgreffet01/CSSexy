@@ -5,8 +5,6 @@ import {Buttons} from '../../components/buttons/buttons';
 @Component({
   selector: 'app-login-page',
   imports: [
-    Inputs,
-    Buttons
   ],
   templateUrl: './login-page.html',
   styleUrl: './login-page.css',

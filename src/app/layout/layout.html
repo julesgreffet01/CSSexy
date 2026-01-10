@@ -1,7 +1,5 @@
 <app-header/>
 <div id="layout_content">
   <router-outlet></router-outlet>
+  <app-pop-up-validation [oldObject]="service" [newObject]="newService" type="Service"/>
 </div>
-
-
-<app-pop-up-validation />
