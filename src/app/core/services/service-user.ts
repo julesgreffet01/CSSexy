@@ -1,5 +1,4 @@
 import { inject, Injectable } from "@angular/core";
-import { ServiceModel } from "../../models/service-model";
 import { Observable } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 
