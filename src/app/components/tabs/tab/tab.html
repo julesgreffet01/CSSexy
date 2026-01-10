@@ -1,0 +1,52 @@
+<table>
+    <thead>
+        <tr>
+        @if(projet() == "PROJECT"){
+            <th>Nom</th>
+            <th>Nombre de service</th>
+            <th>Creation</th>
+        }
+        @if(projet() == "USER"){
+            <th>Username</th>
+            <th>Nom</th>
+            <th>Role</th>
+        }
+        @if(projet() == "SERVICE"){
+            <th>Nom</th>
+            <th>Status</th>
+            <th>Image</th>
+            <th>Action</th>
+        }   
+        </tr> 
+    </thead>
+    <tbody>
+        @if(projet() == "PROJECT"){
+            <tr>
+                <td>{{PROJECT().name}}</td>
+                <td>{{PROJECT().services.length}}</td>
+                <td>{{PROJECT().createdAt | date:'short'}}</td>
+            </tr>
+        }
+        @if(projet() == "USER"){
+            <tr>
+                <td>{{USER().username}}</td>
+                <td>{{USER().name}}</td>
+                <td>{{USER().role}}</td>
+            </tr>
+        }
+        @if(projet() == "SERVICE"){
+            <tr>
+                <td>{{SERVICE().name}}</td>
+                <td>
+                <app-status-tab [status]="SERVICE().status">
+                </app-status-tab>
+                </td>
+                <td>{{SERVICE().image}}</td>
+                <td>
+                <app-up-down-button [InitStat]="SERVICE().status === 'UP'">
+                </app-up-down-button>
+                </td>  
+            </tr>
+        }
+    </tbody>
+</table>
