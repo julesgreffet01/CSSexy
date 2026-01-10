@@ -1,0 +1,11 @@
+<table>
+    <thead>    
+        <tr>
+        @for(let i = 0; i < this.InitStat().length; i = i + 1){
+            <th>
+                {{Object.keys(this.InitStat())[i]}}
+            </th>
+        }
+        </tr>
+    </thead>
+</table>
