@@ -1,13 +1,36 @@
 .UpBtn{
     height: 40px;
-    width: 50px;
+    width: 40px;
     background-color: green;
-    border-radius: 40px;
-    
+    align-items: center;
+    border-radius: 35px;
+    border :none;
 }
+.UpBtn:hover {
+    background-color: darkgreen;
+}
+.UpBtn:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 0 darkgreen;
+}
+
 .DownBtn{
     height: 40px;
-    width: 50px;
+    width: 40px;
     background-color: red;
-    border-radius: 40px;
+    align-items: center;
+    border-radius: 35px;
+    border :none;
+}
+
+.DownBtn:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 0 darkred;
+}
+.DownBtn:hover {
+    background-color: darkred;
+}
+img {
+    height: 22px;
+    width: 22px;
 }

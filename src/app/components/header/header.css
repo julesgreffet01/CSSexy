@@ -5,5 +5,11 @@
   top: 0;
   left: 0;
   z-index: 1000;
-  height: 50px;
+  height: 95px;
+}
+
+app-user-status {
+  position: absolute;
+  top: 20px;
+  right: 70px;
 }

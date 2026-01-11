@@ -1,0 +1,24 @@
+.tabs {
+  border-bottom: 2px solid white;
+  padding-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.tabs a {
+  color: white;              
+  text-decoration: none;
+  font-size: 22px;
+}
+
+.tabs a.active {
+  color: #D47CC1;           
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  background: white;
+  border-radius: 50%;
+}

@@ -2,16 +2,17 @@ import { inject, Injectable } from "@angular/core";
 import { ServiceModel } from "../../models/service-model";
 import { Observable } from "rxjs";
 import { HttpClient } from "@angular/common/http";
+import { environment } from "../../environnements/environnements";
 
 @Injectable({
     providedIn: "root",
 })
 export class serviceServices {
     private readonly http = inject(HttpClient);
-    private readonly baseUrl = "/services";
+    private baseUrl = environment.apiBaseUrl + '/services';
 
-    public getServices(service_uuid: string): Observable<ServiceModel[]> {
-        return this.http.get<ServiceModel[]>(`${this.baseUrl}/${service_uuid}`);
+    public getServices(service_uuid: string): Observable<ServiceModel> {
+        return this.http.get<ServiceModel>(`${this.baseUrl}/${service_uuid}`);
     }
 
     public updateService(service: ServiceModel): Observable<ServiceModel> {

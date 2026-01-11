@@ -1,4 +1,4 @@
-<table>
+<table class="cp-table">
     <thead>
         <tr>
         @if(projet() == "PROJECT"){
@@ -9,44 +9,42 @@
         @if(projet() == "USER"){
             <th>Username</th>
             <th>Nom</th>
-            <th>Role</th>
+            <th>Role</th>    
         }
         @if(projet() == "SERVICE"){
             <th>Nom</th>
             <th>Status</th>
-            <th>Image</th>
             <th>Action</th>
         }   
         </tr> 
     </thead>
     <tbody>
-        @if(projet() == "PROJECT"){
+        @switch(projet()){
+        @case("PROJECT"){
             <tr>
-                <td>{{PROJECT().name}}</td>
-                <td>{{PROJECT().services.length}}</td>
-                <td>{{PROJECT().createdAt | date:'short'}}</td>
+                <td classe="tableRow1" >{{PROJECT().name}}</td>
+                <td classe="tableRow2" >{{PROJECT().services.length}}</td>
+                <td classe="tableRow3" >{{PROJECT().createdAt | date:'short'}}</td>
             </tr>
         }
-        @if(projet() == "USER"){
+        @case("USER"){
             <tr>
-                <td>{{USER().username}}</td>
-                <td>{{USER().name}}</td>
-                <td>{{USER().role}}</td>
+                <td classe="tableRow1">{{USER().username}}</td>
+                <td classe="tableRow2" >{{USER().name}}</td>
+                <td classe="tableRow3">{{USER().role}}</td>
             </tr>
         }
-        @if(projet() == "SERVICE"){
+        @case("SERVICE"){
             <tr>
-                <td>{{SERVICE().name}}</td>
-                <td>
-                <app-status-tab [status]="SERVICE().status">
-                </app-status-tab>
+                <td classe="tableRow1">{{SERVICE().name}}</td>
+                <td classe="tableRow2">
+                <app-status-tab [status]="SERVICE().status"></app-status-tab>
                 </td>
-                <td>{{SERVICE().image}}</td>
-                <td>
-                <app-up-down-button [InitStat]="SERVICE().status === 'UP'">
-                </app-up-down-button>
+                <td classe="tableRow3 action" >
+                <app-up-down-button [InitStat]="SERVICE().status === 'UP'"></app-up-down-button>
+                <app-reload-button [serviceToReload]="SERVICE()"></app-reload-button>
                 </td>  
             </tr>
-        }
+        }}
     </tbody>
 </table>

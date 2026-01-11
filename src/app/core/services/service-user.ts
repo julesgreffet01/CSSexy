@@ -1,16 +1,17 @@
 import { inject, Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { HttpClient } from "@angular/common/http";
-import {UtilisateurModel} from '../../models/utilisateur-model';
+import { environment } from "../../environnements/environnements";
+import { UtilisateurModel } from "../../models/utilisateur-model";
 
 @Injectable({
     providedIn: "root",
 })
 export class serviceUser {
     private readonly http = inject(HttpClient);
-    private readonly baseUrl = "/users";
-
-
+    private baseUrl = environment.apiBaseUrl + '/users';
+ 
+    
     public getAllUsers(): Observable<any> {
         return this.http.get<any>(`${this.baseUrl}/`);
     }
