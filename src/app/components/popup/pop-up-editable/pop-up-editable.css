@@ -38,6 +38,12 @@
   width: 90%;
 }
 
+.contain-project{
+  padding: 1vw;
+  padding-left: 1.5vw;
+  width: 20vw;
+}
+
 .center-contain{
   padding-top: 11vw;
   display: flex;

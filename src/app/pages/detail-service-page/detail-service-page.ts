@@ -1,18 +1,30 @@
 import {Component, input} from '@angular/core';
 import {Header} from '../../components/header/header';
+import {ServiceModel} from '../../models/service-model';
+import {serviceServices} from '../../core/services/service-services';
+import {Observable} from 'rxjs';
+import {AsyncPipe, NgOptimizedImage} from '@angular/common';
 
 @Component({
   selector: 'app-detail-service-page',
+  standalone: true,
   imports: [
-    Header
+    Header,
+    AsyncPipe,
+    NgOptimizedImage
   ],
   templateUrl: './detail-service-page.html',
   styleUrl: './detail-service-page.css',
 })
 export class DetailServicePage {
 
-  //public Title = input<string>('');
-  public Title = 'PHP';
-  public ports = ["80", "801", "802", "803", "321","45644"];
+  public service!: Observable<ServiceModel | undefined>;
+
+  constructor(private serviceServices: serviceServices) {}
+
+  ngOnInit() {
+    console.log('DetailServicePage loaded');
+    this.service = this.serviceServices.getServices("1");
+  }
 
 }

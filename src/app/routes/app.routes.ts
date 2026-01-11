@@ -8,7 +8,7 @@ import { Tab } from '../components/tabs/tab/tab';
 import {DetailServicePage} from '../pages/detail-service-page/detail-service-page';
 
 export const routes: Routes = [
-  {path: 'max', component: DetailServicePage,},
+  {path: 'max', component: PopUpEditable},
   {path: 'home', component: Tab},
 
 
