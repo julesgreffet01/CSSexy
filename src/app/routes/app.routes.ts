@@ -10,5 +10,6 @@ export const routes: Routes = [
   {path: 'Projects', component: ListProjectPage},
   {path: 'Users', component: ListUsersPage},
   {path: '', component: Layout},
-  {path: 'login', component: LoginPage}
+  {path: 'login', component: LoginPage},
+  {path: '**', loadComponent: ()=> import('../pages/errors/error-404/error-404').then(m => m.Error404)},
 ];
