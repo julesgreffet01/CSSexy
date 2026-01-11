@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterLinkActive, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-swap-tab',
-  imports: [RouterModule],
+  imports: [RouterModule, RouterLinkActive],
   templateUrl: './swap-tab.html',
   styleUrl: './swap-tab.css',
   standalone: true

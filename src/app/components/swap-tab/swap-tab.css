@@ -1,19 +1,19 @@
 .tabs {
+  border-bottom: 2px solid white;
+  padding-bottom: 10px;
   display: flex;
   align-items: center;
   gap: 16px;
 }
 
 .tabs a {
-  color: white;              /* couleur par défaut */
+  color: white;              
   text-decoration: none;
   font-size: 22px;
-  transition: color 0.2s ease;
 }
 
 .tabs a.active {
-  color: #e38acb;            /* rose pour l’actif */
-  font-weight: 600;
+  color: #D47CC1;           
 }
 
 .dot {

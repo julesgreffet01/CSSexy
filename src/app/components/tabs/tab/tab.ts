@@ -6,7 +6,8 @@ import { CommonModule } from '@angular/common';
 import { UpDownButton } from '../up-down-button/up-down-button';
 import { StatusTab } from '../status-tab/status-tab';
 import { ReloadButton } from '../reload-button/reload-button';
-
+import { servicesMock } from '../../../../mock/services.mjs'; 
+import { projetsMock } from '../../../../mock/projets.mjs';
 @Component({
   selector: 'app-tab',
   imports: [
@@ -19,27 +20,8 @@ import { ReloadButton } from '../reload-button/reload-button';
   styleUrl: './tab.css',
 })
 export class Tab {
-  projectExample: ProjetModel = {
-    id: 1,
-    name: 'Projet test',
-    services: [],
-    createdAt: new Date()
-  };
-  ServiceExample: ServiceModel = {
-    id: 'service1',
-    name: 'Service Test',
-    image: 'service-image',
-    status: 'DOWN',
-    ports: ['8080', '443']
-  };
-  UserExample: UtilisateurModel = {
-    id: 1,
-    username: 'user1',
-    name: 'User Test',
-    role: 'ADMIN'
-  };
 
-  InitStat = input<UtilisateurModel | ProjetModel | ServiceModel>(this.ServiceExample);
+  InitStat = input.required<UtilisateurModel | ProjetModel | ServiceModel>();
   projet = input<"PROJECT" | "USER" | "SERVICE">("SERVICE");
   PROJECT = signal<ProjetModel>({} as ProjetModel);
   USER = signal<UtilisateurModel>({} as UtilisateurModel);

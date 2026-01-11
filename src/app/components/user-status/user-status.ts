@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
 })
 export class UserStatus {
     name: string = "Un prenom";
-    image = '/5907.jpg';
+    image = '/account.svg';
 }
