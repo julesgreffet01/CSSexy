@@ -12,7 +12,7 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
 
       switch (error.status) {
         case 401:
-          router.navigate(['/login']);
+          router.createUrlTree(['/login']);
           break;
 
         case 403:
@@ -20,6 +20,7 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
           break;
 
         case 500:
+          console.log(error.message);
           break;
       }
 

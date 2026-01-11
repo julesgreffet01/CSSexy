@@ -10,7 +10,7 @@ import {ServiceModel} from '../models/service-model';
   imports: [
     RouterOutlet,
     Header,
-    PopUpValidation,
+    // PopUpValidation,
   ],
   templateUrl: './layout.html',
   styleUrl: './layout.css',
