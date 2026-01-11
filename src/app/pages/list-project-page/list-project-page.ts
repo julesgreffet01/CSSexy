@@ -21,7 +21,7 @@ import { servicesMock } from '../../../mock/services.mjs';
 })
 export class ListProjectPage {
     projectExample: ProjetModel = projetsMock[0];
-  
+    serviceExemple: ServiceModel = servicesMock[0];
 
 
 

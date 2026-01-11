@@ -50,4 +50,13 @@ export class Tab {
   }
 
 
+  onRowClickUser(user: UtilisateurModel){
+    console.log("click")
+  }
+  onRowClickProject(project: ProjetModel){
+    console.log("click")
+  }
+  onRowClickService(service: ServiceModel){
+    console.log("click")
+  }
 }

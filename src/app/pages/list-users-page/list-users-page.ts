@@ -16,11 +16,12 @@ import { UtilisateurModel } from '../../models/utilisateur-model';
   styleUrl: './list-users-page.css',
 })
 export class ListUsersPage {
+  
   UserExample: UtilisateurModel = {
     id: 1,
     username: 'user1',
     name: 'User Test',
     role: 'ADMIN'
   };
-  
+
 }
