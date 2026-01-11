@@ -2,6 +2,8 @@ import {Component, input} from '@angular/core';
 import {Inputs} from '../../inputs/inputs';
 import {Buttons} from '../../buttons/buttons';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import {ProjetModel} from '../../../models/projet-model';
+import {ServiceModel} from '../../../models/service-model';
 
 @Component({
   selector: 'app-pop-up-editable',
@@ -16,6 +18,7 @@ import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/
 export class PopUpEditable {
   name: string = '';
   image: string = '';
+  ports: string[] = [];
 
   //type = input<'Projet' | 'Service'>();
   //action = input<'Modification' | 'Ajout'>();
@@ -23,7 +26,8 @@ export class PopUpEditable {
 
   formService = new FormGroup({
     name: new FormControl(this.name, {nonNullable: true, validators: [Validators.required]}),
-    image: new FormControl(this.image, {nonNullable: true, validators: [Validators.required]})
+    image: new FormControl(this.image, {nonNullable: true, validators: [Validators.required]}),
+    ports: new FormControl<string[]>(this.ports, { nonNullable: true, validators: [Validators.required]})
   });
 
   formProjet = new FormGroup({
@@ -31,7 +35,7 @@ export class PopUpEditable {
   });
 
 
-  type = 'Projet';
+  type = 'Service';
   action = 'Ajout';
 
   public getType() {
@@ -54,8 +58,30 @@ export class PopUpEditable {
     }
   }
 
-  public test() {
-    console.log(this.formProjet.value.name);
+  public addPort(){
+    
+  }
+
+  public Submit() {
+    let obj: ProjetModel | ServiceModel;
+
+    if (this.type === 'Projet') {
+      obj = {
+        id: 0,
+        name: this.formProjet.value.name!,
+        services: [],
+        createdAt: new Date()
+      };
+    } else
+      obj = {
+        id: '0',
+        name: this.formService.value.name!,
+        image: this.formService.value.image!,
+        status: "STARTING",
+        startedSince: new Date(),
+        ports: this.formService.value.ports!
+      };
+    console.log(obj);
   }
 
 }

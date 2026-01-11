@@ -1,7 +1,7 @@
 <div class="blur"></div>
 <div class="center-contain">
     <div class="container-popup">
-      <form [formGroup]="getType() == 'Projet' ? formProjet : formService" (ngSubmit)="test()">
+      <form [formGroup]="getType() == 'Projet' ? formProjet : formService" (ngSubmit)="Submit()">
       <div class="contain-top">
         <h1>{{ getType() + " " + getAction() }}</h1>
       </div>
@@ -21,10 +21,10 @@
             </div>
             <div class="right-contain">
               <h2>Port 1 :</h2>
-              <app-inputs></app-inputs>
+              <app-inputs formControlName="ports"></app-inputs>
 
               <div class="btnadd">
-                <app-buttons label="+" backgroundColor="secondary-3" size="large"></app-buttons>
+                <app-buttons label="+" [callback]=getcallback backgroundColor="secondary-3" size="large"></app-buttons>
               </div>
             </div>
           </div>
