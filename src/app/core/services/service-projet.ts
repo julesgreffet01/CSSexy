@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environnements/environnements';
 import {projetsMock} from '../../../mock/projets.mjs';
 import {delay, of} from 'rxjs';
-import {ProjetModel} from '../../models/projet-model';
+import {type ProjetModel} from '../../models/projet-model';
 
 @Injectable({
   providedIn: 'root',
