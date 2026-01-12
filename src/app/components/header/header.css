@@ -1,15 +1,27 @@
-#header {
+.header {
   background: linear-gradient(to right, #9213A7, #A16FA9);
-  width: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
   z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   height: 95px;
+  padding: 0 150px;
 }
 
-app-user-status {
-  position: absolute;
-  top: 20px;
-  right: 70px;
+.header img {
+  width: 60px;
+  height: auto;
+  text-align: center;
+}
+
+@media screen and (max-width: 900px) {
+  .header img {
+    width: 50px;
+    height: auto;
+    text-align: center;
+  }
+
+  .header {
+    padding: 0 10px;
+  }
 }

@@ -1,8 +1,6 @@
-<div class="blur"></div>
+<div class="blur" (click)="onClosePopup()">
 
-<div class="center-contain">
-  <div class="container-popup">
-
+  <div class="container-popup" (click)="$event.stopPropagation()">
     <div class="contain-top">
       <h1>Validation</h1>
     </div>
@@ -15,14 +13,14 @@
             <h3>Avant</h3>
 
             @if (type() == "Projet") {
-              @if(oldObject().name !== newObject().name) {
+              @if (oldObject().name !== newObject().name) {
                 <p><strong>Nom :</strong> {{ oldObject().name }}</p>
               }
             } @else if (type() === "Service") {
-              @if(oldObject().name !== newObject().name) {
+              @if (oldObject().name !== newObject().name) {
                 <p><strong>Nom :</strong> {{ oldObject().name }}</p>
               }
-              @if(oldPorts().length) {
+              @if (oldPorts().length) {
                 <p><strong>Ports supprimés :</strong></p>
                 <ul class="ports">
                   @for (port of oldPorts(); track $index) {
@@ -39,14 +37,14 @@
             <h3>Après</h3>
 
             @if (type() == "Projet") {
-              @if(oldObject().name !== newObject().name) {
+              @if (oldObject().name !== newObject().name) {
                 <p><strong>Nom :</strong> {{ newObject().name }}</p>
               }
             } @else if (type() === "Service") {
-              @if(oldObject().name !== newObject().name) {
+              @if (oldObject().name !== newObject().name) {
                 <p><strong>Nom :</strong> {{ newObject().name }}</p>
               }
-              @if(newPorts().length) {
+              @if (newPorts().length) {
                 <p><strong>Ports ajoutés :</strong></p>
                 <ul class="ports">
                   @for (port of newPorts(); track $index) {
@@ -62,9 +60,9 @@
     </div>
     <div class="popup-footer">
       <div class="space-button">
-        <app-buttons label="Annuler" border="secondary-3" size="medium"></app-buttons>
+        <app-buttons label="Annuler" (click)="onClosePopup()" border="secondary-3" size="medium"></app-buttons>
       </div>
-      <app-buttons backgroundColor="secondary-3" size="medium"></app-buttons>
+      <app-buttons backgroundColor="secondary-3" size="medium" (click)="onValidPopup()" label="Valider"/>
     </div>
 
   </div>

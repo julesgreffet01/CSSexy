@@ -1,4 +1,4 @@
-import {Component, input, signal} from '@angular/core';
+import {Component, input, output, signal} from '@angular/core';
 import {Buttons} from '../../buttons/buttons';
 import {type ServiceModel, isService} from '../../../models/service-model';
 import {type ProjetModel, isProjet} from '../../../models/projet-model';
@@ -20,6 +20,9 @@ export class PopUpValidation {
   oldPorts = signal<string[]>([])
   newPorts = signal<string[]>([])
 
+  closePopup = output<void>()
+  validPopup = output<void>()
+
   ngOnInit() {
     if(this.type() === "Projet" && !(isProjet(this.oldObject()) || isProjet(this.newObject()) )) {
       throw new Error('Invalid projet type');
@@ -37,6 +40,14 @@ export class PopUpValidation {
         }
       });
     }
+  }
+
+  onClosePopup(){
+    this.closePopup.emit()
+  }
+
+  onValidPopup(){
+    this.validPopup.emit()
   }
 
 }
