@@ -90,4 +90,3 @@ export class PopUpEditable {
     this.closePopup.emit()
   }
 }
-*/

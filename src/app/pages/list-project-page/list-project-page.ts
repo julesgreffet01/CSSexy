@@ -1,4 +1,4 @@
-import {PopUpEditable} from '../../components/popup/pop-up-editable/pop-up-editable';
+import { PopUpEditable } from '../../components/popup/pop-up-editable/pop-up-editable';
 import { Component, inject, signal } from '@angular/core';
 import { SwapTab } from '../../components/swap-tab/swap-tab';
 import { Tab } from '../../components/tabs/tab/tab';
@@ -11,7 +11,7 @@ import { UtilisateurModel } from '../../models/utilisateur-model';
 import { AsyncPipe } from '@angular/common';
 import { ServiceProjet } from '../../core/services/service-projet';
 import { ActivatedRoute } from '@angular/router';
-import {PopUpEditable} from '../../components/popup/pop-up-editable/pop-up-editable';
+
 
 
 @Component({
