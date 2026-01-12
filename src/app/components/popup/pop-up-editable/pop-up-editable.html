@@ -19,12 +19,13 @@
               <h2>Image :</h2>
               <app-inputs formControlName="image"></app-inputs>
             </div>
-            <div class="right-contain">
-              <h2>Port 1 :</h2>
-              <app-inputs formControlName="ports"></app-inputs>
-
+            <div  class="right-contain">
+              @for (portCtrl of portsArray.controls; track portCtrl; let idx = $index) {
+                <h2>Port {{idx+1}} :</h2>
+              <app-inputs [formControl]="portCtrl"></app-inputs>
+              }
               <div class="btnadd">
-                <app-buttons label="+" [callback]=getcallback backgroundColor="secondary-3" size="large"></app-buttons>
+                <app-buttons label="+" [callback]=addPort backgroundColor="secondary-3" size="large"></app-buttons>
               </div>
             </div>
           </div>

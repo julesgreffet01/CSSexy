@@ -1,7 +1,7 @@
 import {Component, input} from '@angular/core';
 import {Inputs} from '../../inputs/inputs';
 import {Buttons} from '../../buttons/buttons';
-import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import {FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {ProjetModel} from '../../../models/projet-model';
 import {ServiceModel} from '../../../models/service-model';
 
@@ -18,7 +18,10 @@ import {ServiceModel} from '../../../models/service-model';
 export class PopUpEditable {
   name: string = '';
   image: string = '';
-  ports: string[] = [];
+  ports: string[] = [""];
+
+  type = 'Service';
+  action = 'Ajout';
 
   //type = input<'Projet' | 'Service'>();
   //action = input<'Modification' | 'Ajout'>();
@@ -27,16 +30,16 @@ export class PopUpEditable {
   formService = new FormGroup({
     name: new FormControl(this.name, {nonNullable: true, validators: [Validators.required]}),
     image: new FormControl(this.image, {nonNullable: true, validators: [Validators.required]}),
-    ports: new FormControl<string[]>(this.ports, { nonNullable: true, validators: [Validators.required]})
+    ports: new FormArray<FormControl<string>>([new FormControl("", { nonNullable: true, validators: [Validators.required] })])
   });
 
   formProjet = new FormGroup({
     name: new FormControl(this.name, {nonNullable: true, validators: [Validators.required]}),
   });
 
-
-  type = 'Service';
-  action = 'Ajout';
+  get portsArray(): FormArray<FormControl<string>> {
+    return this.formService.controls.ports;
+  }
 
   public getType() {
     return this.type;
@@ -58,9 +61,10 @@ export class PopUpEditable {
     }
   }
 
-  public addPort(){
-    
+  addPort = () => {
+    this.portsArray.push(new FormControl('', { nonNullable: true }));
   }
+
 
   public Submit() {
     let obj: ProjetModel | ServiceModel;

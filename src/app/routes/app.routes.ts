@@ -5,8 +5,10 @@ import { Tab } from '../components/tabs/tab/tab';
 import { LoginPage } from '../pages/login-page/login-page';
 import { authGuard } from '../core/guards/guard-auth';
 import { guardRoleGuard } from '../core/guards/guard-role-guard';
+import {PopUpEditable} from '../components/popup/pop-up-editable/pop-up-editable';
 
 export const routes: Routes = [
+  {path: 'maxime', component: PopUpEditable,},
   {path: 'max', component: Tab,},
   {path: '', component: Layout, canActivate:[authGuard], children: [
     {
