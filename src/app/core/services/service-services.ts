@@ -1,8 +1,10 @@
 import { inject, Injectable } from "@angular/core";
 import { ServiceModel } from "../../models/service-model";
-import { Observable } from "rxjs";
+import { delay, Observable, of } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "../../environnements/environnements";
+import { ProjetModel } from "../../models/projet-model";
+import { projetsMock } from "../../../mock/projets.mjs";
 
 @Injectable({
     providedIn: "root",
@@ -10,6 +12,12 @@ import { environment } from "../../environnements/environnements";
 export class serviceServices {
     private readonly http = inject(HttpClient);
     private baseUrl = environment.apiBaseUrl + '/services';
+    private baseUrlProject = environment.apiBaseUrl + '/projects'
+
+    public getAllByProject(projectId: number): Observable<ServiceModel[]>{
+        return of(projetsMock.find(p => p.id === projectId)).pipe(delay(200));
+        //return this.http.get<ServiceModel[]>(`${this.baseUrlProject}/${projectId}/${this.baseUrl}`)
+    }
 
     public getServices(service_uuid: string): Observable<ServiceModel> {
         return this.http.get<ServiceModel>(`${this.baseUrl}/${service_uuid}`);

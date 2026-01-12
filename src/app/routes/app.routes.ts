@@ -16,6 +16,9 @@ export const routes: Routes = [
     },
     {
       path: 'users', loadComponent:() => import('../pages/list-users-page/list-users-page').then(m => m.ListUsersPage) , canActivate: [guardRoleGuard], data:{ roles: ['ADMIN'] }
+    },
+    {
+      path: 'project/:id' , loadComponent:() => import('../pages/detail-project-page/detail-project-page').then(m => m.DetailProjectPage)
     }
   ]},
   {path: 'login', component: LoginPage},
