@@ -22,5 +22,7 @@
 }
 
 @if(modalCreate()){
-  <app-pop-up-editable (closePopup)="closeModal()"/>
+  <div class="popup">
+  <app-pop-up-editable type="Projet" action="Ajout" (closePopup)="closeModal()"/>
+  </div>
 }

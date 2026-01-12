@@ -3,11 +3,11 @@ import {Layout} from '../layout/layout';
 import { LoginPage } from '../pages/login-page/login-page';
 import { authGuard } from '../core/guards/guard-auth';
 import { guardRoleGuard } from '../core/guards/guard-role-guard';
-import { DetailServicePage } from '../pages/detail-service-page/detail-service-page';
+import {ProfilPage} from '../pages/profil-page/profil-page';
 //import {PopUpEditable} from '../components/popup/pop-up-editable/pop-up-editable';
 
 export const routes: Routes = [
-  //{path: 'maxime/:id', component: DetailServicePage,},
+  {path: 'maxime', component: ProfilPage,},
   {path: '', component: Layout, canActivate:[authGuard], children: [
     {
       path: '', redirectTo: '/projects', pathMatch: 'full'
