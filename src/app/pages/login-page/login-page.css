@@ -13,7 +13,7 @@
 }
 
 h1{
-  color: #201320;
+  color: var(--background);
   font-size: 2.5vw;
 }
 
@@ -26,7 +26,7 @@ h1{
   height: 2vh;
   width: 2vh;
   border-radius: 10vh;
-  border: 3px solid white;
+  border: 3px solid var(--police-color);
 }
 
 .error-text {

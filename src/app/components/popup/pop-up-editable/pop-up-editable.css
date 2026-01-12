@@ -5,6 +5,10 @@
   font-size: 2.5vw;
 }
 
+* h2 {
+  margin-bottom: 0;
+}
+
 .container-popup{
   min-width: 40vw;
   min-height: 22vw;
@@ -38,6 +42,12 @@
   width: 90%;
 }
 
+.contain-project{
+  padding: 1vw;
+  padding-left: 1.5vw;
+  width: 20vw;
+}
+
 .center-contain{
   padding-top: 11vw;
   display: flex;
@@ -51,6 +61,10 @@
 .right-contain{
   margin-left: 10%;
   width: 30%;
+  height: 11vw;
+  padding-right: 1.75vw;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .blur{

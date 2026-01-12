@@ -15,11 +15,12 @@ import { UtilisateurModel } from '../../models/utilisateur-model';
 })
 export class ListUsersPage {
   
-  UserExample: UtilisateurModel = {
+  UserExample: UtilisateurModel[] = [{
     id: 1,
     username: 'user1',
     name: 'User Test',
     role: 'ADMIN'
-  };
+  },
+];
 
 }
