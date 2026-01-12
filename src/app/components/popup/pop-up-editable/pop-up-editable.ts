@@ -1,4 +1,4 @@
-import {Component, EventEmitter, input, Output} from '@angular/core';
+/*import {Component, EventEmitter, input, Output} from '@angular/core';
 import {Inputs} from '../../inputs/inputs';
 import {Buttons} from '../../buttons/buttons';
 import {FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
@@ -90,3 +90,4 @@ export class PopUpEditable {
   }
 
 }
+*/

@@ -8,12 +8,11 @@ import { serviceServices } from '../../core/services/service-services';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ProjetModel } from '../../models/projet-model';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-detail-project-page',
-  imports: [  
-      Tab,
-      Buttons],
+  imports: [CommonModule, Tab, Buttons],
   templateUrl: './detail-project-page.html',
   styleUrl: './detail-project-page.css',
 })
@@ -26,34 +25,37 @@ export class DetailProjectPage {
   loading = signal<boolean>(true);
   errorProject = signal<boolean>(false);
 
-ngOnInit(): void{
-  this.route.paramMap.subscribe(params => {
-    const id = params.get('id');
-    const idToNumber = Number(id)
-    if(idToNumber && !isNaN(idToNumber)){
-       this.serviceProject.findProjectById(idToNumber).subscribe({
-        next: (project) => {
-          this.currentProject.set(project);  
+  ngOnInit(): void {
+    this.route.paramMap.subscribe((params) => {
+      const id = params.get('id');
+      const idToNumber = Number(id);
+      if (idToNumber && !isNaN(idToNumber)) {
+        this.serviceProject.findProjectById(idToNumber).subscribe({
+          next: (project) => {
+            this.currentProject.set(project);
             this.serviceService.getAllByProject(project!.id).subscribe({
-              next: (service) =>{
+              next: (service) => {
                 this.currentServiceList.set(service);
                 this.loading.set(false);
               },
-              error: (err) =>{
+              error: (err) => {
                 this.errorProject.set(true);
                 this.loading.set(false);
-                console.log(err)
-              }
-          })
-        }, 
-        error: (err) => {
-          this.errorProject.set(true);
-          this.loading.set(false);
-          console.log(err)
-        },
-       })
-    }
-
-  });
-}
+                console.log(err);
+              },
+            });
+          },
+          error: (err) => {
+            this.errorProject.set(true);
+            this.loading.set(false);
+            console.log(err);
+          },
+        });
+      }
+    });
+  }
+  onUpdateProject() {
+    console.log('coucou')
+    //TODO remplir la popup update
+  }
 }

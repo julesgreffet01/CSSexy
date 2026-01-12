@@ -8,9 +8,15 @@
     @if(currentServiceList()){
         <body>
             <div class="info-project">
-                <h2>{{currentProject()!.name }}</h2>
-                <p>{{currentProject()!.createdAt}}</p>
+                <div class="info-project-main">
+                    <h2>{{currentProject()!.name | titlecase}}</h2>
+                    <div class="onUpdateProject">
+                    <img src="/pen.svg" (click)="onUpdateProject()">
+                    </div>
+                </div>
+                <p>{{currentProject()!.createdAt | date:'medium'}}</p>
             </div>
+            
             <app-tab [projet]="'SERVICE'" [InitStat]="currentServiceList()!"></app-tab>
         </body>
         <div class="add-button">

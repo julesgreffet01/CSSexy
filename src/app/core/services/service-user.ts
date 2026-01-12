@@ -1,5 +1,5 @@
 import { inject, Injectable } from "@angular/core";
-import {Observable, of} from "rxjs";
+import {delay, Observable, of} from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "../../environnements/environnements";
 import { UtilisateurModel } from "../../models/utilisateur-model";
@@ -14,7 +14,8 @@ export class serviceUser {
 
 
     public getAllUsers(): Observable<any> {
-        return this.http.get<any>(`${this.baseUrl}/`);
+        return of(usersMock).pipe(delay(200));
+        //return this.http.get<any>(`${this.baseUrl}/`);
     }
 
     public getUser(user_uuid: string): Observable<any> {

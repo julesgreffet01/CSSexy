@@ -6,8 +6,6 @@ import { CommonModule } from '@angular/common';
 import { UpDownButton } from '../up-down-button/up-down-button';
 import { StatusTab } from '../status-tab/status-tab';
 import { ReloadButton } from '../reload-button/reload-button';
-import { servicesMock } from '../../../../mock/services.mjs'; 
-import { projetsMock } from '../../../../mock/projets.mjs';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-tab',
