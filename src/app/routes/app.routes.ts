@@ -23,6 +23,9 @@ export const routes: Routes = [
     },
     {
       path: 'service/:id', loadComponent: () => import('../pages/detail-service-page/detail-service-page').then(m => m.DetailServicePage)
+    },
+    {
+      path: 'profile', loadComponent: () => import('../pages/profil-page/profil-page').then(m => m.ProfilPage)
     }
   ]},
   {path: 'login', component: LoginPage},

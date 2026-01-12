@@ -58,6 +58,6 @@ export class Tab {
     this.routeur.navigate(['/project', project.id])
   }
   onRowClickService(service: ServiceModel){
-    console.log("click")
+    this.routeur.navigate(['/service', service.id])
   }
 }

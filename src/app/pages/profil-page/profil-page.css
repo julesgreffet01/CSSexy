@@ -1,5 +1,6 @@
 .flex{
-  padding: 14vw;
+  margin-left: 100px;
+  margin-right: 100px;
   display: flex;
 }
 
@@ -24,7 +25,6 @@ h2{
   font-size: 1.5vw;
   font-weight: 400;
 }
-
 p{
   font-size: 1.5vw;
 }
