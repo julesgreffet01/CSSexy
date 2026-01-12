@@ -1,0 +1,19 @@
+<app-header></app-header>
+<div class="center-content">
+  <div class="flex">
+    <h1>{{ (service | async)?.name }}</h1>
+    <a class="pen" href=""><img ngSrc="/pen.svg" height="24" width="24"></a>
+  </div>
+  <div class="name-and-content">
+    <div class="name">Image :</div>
+    <div class="content">{{ (service | async)?.image }}</div>
+  </div>
+  <div class="top">
+    @for (port of (service | async)?.ports; track port; let idx = $index) {
+      <div class="name-and-content">
+        <div class="name">Port {{ idx + 1 }}:</div>
+        <div class="content">{{ port }}</div>
+      </div>
+    }
+  </div>
+</div>
