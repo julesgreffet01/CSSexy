@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import {Component, inject, signal} from '@angular/core';
 import { SwapTab } from '../../components/swap-tab/swap-tab';
 import { Tab } from '../../components/tabs/tab/tab';
 import { Buttons } from '../../components/buttons/buttons';
@@ -31,5 +31,8 @@ export class ListProjectPage {
     constructor(){
       this.user$ = this.serviceAuth.getUser()
     }
+
+
+
 
 }

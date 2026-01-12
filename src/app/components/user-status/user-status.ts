@@ -20,9 +20,14 @@ export class UserStatus {
 
   private serviceAuth = inject(ServiceAuth);
   user$: Observable<UtilisateurModel>
+  authService = inject(ServiceAuth)
 
   constructor() {
     this.user$ = this.serviceAuth.getUser();
+  }
+
+  logout(){
+    this.authService.logout();
   }
 
 
