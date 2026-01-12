@@ -1,13 +1,11 @@
-import {Routes} from '@angular/router';
+import type {Routes} from '@angular/router';
 import {Layout} from '../layout/layout';
-import { Tab } from '../components/tabs/tab/tab';
 import { LoginPage } from '../pages/login-page/login-page';
 import { authGuard } from '../core/guards/guard-auth';
 import { guardRoleGuard } from '../core/guards/guard-role-guard';
 
 export const routes: Routes = [
-  {path: 'max', component: Tab,},
-  {path: '', component: Layout, canActivate:[authGuard], children: [
+  {path: '', component: Layout, canActivate: [authGuard], children: [
     {
       path: '', redirectTo: '/projects', pathMatch: 'full'
     },

@@ -1,14 +1,36 @@
 <div class="center-block">
   <h1>Connexion</h1>
-  <div class="textfield">
-    <app-login-input type="text" id="login" placeholder="Login"></app-login-input>
-  </div>
-  <div class="textfield">
-    <app-login-input type="password" id="password" placeholder="Password"></app-login-input>
-  </div>
-  <div class="button-size">
-    <app-buttons label="Se connecter" size="connexion" backgroundColor="#201320" textColor="#F4D4F4"
-                 backgroundColorHover="#4b314b"></app-buttons>
-  </div>
+  <form [formGroup]="formLogin" (ngSubmit)="onSubmit()">
+    <div class="text-field">
+      <app-login-input type="text" id="login" placeholder="Login" formControlName="login"/>
+    </div>
+    @if(activeLogin() && formLogin.controls.login){
+      <div class="error-text">
+        @if (formLogin.get('login')?.hasError('required')) {
+          <p>Le login est requis.</p>
+        }
+      </div>
+    }
+    <div class="text-field">
+      <app-login-input type="password" id="password" placeholder="Password" formControlName="password"/>
+    </div>
+    @if(activeLogin() && formLogin.controls.password){
+      <div class="error-text">
+        @if (formLogin.get('password')?.hasError('required')) {
+          <p>Le password est requis.</p>
+        }
+      </div>
+    }
+
+      <div class="error">
+        @if(errorLogin()){
+        <p class="error-text">Une erreur est survenue lors de votre connexion veuillez réessayer</p>
+        }
+      </div>
+    <div class="button-size">
+      <app-buttons label="Se connecter" type="submit" size="connexion" backgroundColor="#201320" textColor="#F4D4F4"
+                   backgroundColorHover="#4b314b"/>
+    </div>
+  </form>
 
 </div>

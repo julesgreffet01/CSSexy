@@ -15,6 +15,7 @@ export class Buttons {
   public textColor = input<string>('police-color');
   public border = input<string>('');
   public backgroundColorHover = input<string>('');
+  public type = input<string>('submit');
 
   handleClick() {
     const cb = this.callback();
