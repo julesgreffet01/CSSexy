@@ -11,7 +11,7 @@ import { ProjetModel } from '../../models/projet-model';
 
 @Component({
   selector: 'app-detail-project-page',
-  imports: [  
+  imports: [
       Tab,
       Buttons],
   templateUrl: './detail-project-page.html',
@@ -33,7 +33,7 @@ ngOnInit(): void{
     if(idToNumber && !isNaN(idToNumber)){
        this.serviceProject.findProjectById(idToNumber).subscribe({
         next: (project) => {
-          this.currentProject.set(project);  
+          this.currentProject.set(project);
             this.serviceService.getAllByProject(project!.id).subscribe({
               next: (service) =>{
                 this.currentServiceList.set(service);
@@ -45,7 +45,7 @@ ngOnInit(): void{
                 console.log(err)
               }
           })
-        }, 
+        },
         error: (err) => {
           this.errorProject.set(true);
           this.loading.set(false);

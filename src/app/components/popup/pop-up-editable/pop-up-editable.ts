@@ -1,9 +1,9 @@
-import {Component, EventEmitter, input, Output} from '@angular/core';
+import {Component, input, output} from '@angular/core';
 import {Inputs} from '../../inputs/inputs';
 import {Buttons} from '../../buttons/buttons';
 import {FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {ProjetModel} from '../../../models/projet-model';
-import {ServiceModel} from '../../../models/service-model';
+import type {ProjetModel} from '../../../models/projet-model';
+import type {ServiceModel} from '../../../models/service-model';
 
 @Component({
   selector: 'app-pop-up-editable',
@@ -17,7 +17,8 @@ import {ServiceModel} from '../../../models/service-model';
 })
 export class PopUpEditable {
 
-  @Output() myObj = new EventEmitter<ProjetModel | ServiceModel>();
+  myObj = output<ProjetModel | ServiceModel>()
+  closePopup = output<void>()
 
   name: string = '';
   image: string = '';
@@ -26,7 +27,6 @@ export class PopUpEditable {
 
   type = input<'Projet' | 'Service'>();
   action = input<'Modification' | 'Ajout'>();
-  callback = input<((arg?: string) => void)>()
 
   formService = new FormGroup({
     name: new FormControl(this.name, {nonNullable: true, validators: [Validators.required]}),
@@ -48,10 +48,7 @@ export class PopUpEditable {
 
   public getAction() {
     return this.action();
-  }
 
-  getcallback = () => {
-    this.callback();
   }
 
   public getButtonName() {
@@ -89,4 +86,7 @@ export class PopUpEditable {
     this.myObj.emit(obj);
   }
 
+  public closePopupSubmit(){
+    this.closePopup.emit()
+  }
 }

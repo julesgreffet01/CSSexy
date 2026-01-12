@@ -11,6 +11,7 @@ import { UtilisateurModel } from '../../models/utilisateur-model';
 import { AsyncPipe } from '@angular/common';
 import { ServiceProjet } from '../../core/services/service-projet';
 import { ActivatedRoute } from '@angular/router';
+import {PopUpEditable} from '../../components/popup/pop-up-editable/pop-up-editable';
 
 
 @Component({
@@ -35,36 +36,48 @@ export class ListProjectPage {
     errorProject = signal<boolean>(false);
     user$: Observable<UtilisateurModel>
 
-  serviceAuth = inject(ServiceAuth)
 
-  constructor() {
-    this.user$ = this.serviceAuth.getUser()
-  }
+    serviceAuth = inject(ServiceAuth)
+    modalCreate = signal<boolean>(false);
 
-  showPopup = false;
-
-  openPopup = () => {
-    this.showPopup = true;
-  }
-
-  closePopup = () => {
-    this.showPopup = false;
-  }
 
   constructor(){
       this.user$ = this.serviceAuth.getUser()
     }
+
+
     ngOnInit(): void{
       this.serviceProject.getAllProjets().subscribe({
         next: (projects) => {
-        this.listproject.set(projects);  
-            this.loading.set(false); 
-        }, 
+        this.listproject.set(projects);
+            this.loading.set(false);
+        },
         error: (err) => {
             this.errorProject.set(true);
             this.loading.set(false);
             console.log(err)
         },
       });
+    }
+
+
+    createProject(newProject: ProjetModel){
+      this.serviceProject.createProjet(newProject).subscribe({
+        next: (projects) => {
+          this.listproject.set(projects);
+        },
+        error: (err) => {
+          console.log(err)
+          this.errorProject.set(true);
+        }
+      })
+    }
+
+    showModal(){
+      this.modalCreate.set(true);
+    }
+
+    closeModal(){
+      this.modalCreate.set(false);
     }
 }

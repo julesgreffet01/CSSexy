@@ -1,5 +1,7 @@
 @let user = user$ | async;
-<a [routerLink]="['/profile']" class="profile-link">
+
+<div class="userStatusWrapper">
+
   <div class="userStatusCard">
     @if (user) {
       <p>{{ user.name | titlecase }}</p>
@@ -8,5 +10,10 @@
     }
     <img ngSrc="/account.svg" height="40" width="40" alt="account-logo">
   </div>
-</a>
 
+  <div class="userDropdown">
+    <a routerLink="/profile">Mon profil</a>
+    <a (click)="logout()">Déconnexion</a>
+  </div>
+
+</div>

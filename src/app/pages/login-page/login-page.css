@@ -7,10 +7,9 @@
   margin-top: 4vw;
 }
 
-.textfield{
-  margin: auto;
+.text-field{
   width: 25%;
-  margin-top: 3vw;
+  margin: 3vw auto auto;
 }
 
 h1{
@@ -19,9 +18,8 @@ h1{
 }
 
 .button-size{
-  margin: auto;
   width: 16%;
-  margin-top: 5vw;
+  margin: 3vw auto auto;
 }
 
 .bubble{
@@ -29,4 +27,14 @@ h1{
   width: 2vh;
   border-radius: 10vh;
   border: 3px solid var(--police-color);
+}
+
+.error-text {
+  color: #E54D2E;
+  font-weight: bold;
+}
+
+.error {
+  height: 1vh;
+  margin: 2vw auto auto;
 }

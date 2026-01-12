@@ -34,6 +34,53 @@
   margin: 2px 0 2px 15px
 }
 
+.userStatusWrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.userStatusWrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.userDropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 0.5rem;
+  background: var(--card-background);
+  border-radius: 6px;
+  min-width: 160px;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-5px);
+  transition: all 0.15s ease;
+  z-index: 150;
+  overflow: hidden;
+}
+
+.userStatusWrapper:hover .userDropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.userDropdown a {
+  padding: 0.75rem 1rem;
+  text-decoration: none;
+  color: var(--police-color);
+  font-size: 0.9rem;
+}
+
+.userDropdown a:hover {
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+
 @media screen and (max-width: 900px) {
 
   .userStatusCard p {
