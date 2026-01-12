@@ -1,9 +1,9 @@
-/*import {Component, EventEmitter, input, Output} from '@angular/core';
+import {Component, input, output} from '@angular/core';
 import {Inputs} from '../../inputs/inputs';
 import {Buttons} from '../../buttons/buttons';
 import {FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {ProjetModel} from '../../../models/projet-model';
-import {ServiceModel} from '../../../models/service-model';
+import type {ProjetModel} from '../../../models/projet-model';
+import type {ServiceModel} from '../../../models/service-model';
 
 @Component({
   selector: 'app-pop-up-editable',
@@ -17,7 +17,8 @@ import {ServiceModel} from '../../../models/service-model';
 })
 export class PopUpEditable {
 
-  @Output() myObj = new EventEmitter<ProjetModel | ServiceModel>();
+  myObj = output<ProjetModel | ServiceModel>()
+  closePopup = output<void>()
 
   name: string = '';
   image: string = '';
@@ -26,7 +27,6 @@ export class PopUpEditable {
 
   type = input<'Projet' | 'Service'>();
   action = input<'Modification' | 'Ajout'>();
-  callback = input<((arg?: string) => void)>()
 
   formService = new FormGroup({
     name: new FormControl(this.name, {nonNullable: true, validators: [Validators.required]}),
@@ -43,19 +43,16 @@ export class PopUpEditable {
   }
 
   public getType() {
-    return this.type;
+    return this.type();
   }
 
   public getAction() {
-    return this.action;
-  }
+    return this.action();
 
-  public getcallback() {
-    this.callback();
   }
 
   public getButtonName() {
-    if (this.action == 'Modification') {
+    if (this.action() == 'Modification') {
       return 'Modifier';
     } else {
       return 'Ajouter';
@@ -70,7 +67,7 @@ export class PopUpEditable {
   public Submit() {
     let obj: ProjetModel | ServiceModel;
 
-    if (this.type === 'Projet') {
+    if (this.type() === 'Projet') {
       obj = {
         id: 0,
         name: this.formProjet.value.name!,
@@ -89,5 +86,8 @@ export class PopUpEditable {
     this.myObj.emit(obj);
   }
 
+  public closePopupSubmit(){
+    this.closePopup.emit()
+  }
 }
 */

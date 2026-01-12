@@ -1,7 +1,5 @@
-import {Routes} from '@angular/router';
+import type {Routes} from '@angular/router';
 import {Layout} from '../layout/layout';
-import { Tab } from '../components/tabs/tab/tab';
-
 import { LoginPage } from '../pages/login-page/login-page';
 import { authGuard } from '../core/guards/guard-auth';
 import { guardRoleGuard } from '../core/guards/guard-role-guard';
@@ -9,7 +7,6 @@ import { guardRoleGuard } from '../core/guards/guard-role-guard';
 
 export const routes: Routes = [
   //{path: 'maxime', component: PopUpEditable,},
-  {path: 'max', component: Tab,},
   {path: '', component: Layout, canActivate:[authGuard], children: [
     {
       path: '', redirectTo: '/projects', pathMatch: 'full'
@@ -19,9 +16,6 @@ export const routes: Routes = [
     },
     {
       path: 'users', loadComponent:() => import('../pages/list-users-page/list-users-page').then(m => m.ListUsersPage) , canActivate: [guardRoleGuard], data:{ roles: ['ADMIN'] }
-    },
-    {
-      path: 'project/:id' , loadComponent:() => import('../pages/detail-project-page/detail-project-page').then(m => m.DetailProjectPage)
     }
   ]},
   {path: 'login', component: LoginPage},

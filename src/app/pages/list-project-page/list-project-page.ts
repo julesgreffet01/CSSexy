@@ -1,3 +1,4 @@
+import {PopUpEditable} from '../../components/popup/pop-up-editable/pop-up-editable';
 import { Component, inject, signal } from '@angular/core';
 import { SwapTab } from '../../components/swap-tab/swap-tab';
 import { Tab } from '../../components/tabs/tab/tab';
@@ -10,6 +11,7 @@ import { UtilisateurModel } from '../../models/utilisateur-model';
 import { AsyncPipe } from '@angular/common';
 import { ServiceProjet } from '../../core/services/service-projet';
 import { ActivatedRoute } from '@angular/router';
+import {PopUpEditable} from '../../components/popup/pop-up-editable/pop-up-editable';
 
 
 @Component({
@@ -18,12 +20,14 @@ import { ActivatedRoute } from '@angular/router';
     SwapTab,
     Tab,
     Buttons,
-    AsyncPipe
+    AsyncPipe,
+    PopUpEditable
   ],
   templateUrl: './list-project-page.html',
   styleUrl: './list-project-page.css',
 })
 export class ListProjectPage {
+
 
     serviceProject = inject(ServiceProjet);
     listproject = signal<ProjetModel[] | undefined>(undefined);
@@ -32,17 +36,22 @@ export class ListProjectPage {
     errorProject = signal<boolean>(false);
     user$: Observable<UtilisateurModel>
 
-    serviceAuth = inject(ServiceAuth)
 
-    constructor(){
+    serviceAuth = inject(ServiceAuth)
+    modalCreate = signal<boolean>(false);
+
+
+  constructor(){
       this.user$ = this.serviceAuth.getUser()
     }
+
+
     ngOnInit(): void{
       this.serviceProject.getAllProjets().subscribe({
         next: (projects) => {
-        this.listproject.set(projects);  
-            this.loading.set(false); 
-        }, 
+        this.listproject.set(projects);
+            this.loading.set(false);
+        },
         error: (err) => {
             this.errorProject.set(true);
             this.loading.set(false);
@@ -50,5 +59,25 @@ export class ListProjectPage {
         },
       });
     }
-    
+
+
+    createProject(newProject: ProjetModel){
+      this.serviceProject.createProjet(newProject).subscribe({
+        next: (projects) => {
+          this.listproject.set(projects);
+        },
+        error: (err) => {
+          console.log(err)
+          this.errorProject.set(true);
+        }
+      })
+    }
+
+    showModal(){
+      this.modalCreate.set(true);
+    }
+
+    closeModal(){
+      this.modalCreate.set(false);
+    }
 }

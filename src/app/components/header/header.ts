@@ -11,10 +11,4 @@ import {ServiceAuth} from '../../core/services/service-auth';
 })
 export class Header {
 
-  authService = inject(ServiceAuth)
-
-  logout(){
-    this.authService.logout();
-  }
-
 }
