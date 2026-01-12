@@ -1,7 +1,7 @@
 <div class="blur"></div>
 <div class="center-contain">
-    <div class="container-popup">
-      <form [formGroup]="getType() == 'Projet' ? formProjet : formService" (ngSubmit)="Submit()">
+  <div class="container-popup">
+    <form [formGroup]="getType() == 'Projet' ? formProjet : formService" (ngSubmit)="Submit()">
       <div class="contain-top">
         <h1>{{ getType() + " " + getAction() }}</h1>
       </div>
@@ -19,13 +19,13 @@
               <h2>Image :</h2>
               <app-inputs formControlName="image"></app-inputs>
             </div>
-            <div  class="right-contain">
+            <div class="right-contain">
               @for (portCtrl of portsArray.controls; track portCtrl; let idx = $index) {
-                <h2>Port {{idx+1}} :</h2>
-              <app-inputs [formControl]="portCtrl"></app-inputs>
+                <h2>Port {{ idx + 1 }} :</h2>
+                <app-inputs [formControl]="portCtrl"></app-inputs>
               }
               <div class="btnadd">
-                <app-buttons label="+" [callback]=addPort backgroundColor="secondary-3" size="large"></app-buttons>
+                <app-buttons label="+" type="button" (clicked)="addPort()" backgroundColor="secondary-3" size="large"></app-buttons>
               </div>
             </div>
           </div>
@@ -33,12 +33,12 @@
       </div>
       <div class="compressor-flex">
         <div class="space-button">
-          <app-buttons [callback]=getcallback label="Annuler" backgroundColor="card-background" border="secondary-3"
+          <app-buttons (clicked)="closePopupSubmit()" type="button" label="Annuler" backgroundColor="card-background" border="secondary-3"
                        size="medium"></app-buttons>
         </div>
         <app-buttons [label]=getButtonName() backgroundColor="secondary-3" size="medium"></app-buttons>
       </div>
-  </form>
-</div>
+    </form>
+  </div>
 </div>
 
