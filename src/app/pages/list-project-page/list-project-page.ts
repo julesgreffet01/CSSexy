@@ -1,13 +1,14 @@
-import { Component, inject } from '@angular/core';
-import { SwapTab } from '../../components/swap-tab/swap-tab';
-import { Tab } from '../../components/tabs/tab/tab';
-import { Buttons } from '../../components/buttons/buttons';
-import { ProjetModel } from '../../models/projet-model';
-import { projetsMock } from '../../../mock/projets.mjs';
-import { ServiceAuth } from '../../core/services/service-auth';
-import { Observable } from 'rxjs';
-import { UtilisateurModel } from '../../models/utilisateur-model';
-import { AsyncPipe } from '@angular/common';
+import {Component, inject} from '@angular/core';
+import {SwapTab} from '../../components/swap-tab/swap-tab';
+import {Tab} from '../../components/tabs/tab/tab';
+import {Buttons} from '../../components/buttons/buttons';
+import {ProjetModel} from '../../models/projet-model';
+import {projetsMock} from '../../../mock/projets.mjs';
+import {ServiceAuth} from '../../core/services/service-auth';
+import {Observable} from 'rxjs';
+import {UtilisateurModel} from '../../models/utilisateur-model';
+import {AsyncPipe} from '@angular/common';
+import {PopUpEditable} from '../../components/popup/pop-up-editable/pop-up-editable';
 
 
 @Component({
@@ -16,20 +17,30 @@ import { AsyncPipe } from '@angular/common';
     SwapTab,
     Tab,
     Buttons,
-    AsyncPipe
+    AsyncPipe,
+    PopUpEditable
   ],
   templateUrl: './list-project-page.html',
   styleUrl: './list-project-page.css',
 })
 export class ListProjectPage {
-    projectExample: ProjetModel = projetsMock[0];
+  projectExample: ProjetModel = projetsMock[0];
 
-    user$: Observable<UtilisateurModel>
+  user$: Observable<UtilisateurModel>
 
-    serviceAuth = inject(ServiceAuth)
+  serviceAuth = inject(ServiceAuth)
 
-    constructor(){
-      this.user$ = this.serviceAuth.getUser()
-    }
+  constructor() {
+    this.user$ = this.serviceAuth.getUser()
+  }
 
+  showPopup = false;
+
+  openPopup = () => {
+    this.showPopup = true;
+  }
+
+  closePopup = () => {
+    this.showPopup = false;
+  }
 }

@@ -43,19 +43,19 @@ export class PopUpEditable {
   }
 
   public getType() {
-    return this.type;
+    return this.type();
   }
 
   public getAction() {
-    return this.action;
+    return this.action();
   }
 
-  public getcallback() {
+  getcallback = () => {
     this.callback();
   }
 
   public getButtonName() {
-    if (this.action == 'Modification') {
+    if (this.action() == 'Modification') {
       return 'Modifier';
     } else {
       return 'Ajouter';
@@ -70,7 +70,7 @@ export class PopUpEditable {
   public Submit() {
     let obj: ProjetModel | ServiceModel;
 
-    if (this.type === 'Projet') {
+    if (this.type() === 'Projet') {
       obj = {
         id: 0,
         name: this.formProjet.value.name!,

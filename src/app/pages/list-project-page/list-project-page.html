@@ -10,5 +10,8 @@
     <app-tab [projet]="'PROJECT'" [InitStat]="projectExample"></app-tab>
 </body>
 <div class="add-button">
-<app-buttons label="+" backgroundColor="secondary-3" size="large"></app-buttons>
+<app-buttons label="+" backgroundColor="secondary-3" size="large" [callback]="openPopup"></app-buttons>
+</div>
+<div class="popup" [hidden]="!showPopup">
+  <app-pop-up-editable type="Projet" action="Ajout" [callback]="closePopup"></app-pop-up-editable>
 </div>
