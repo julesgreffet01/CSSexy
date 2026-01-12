@@ -35,9 +35,11 @@ ngOnInit(): void{
        this.serviceProject.findProjectById(idToNumber).subscribe({
         next: (project) => {
           this.currentProject.set(project);
+          this.loading.set(false)
         }, 
         error: (err) => {
-          
+          this.errorProject.set(true);
+          this.loading.set(false);
         },
        })
     }

@@ -8,7 +8,7 @@
 <body>
     <div class="info-project">
         <h2>{{currentProject()!.name }}</h2>
-        <p>{{seriveExemple.startedSince}}</p>
+        <p>{{currentProject()!.createdAt}}</p>
     </div>
     <app-tab [projet]="'SERVICE'" [InitStat]="seriveExemple"></app-tab>
 </body>
