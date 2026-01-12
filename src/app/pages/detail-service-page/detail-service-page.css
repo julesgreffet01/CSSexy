@@ -3,7 +3,7 @@
 }
 
 h1{
-  font-size: 5vw;
+  font-size: 70px;
   font-weight: 400;
 }
 
@@ -16,6 +16,12 @@ h1{
   padding-left: 0.5vw;
   display: flex;
   font-size: 1vw;
+}
+
+.bar-image{
+  padding-top: 50px;
+  width: 30%;
+  border-bottom: 1px solid var(--police-color);
 }
 
 .name{
@@ -31,4 +37,25 @@ h1{
 
 .flex{
   display: flex;
+}
+img{
+  margin-top: 30px;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+}
+.info-project-main{
+  
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+.onUpdateService :hover{
+  background-color: var(--secondary-3);
+  border-radius: 10px;
+}
+p{
+  margin: 0;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 22px;
 }
