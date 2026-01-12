@@ -49,3 +49,7 @@ p{
   color: rgba(255, 255, 255, 0.7);
   font-size: 22px;
 }
+
+.popup{
+  margin-top: -15vw;
+}

@@ -16,12 +16,22 @@
                 </div>
                 <p>{{currentProject()!.createdAt | date:'medium'}}</p>
             </div>
-            
+
             <app-tab [projet]="'SERVICE'" [InitStat]="currentServiceList()!"></app-tab>
         </body>
         <div class="add-button">
-        <app-buttons label="+" backgroundColor="secondary-3" size="large"></app-buttons>
+        <app-buttons label="+" (clicked)="showModal()" backgroundColor="secondary-3" size="large"></app-buttons>
         </div>
     }
+}
+@if(modalCreate()){
+  <div class="popup">
+    <app-pop-up-editable type="Service" action="Ajout" (closePopup)="closeModalCreate()"/>
+  </div>
+}
+@if(modalUpdate()){
+  <div class="popup">
+    <app-pop-up-editable type="Projet" action="Modification" (closePopup)="closeModalUpdate()"/>
+  </div>
 }
 
