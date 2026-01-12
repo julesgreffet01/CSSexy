@@ -1,4 +1,3 @@
-import {PopUpEditable} from '../../components/popup/pop-up-editable/pop-up-editable';
 import { Component, inject, signal } from '@angular/core';
 import { SwapTab } from '../../components/swap-tab/swap-tab';
 import { Tab } from '../../components/tabs/tab/tab';
