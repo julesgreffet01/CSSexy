@@ -76,6 +76,10 @@ export class ServiceAuth {
 
   public logout(): void {
     this.clearToken();
-    this.router.navigate(['/login']);
+    this.userId = null;
+    this.userName = null;
+    this.role = null;
+    this.name = null;
+    this.router.navigate(['/login'], {replaceUrl: true});
   }
 }

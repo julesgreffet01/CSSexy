@@ -3,17 +3,19 @@ import { ServiceModel } from "../../models/service-model";
 import {delay, Observable, of} from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import {servicesMock} from '../../../mock/services.mjs';
+import { environment } from "../../environnements/environnements";
 
 @Injectable({
     providedIn: "root",
 })
 export class serviceServices {
     private readonly http = inject(HttpClient);
-    private readonly baseUrl = "/services";
+    private baseUrl = environment.apiBaseUrl + '/services';
 
     public getServices(service_uuid: string): Observable<ServiceModel | undefined> {
       //return this.http.get<ServiceModel>(`${this.baseUrl}/${service_uuid}`);
       return of(servicesMock.find(s => s.id === service_uuid)).pipe(delay(200));
+
     }
 
     public updateService(service: ServiceModel): Observable<ServiceModel> {

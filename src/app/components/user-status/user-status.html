@@ -1,4 +1,12 @@
-<div class="userStatusCard">
-    <p>{{name}}</p>
-    <img src="/5907.jpg">
-</div>
+@let user = user$ | async;
+<a [routerLink]="['/profile']" class="profile-link">
+  <div class="userStatusCard">
+    @if (user) {
+      <p>{{ user.name | titlecase }}</p>
+    } @else {
+      <p>chargement...</p>
+    }
+    <img ngSrc="/account.svg" height="40" width="40" alt="account-logo">
+  </div>
+</a>
+

@@ -1,0 +1,14 @@
+@let user = user$ | async;
+
+<body>
+    @if(user?.role === 'ADMIN'){
+    <app-swap-tab></app-swap-tab>
+    } @else {
+        <div class="swap-tab-replace"></div>
+    }
+
+    <app-tab [projet]="'PROJECT'" [InitStat]="projectExample"></app-tab>
+</body>
+<div class="add-button">
+<app-buttons label="+" backgroundColor="secondary-3" size="large"></app-buttons>
+</div>

@@ -1,52 +1,53 @@
-<table>
-    <thead>
-        <tr>
-        @if(projet() == "PROJECT"){
-            <th>Nom</th>
-            <th>Nombre de service</th>
-            <th>Creation</th>
-        }
-        @if(projet() == "USER"){
-            <th>Username</th>
-            <th>Nom</th>
-            <th>Role</th>
-        }
-        @if(projet() == "SERVICE"){
-            <th>Nom</th>
-            <th>Status</th>
-            <th>Image</th>
-            <th>Action</th>
-        }   
-        </tr> 
-    </thead>
-    <tbody>
-        @if(projet() == "PROJECT"){
-            <tr>
-                <td>{{PROJECT().name}}</td>
-                <td>{{PROJECT().services.length}}</td>
-                <td>{{PROJECT().createdAt | date:'short'}}</td>
-            </tr>
-        }
-        @if(projet() == "USER"){
-            <tr>
-                <td>{{USER().username}}</td>
-                <td>{{USER().name}}</td>
-                <td>{{USER().role}}</td>
-            </tr>
-        }
-        @if(projet() == "SERVICE"){
-            <tr>
-                <td>{{SERVICE().name}}</td>
-                <td>
-                <app-status-tab [status]="SERVICE().status">
-                </app-status-tab>
-                </td>
-                <td>{{SERVICE().image}}</td>
-                <td>
-                <app-up-down-button [InitStat]="SERVICE().status === 'UP'">
-                </app-up-down-button>
-                </td>  
-            </tr>
-        }
-    </tbody>
-</table>
+
+<div class="grid-table">
+  <div class="grid-row header">
+    @if (projet() === "PROJECT") {
+      <div>Nom</div>
+      <div>Nombre de services</div>
+      <div class="right">Création</div>
+    }
+
+    @if (projet() === "USER") {
+      <div>Username</div>
+      <div>Nom</div>
+      <div class="right">Rôle</div>
+    }
+
+    @if (projet() === "SERVICE") {
+      <div>Nom</div>
+      <div>Status</div>
+      <div class="right">Action</div>
+    }
+  </div>
+
+  <!-- BODY (1 ligne) -->
+  @switch (projet()) {
+    @case ("PROJECT") {
+      <div class="grid-row clickable" (click)="onRowClickProject(PROJECT())">
+        <div>{{ PROJECT().name }}</div>
+        <div>{{ PROJECT().services.length }}</div>
+        <div class="right">{{ PROJECT().createdAt | date:'short' }}</div>
+      </div>
+    }
+
+    @case ("USER") {
+      <div class="grid-row clickable" (click)="onRowClickUser(USER())">
+        <div>{{ USER().username }}</div>
+        <div>{{ USER().name }}</div>
+        <div class="right">{{ USER().role }}</div>
+      </div>
+    }
+
+    @case ("SERVICE") {
+      <div class="grid-row clickable" (click)="onRowClickService(SERVICE())">
+        <div>{{ SERVICE().name }}</div>
+        <div>
+          <app-status-tab [status]="SERVICE().status"></app-status-tab>
+        </div>
+        <div class="right">
+          <app-up-down-button [InitStat]="SERVICE().status === 'UP'"></app-up-down-button>
+          <app-reload-button [serviceToReload]="SERVICE()"></app-reload-button>
+        </div>
+      </div>
+    }
+  }

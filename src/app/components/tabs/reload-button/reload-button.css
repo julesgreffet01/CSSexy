@@ -1,0 +1,22 @@
+
+.reloadButton {
+    height: 40px;
+    width: 40px;
+    background-color: #ffff00;
+    align-items: center;
+    border-radius: 35px;
+    border :none;
+}
+.reloadButton:hover {
+    background-color: #c9b000;
+}
+
+img {
+    height: 22px;
+    width: 22px;
+}
+
+.reloadButton:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 0 #c9b000;
+}
