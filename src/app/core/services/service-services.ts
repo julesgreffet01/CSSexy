@@ -19,12 +19,24 @@ export class serviceServices {
         return of(projetsMock.find(p => p.id === projectId)?.services ?? []).pipe(delay(200));
         //return this.http.get<ServiceModel[]>(`${this.baseUrlProject}/${projectId}/${this.baseUrl}`)
     }
-    
+
     public getServices(service_uuid: string): Observable<ServiceModel | undefined> {
       //return this.http.get<ServiceModel>(`${this.baseUrl}/${service_uuid}`);
       return of(servicesMock.find(s => s.id === service_uuid)).pipe(delay(200));
 
     }
+
+
+  public createService(projectId: number, newService: ServiceModel) {
+    newService.id = crypto.randomUUID()
+    servicesMock.push(newService);
+    const projet = projetsMock.find(p => p.id === projectId);
+    if (!projet) {
+      throw new Error(`Projet avec id ${projectId} introuvable`);
+    }
+    projet.services.push(newService);
+    return of(newService).pipe(delay(100));
+  }
 
     public updateService(service: ServiceModel): Observable<ServiceModel> {
         return this.http.put<ServiceModel>(`${this.baseUrl}/${service.id}`, service);
