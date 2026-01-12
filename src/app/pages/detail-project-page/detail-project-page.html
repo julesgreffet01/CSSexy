@@ -5,17 +5,17 @@
     <p>Erreur lors de la récupération de votre project</p>
 }
 @else {
-<body>
-    <div class="info-project">
-        <h2>{{currentProject()!.name }}</h2>
-        <p>{{currentProject()!.createdAt}}</p>
-    </div>
-    <app-tab [projet]="'SERVICE'" [InitStat]="seriveExemple"></app-tab>
-</body>
-<div class="add-button">
-<app-buttons label="+" backgroundColor="secondary-3" size="large"></app-buttons>
-</div>
-
-
+    @if(currentServiceList()){
+        <body>
+            <div class="info-project">
+                <h2>{{currentProject()!.name }}</h2>
+                <p>{{currentProject()!.createdAt}}</p>
+            </div>
+            <app-tab [projet]="'SERVICE'" [InitStat]="currentServiceList()!"></app-tab>
+        </body>
+        <div class="add-button">
+        <app-buttons label="+" backgroundColor="secondary-3" size="large"></app-buttons>
+        </div>
+    }
 }
 

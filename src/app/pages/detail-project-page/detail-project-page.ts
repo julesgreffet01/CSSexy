@@ -22,11 +22,10 @@ export class DetailProjectPage {
   serviceService = inject(serviceServices);
   route = inject(ActivatedRoute);
   currentProject = signal<ProjetModel | undefined>(undefined);
+  currentServiceList = signal<ServiceModel[] | undefined>(undefined);
   loading = signal<boolean>(true);
   errorProject = signal<boolean>(false);
 
-
-  
 ngOnInit(): void{
   this.route.paramMap.subscribe(params => {
     const id = params.get('id');
@@ -34,12 +33,23 @@ ngOnInit(): void{
     if(idToNumber && !isNaN(idToNumber)){
        this.serviceProject.findProjectById(idToNumber).subscribe({
         next: (project) => {
-          this.currentProject.set(project);
-          this.loading.set(false)
+          this.currentProject.set(project);  
+            this.serviceService.getAllByProject(project!.id).subscribe({
+              next: (service) =>{
+                this.currentServiceList.set(service);
+                this.loading.set(false);
+              },
+              error: (err) =>{
+                this.errorProject.set(true);
+                this.loading.set(false);
+                console.log(err)
+              }
+          })
         }, 
         error: (err) => {
           this.errorProject.set(true);
           this.loading.set(false);
+          console.log(err)
         },
        })
     }

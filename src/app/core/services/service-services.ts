@@ -15,7 +15,7 @@ export class serviceServices {
     private baseUrlProject = environment.apiBaseUrl + '/projects'
 
     public getAllByProject(projectId: number): Observable<ServiceModel[]>{
-        return of(projetsMock.find(p => p.id === projectId)).pipe(delay(200), tap(n => {}));
+        return of(projetsMock.find(p => p.id === projectId)?.services ?? []).pipe(delay(200));
         //return this.http.get<ServiceModel[]>(`${this.baseUrlProject}/${projectId}/${this.baseUrl}`)
     }
 

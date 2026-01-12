@@ -22,14 +22,15 @@ import { Router } from '@angular/router';
 })
 export class Tab {
 
-  InitStat = input.required<UtilisateurModel | ProjetModel | ServiceModel>();
+  InitStat = input.required<UtilisateurModel[] | ProjetModel[] | ServiceModel[]>();
   projet = input<"PROJECT" | "USER" | "SERVICE">("SERVICE");
-  PROJECT = signal<ProjetModel>({} as ProjetModel);
-  USER = signal<UtilisateurModel>({} as UtilisateurModel);
-  SERVICE = signal<ServiceModel>({} as ServiceModel);
+  PROJECT = signal<ProjetModel[]>([] as ProjetModel[]);
+  USER = signal<UtilisateurModel[]>([] as UtilisateurModel[]);
+  SERVICE = signal<ServiceModel[]>([] as ServiceModel[]);
   routeur = inject(Router)
 
   ngOnInit() {
+    /*
     if(this.projet() == "PROJECT" && !isProjet(this.InitStat())){
       throw new Error("Invalid ProjetModel input");
     }
@@ -39,15 +40,15 @@ export class Tab {
     else if(this.projet() == "SERVICE" && !isService(this.InitStat() )){
       throw new Error("Invalid ServiceModel input");
     }
-
+*/
     if (this.projet() == "PROJECT") {
-      this.PROJECT.set(this.InitStat() as ProjetModel);
+      this.PROJECT.set(this.InitStat() as ProjetModel[]);
     }
     else if (this.projet() == "USER") {
-      this.USER.set(this.InitStat() as UtilisateurModel);
+      this.USER.set(this.InitStat() as UtilisateurModel[]);
     }
     else if (this.projet() == "SERVICE") {
-      this.SERVICE.set(this.InitStat() as ServiceModel);
+      this.SERVICE.set(this.InitStat() as ServiceModel[]);
     }
   }
 
