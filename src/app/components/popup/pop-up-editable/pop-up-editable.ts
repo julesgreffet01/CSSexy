@@ -48,6 +48,7 @@ export class PopUpEditable {
 
   public getAction() {
     return this.action();
+
   }
 
   public getButtonName() {

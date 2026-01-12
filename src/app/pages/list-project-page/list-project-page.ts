@@ -1,3 +1,4 @@
+import {PopUpEditable} from '../../components/popup/pop-up-editable/pop-up-editable';
 import { Component, inject, signal } from '@angular/core';
 import { SwapTab } from '../../components/swap-tab/swap-tab';
 import { Tab } from '../../components/tabs/tab/tab';
@@ -27,6 +28,7 @@ import {PopUpEditable} from '../../components/popup/pop-up-editable/pop-up-edita
 })
 export class ListProjectPage {
 
+
     serviceProject = inject(ServiceProjet);
     listproject = signal<ProjetModel[] | undefined>(undefined);
     route = inject(ActivatedRoute);
@@ -34,10 +36,12 @@ export class ListProjectPage {
     errorProject = signal<boolean>(false);
     user$: Observable<UtilisateurModel>
 
+
     serviceAuth = inject(ServiceAuth)
     modalCreate = signal<boolean>(false);
 
-    constructor(){
+
+  constructor(){
       this.user$ = this.serviceAuth.getUser()
     }
 
@@ -55,6 +59,7 @@ export class ListProjectPage {
         },
       });
     }
+
 
     createProject(newProject: ProjetModel){
       this.serviceProject.createProjet(newProject).subscribe({
@@ -75,5 +80,4 @@ export class ListProjectPage {
     closeModal(){
       this.modalCreate.set(false);
     }
-
 }
