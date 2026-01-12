@@ -1,4 +1,4 @@
-import {Component, input} from '@angular/core';
+import {Component, EventEmitter, input, Output} from '@angular/core';
 import {Inputs} from '../../inputs/inputs';
 import {Buttons} from '../../buttons/buttons';
 import {FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
@@ -16,15 +16,16 @@ import {ServiceModel} from '../../../models/service-model';
   styleUrl: './pop-up-editable.css',
 })
 export class PopUpEditable {
+
+  @Output() myObj = new EventEmitter<ProjetModel | ServiceModel>();
+
   name: string = '';
   image: string = '';
   ports: string[] = [""];
 
-  type = 'Service';
-  action = 'Ajout';
 
-  //type = input<'Projet' | 'Service'>();
-  //action = input<'Modification' | 'Ajout'>();
+  type = input<'Projet' | 'Service'>();
+  action = input<'Modification' | 'Ajout'>();
   callback = input<((arg?: string) => void)>()
 
   formService = new FormGroup({
@@ -85,7 +86,7 @@ export class PopUpEditable {
         startedSince: new Date(),
         ports: this.formService.value.ports!
       };
-    console.log(obj);
+    this.myObj.emit(obj);
   }
 
 }
