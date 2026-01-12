@@ -9,10 +9,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ProjetModel } from '../../models/projet-model';
 import { CommonModule } from '@angular/common';
+import {PopUpEditable} from '../../components/popup/pop-up-editable/pop-up-editable';
 
 @Component({
   selector: 'app-detail-project-page',
-  imports: [CommonModule, Tab, Buttons],
+  imports: [CommonModule, Tab, Buttons, PopUpEditable],
   templateUrl: './detail-project-page.html',
   styleUrl: './detail-project-page.css',
 })
@@ -24,6 +25,10 @@ export class DetailProjectPage {
   currentServiceList = signal<ServiceModel[] | undefined>(undefined);
   loading = signal<boolean>(true);
   errorProject = signal<boolean>(false);
+
+  modalCreate = signal<boolean>(false);
+  modalUpdate = signal<boolean>(false);
+
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
@@ -55,7 +60,18 @@ export class DetailProjectPage {
     });
   }
   onUpdateProject() {
-    console.log('coucou')
-    //TODO remplir la popup update
+    this.modalUpdate.set(true);
+  }
+
+  showModal(){
+    this.modalCreate.set(true);
+  }
+
+  closeModalCreate(){
+    this.modalCreate.set(false);
+  }
+
+  closeModalUpdate(){
+    this.modalUpdate.set(false);
   }
 }
