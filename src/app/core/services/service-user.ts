@@ -22,7 +22,7 @@ export class serviceUser {
     }
 
     public myUser(): Observable<UtilisateurModel> {
-      return of(usersMock[1]);
+      return of(usersMock[2]);
         // return this.http.get<UtilisateurModel>(`${this.baseUrl}/me`);
     }
 }

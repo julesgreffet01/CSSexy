@@ -23,31 +23,36 @@
   <!-- BODY (1 ligne) -->
   @switch (projet()) {
     @case ("PROJECT") {
-      <div class="grid-row clickable" (click)="onRowClickProject(PROJECT())">
-        <div>{{ PROJECT().name }}</div>
-        <div>{{ PROJECT().services.length }}</div>
-        <div class="right">{{ PROJECT().createdAt | date:'short' }}</div>
+      @for (p of PROJECT(); track p.id){
+      <div class="grid-row clickable" (click)="onRowClickProject(p)">
+        <div>{{ p.name }}</div>
+        <div>{{ p.services.length }}</div>
+        <div class="right">{{ p.createdAt | date:'short' }}</div>
       </div>
+       }
     }
 
     @case ("USER") {
-      <div class="grid-row clickable" (click)="onRowClickUser(USER())">
-        <div>{{ USER().username }}</div>
-        <div>{{ USER().name }}</div>
-        <div class="right">{{ USER().role }}</div>
+      @for (u of USER(); track u.id){
+      <div class="grid-row clickable" (click)="onRowClickUser(u)">
+        <div>{{ u.username }}</div>
+        <div>{{ u.name }}</div>
+        <div class="right">{{ u.role }}</div>
       </div>
     }
-
+  }
     @case ("SERVICE") {
-      <div class="grid-row clickable" (click)="onRowClickService(SERVICE())">
-        <div>{{ SERVICE().name }}</div>
+      @for (s of SERVICE(); track s.id){
+      <div class="grid-row clickable" (click)="onRowClickService(s)">
+        <div>{{ s.name }}</div>
         <div>
-          <app-status-tab [status]="SERVICE().status"></app-status-tab>
+          <app-status-tab [status]="s.status"></app-status-tab>
         </div>
         <div class="right">
-          <app-up-down-button [InitStat]="SERVICE().status === 'UP'"></app-up-down-button>
-          <app-reload-button [serviceToReload]="SERVICE()"></app-reload-button>
+          <app-up-down-button [InitStat]="s.status === 'UP'"></app-up-down-button>
+          <app-reload-button [serviceToReload]="s"></app-reload-button>
         </div>
       </div>
+      }
     }
   }
