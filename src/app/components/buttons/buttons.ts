@@ -1,4 +1,4 @@
-import {Component, input} from '@angular/core';
+import {Component, input, output} from '@angular/core';
 
 @Component({
   selector: 'app-buttons',
@@ -8,7 +8,8 @@ import {Component, input} from '@angular/core';
 })
 export class Buttons {
 
-  public callback = input< ((arg?: any) => void) | undefined >(undefined)
+
+  public clicked = output()
   public label = input<string>('buttons');
   public size = input<"large" | "medium" | "tiny" | "connexion">('medium');
   public backgroundColor = input<string>('primary');
@@ -18,8 +19,7 @@ export class Buttons {
   public type = input<string>('submit');
 
   handleClick() {
-    const cb = this.callback();
-    if (cb) cb();
+    this.clicked.emit()
   }
 
   getBackgroundColor() {
