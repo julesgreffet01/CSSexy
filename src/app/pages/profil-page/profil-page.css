@@ -1,0 +1,10 @@
+.flex{
+  display: flex;
+}
+
+.profile-image{
+  width: 20vw;
+  height: 20vw;
+  border-radius: 50%;
+  background: olive;
+}
