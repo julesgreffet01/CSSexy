@@ -1,5 +1,4 @@
 body {
-  top: 180px;
   position: relative;
   margin-left: 100px;
   margin-right: 100px;
@@ -12,7 +11,7 @@ app-swap-tab {
 app-tab {
   top: 50px;
   position: relative;
-  z-index: 1001;
+  z-index: 100;
 }
 .add-button {
   position: absolute;

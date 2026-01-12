@@ -7,7 +7,7 @@
   align-items: center;
   display: flex;
   gap: 35px;
-  padding: 0;
+  padding: 5px 0;
   border: solid;
   border-color: var(--police-color);
   border-radius: 40px;
@@ -20,9 +20,9 @@
 }
 
 .userStatusCard img {
-  width: 50px;
+  width: 40px;
   height: auto;
-  margin-right: 15px;
+  margin-right: 5px;
   border-radius: 150px;
 }
 
@@ -30,7 +30,7 @@
   font-size: 30px;
   width: fit-content;
   color: var(--police-color);
-  font-weight: 1000;
+  font-weight: 600;
   margin: 2px 0 2px 15px
 }
 
@@ -41,7 +41,7 @@
   }
 
   .userStatusCard img {
-    width: 40px;
+    width: 30px;
   }
 
 }
