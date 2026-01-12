@@ -22,18 +22,21 @@ export class DetailProjectPage {
   serviceService = inject(serviceServices);
   route = inject(ActivatedRoute);
   currentProject = signal<ProjetModel | undefined>(undefined);
-  currentServiceList = signal<ServiceModel[] | undefined>(undefined);
+  currentServiceList = signal<ServiceModel[]>([]);
   loading = signal<boolean>(true);
   errorProject = signal<boolean>(false);
 
   modalCreate = signal<boolean>(false);
   modalUpdate = signal<boolean>(false);
 
+  private idProject: number = 0;
+
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       const id = params.get('id');
       const idToNumber = Number(id);
+      this.idProject = idToNumber;
       if (idToNumber && !isNaN(idToNumber)) {
         this.serviceProject.findProjectById(idToNumber).subscribe({
           next: (project) => {
@@ -59,8 +62,13 @@ export class DetailProjectPage {
       }
     });
   }
+
   onUpdateProject() {
     this.modalUpdate.set(true);
+  }
+
+  closeModalUpdate(){
+    this.modalUpdate.set(false);
   }
 
   showModal(){
@@ -71,7 +79,16 @@ export class DetailProjectPage {
     this.modalCreate.set(false);
   }
 
-  closeModalUpdate(){
-    this.modalUpdate.set(false);
+  createService(newService: ProjetModel | ServiceModel){
+    this.serviceService.createService(this.idProject, newService as ServiceModel).subscribe({
+      next: (list) => {
+        this.closeModalCreate();
+        this.currentServiceList.update(lists => [...lists, list]);
+      },
+      error: (err) => {
+        console.log(err)
+        this.errorProject.set(true);
+      }
+    })
   }
 }
