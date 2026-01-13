@@ -17,6 +17,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class DetailServicePage {
 
+
   serviceService = inject(serviceServices);
   route = inject(ActivatedRoute);
   currentService = signal<ServiceModel | undefined>(undefined);
