@@ -39,13 +39,35 @@ export class serviceServices {
   }
 
     public updateService(service: ServiceModel): Observable<ServiceModel> {
-        return this.http.put<ServiceModel>(`${this.baseUrl}/${service.id}`, service);
+        servicesMock.forEach((s: ServiceModel) => {
+      if (s.id === service.id) {
+        s.name = service.name;
+        s.image = service.image;
+        s.ports = service.ports;
+        s.status = service.status;
+      }
+    })
+    return of(service).pipe(delay(200));
+        //return this.http.put<ServiceModel>(`${this.baseUrl}/${service.id}`, service);
     }
 
-    public deleteService(service_uuid: string): Observable<void> {
-        return this.http.delete<void>(`${this.baseUrl}/${service_uuid}`);
+    public deleteService(service_uuid: string){
+    const serviceIndex = servicesMock.findIndex(
+    service => service.id === service_uuid
+    );
+    if (serviceIndex !== -1) {
+      servicesMock.splice(serviceIndex, 1);
     }
 
+    projetsMock.forEach(projet => {
+      projet.services = projet.services.filter(
+        service => service.id !== service_uuid
+      );
+    });
+
+    return of({ message: 'supprimé' }).pipe(delay(200));
+    //return this.http.delete<void>(`${this.baseUrl}/${service_uuid}`);
+    }
     public startService(service_uuid: string): Observable<void> {
         return this.http.post<void>(`${this.baseUrl}/${service_uuid}/start`, {});
     }

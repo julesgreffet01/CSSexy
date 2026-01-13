@@ -4,15 +4,21 @@ import {ServiceModel} from '../../models/service-model';
 import {serviceServices} from '../../core/services/service-services';
 import {Observable} from 'rxjs';
 import {AsyncPipe, CommonModule, NgOptimizedImage} from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {PopUpEditable} from '../../components/popup/pop-up-editable/pop-up-editable';
+import {Location} from '@angular/common'
+import { PopUpValidation } from "../../components/popup/pop-up-validation/pop-up-validation";
+import { ProjetModel } from '../../models/projet-model';
+import { PopUpError } from '../../components/popup/pop-up-error/pop-up-error'
 
 @Component({
   selector: 'app-detail-service-page',
   standalone: true,
   imports: [
     CommonModule,
-    PopUpEditable
+    PopUpEditable,
+    PopUpValidation,
+    PopUpError
   ],
   templateUrl: './detail-service-page.html',
   styleUrl: './detail-service-page.css',
@@ -26,6 +32,14 @@ export class DetailServicePage {
   modalUpdate = signal<boolean>(false);
 
   private idService = signal<string | null>(null)
+  
+  private location = inject(Location);
+
+  validateModal = signal(false)
+  modalDelete = signal(false)
+  newService = signal<ServiceModel | null>(null)
+
+  private router = inject(Router)
 
   service :  ServiceModel = {
     id : this.idService() ?? "" ,
@@ -57,9 +71,11 @@ export class DetailServicePage {
       }
     });
   }
-  goBack() {
-    //TODO go back
+  goBack(){
+    console.log('go back');
+    this.location.back();
   }
+
   onUpdateService() {
     this.modalUpdate.set(true);
   }
@@ -68,8 +84,43 @@ export class DetailServicePage {
     this.modalUpdate.set(false);
   }
 
+  initNewService(newService: ServiceModel | ProjetModel){
+    this.newService.set(newService as ServiceModel)
+    this.modalUpdate.set(false);
+    this.validateModal.set(true);
+  }
+
   onDeleteService() {
-    console.log("coucou")
-    //todo add le delete
+    this.serviceService.deleteService(this.currentService()!.id).subscribe({
+      next: value => {
+        this.router.navigate(['/projects']) //todo a changer pour la prod car on aura l id du projet
+      }
+    })
+    
+  }
+
+  closePopupValidate(){
+    this.validateModal.set(false)
+  }
+
+  updateService(){
+    this.serviceService.updateService(this.newService()!).subscribe({
+      next: service => {
+        this.currentService.set(this.newService()!)
+        this.newService.set(null)
+        this.validateModal.set(false)
+      },
+      error: err => {
+
+      }
+    })
+  }
+
+  closeModalDelete(){
+    this.modalDelete.set(false)
+  }
+
+    showModalDelete(){
+    this.modalDelete.set(true)
   }
 }
