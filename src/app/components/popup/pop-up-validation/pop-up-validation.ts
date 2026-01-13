@@ -23,6 +23,10 @@ export class PopUpValidation {
   closePopup = output<void>()
   validPopup = output<void>()
 
+  forceServiceType(obj: ServiceModel | ProjetModel): ServiceModel {
+    return obj as ServiceModel
+  }
+
   ngOnInit() {
     if(this.type() === "Projet" && !(isProjet(this.oldObject()) || isProjet(this.newObject()) )) {
       throw new Error('Invalid projet type');

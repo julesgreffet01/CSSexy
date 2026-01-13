@@ -36,7 +36,7 @@ export class DetailServicePage {
   modalUpdate = signal<boolean>(false);
 
   private idService = signal<string | null>(null)
-  
+
   private location = inject(Location);
 
   validateModal = signal(false)
@@ -98,6 +98,8 @@ export class DetailServicePage {
 
   initNewService(newService: ServiceModel | ProjetModel){
     this.newService.set(newService as ServiceModel)
+    console.log('new service');
+    console.log( this.newService());
     this.modalUpdate.set(false);
     this.validateModal.set(true);
   }
@@ -108,7 +110,7 @@ export class DetailServicePage {
         this.router.navigate(['/projects']) //todo a changer pour la prod car on aura l id du projet
       }
     })
-    
+
   }
 
   closePopupValidate(){
