@@ -1,44 +1,44 @@
 <div class="blur"></div>
-<!--<div class="center-contain">-->
-<!--  <div class="container-popup">-->
-<!--    <div class="contain-top">-->
-<!--      @switch (gettype()) {-->
-<!--        @case ("delete") {-->
-<!--          <div class="icon-alert-delete">-->
-<!--            <img src="garbage.svg">-->
-<!--          </div>-->
-<!--        }-->
-<!--        @case ("error") {-->
-<!--          <div class="icon-alert-error">-->
-<!--            <img src="carefull.svg">-->
-<!--          </div>-->
-<!--        }-->
-<!--        @case ("success") {-->
-<!--          <div class="icon-alert-success">-->
-<!--            <img src="check.svg">-->
-<!--          </div>-->
-<!--        }-->
-<!--      }-->
+<div class="center-contain">
+  <div class="container-popup">
+    <div class="contain-top">
+      @switch (gettype()) {
+        @case ("delete") {
+          <div class="icon-alert-delete">
+            <img src="garbage.svg">
+          </div>
+        }
+        @case ("error") {
+          <div class="icon-alert-error">
+            <img src="carefull.svg">
+          </div>
+        }
+        @case ("success") {
+          <div class="icon-alert-success">
+            <img src="check.svg">
+          </div>
+        }
+      }
 
-<!--      <div class="center-text">-->
-<!--        <h1>-->
-<!--          {{ message() }}-->
-<!--        </h1>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    @if (gettype() == "delete") {-->
-<!--      <div class="compressor-flex">-->
-<!--        <div class="space-button">-->
-<!--          <app-buttons [callback]=getcallback label="Annuler" backgroundColor="#" border="secondary-3" size="medium"></app-buttons>-->
-<!--        </div>-->
-<!--        <app-buttons label="Oui, je veux supprimer" backgroundColor="secondary-3" size="medium"></app-buttons>-->
-<!--      </div>-->
-<!--    } @else {-->
-<!--      <div class="compressor">-->
-<!--        <app-buttons label="Continuer" backgroundColor="secondary-3" size="large"></app-buttons>-->
-<!--      </div>-->
-<!--    }-->
-<!--  </div>-->
-<!--</div>-->
+      <div class="center-text">
+        <h1>
+          {{ message() }}
+        </h1>
+      </div>
+    </div>
+    @if (gettype() == "delete") {
+      <div class="compressor-flex">
+        <div class="space-button">
+          <app-buttons (clicked)="submitClose()" label="Annuler" backgroundColor="#" border="secondary-3" size="medium"></app-buttons>
+        </div>
+        <app-buttons (clicked)="submitValid()" label="Oui, je veux supprimer" backgroundColor="secondary-3" size="medium"></app-buttons>
+      </div>
+    } @else {
+      <div class="compressor">
+        <app-buttons label="Continuer" (clicked)="submitValid()" backgroundColor="secondary-3" size="large"></app-buttons>
+      </div>
+    }
+  </div>
+</div>
 
 

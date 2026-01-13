@@ -10,10 +10,13 @@ import { Observable } from 'rxjs';
 import { ProjetModel } from '../../models/projet-model';
 import { CommonModule } from '@angular/common';
 import {PopUpEditable} from '../../components/popup/pop-up-editable/pop-up-editable';
+import { PopUpValidation } from "../../components/popup/pop-up-validation/pop-up-validation";
+import { PopUpError } from '../../components/popup/pop-up-error/pop-up-error';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-detail-project-page',
-  imports: [CommonModule, Tab, Buttons, PopUpEditable],
+  imports: [CommonModule, Tab, Buttons, PopUpEditable, PopUpValidation, PopUpError],
   templateUrl: './detail-project-page.html',
   styleUrl: './detail-project-page.css',
 })
@@ -27,11 +30,18 @@ export class DetailProjectPage {
   currentServiceList = signal<ServiceModel[]>([]);
   loading = signal<boolean>(true);
   errorProject = signal<boolean>(false);
+  router = inject(Router)
 
   modalCreate = signal<boolean>(false);
   modalUpdate = signal<boolean>(false);
 
   private idProject: number = 0;
+
+  newProject = signal<ProjetModel | null>(null)
+  validateModal = signal(false)
+  modalDelete = signal(false)
+
+  private location = inject(Location);
 
 
 
@@ -87,12 +97,13 @@ export class DetailProjectPage {
     this.modalUpdate.set(true);
   }
 
-  onDeleteProject() { 
-    //TODO DELETE PROJECT
+
+  goBack(){
+    console.log('go back');
+    this.location.back();
   }
-  goBack() {
-    //TODO GO BACK
-  }
+
+
   closeModalUpdate(){
     this.modalUpdate.set(false);
   }
@@ -116,5 +127,44 @@ export class DetailProjectPage {
         this.errorProject.set(true);
       }
     })
+  }
+
+  initNewProject(newProject: ProjetModel | ServiceModel){
+    this.newProject.set(newProject as ProjetModel)
+    this.modalUpdate.set(false);
+    this.validateModal.set(true);
+  }
+
+  updateProject(){
+    this.serviceProject.updateProjet(this.newProject()!).subscribe({
+      next:value => {
+        this.currentProject.set(this.newProject()!)
+        this.newProject.set(null)
+        this.validateModal.set(false)
+      },
+      error: err => {
+        
+      }
+    })
+  }
+
+
+  showModalDelete(){
+    this.modalDelete.set(true)
+  }
+
+  deleteProject(){
+    this.serviceProject.deleteProjet(this.currentProject()!.id).subscribe({
+      next: value => {
+        this.router.navigate(['/projects'])
+      }
+    })
+  }
+  closeModalDelete(){
+    this.modalDelete.set(false)
+  }
+
+  closePopupValidate(){
+    this.validateModal.set(false)
   }
 }

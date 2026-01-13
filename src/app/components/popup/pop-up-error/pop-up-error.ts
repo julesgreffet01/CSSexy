@@ -1,4 +1,4 @@
-import { Component, input, } from '@angular/core';
+import { Component, input, output, } from '@angular/core';
 import {Buttons} from '../../buttons/buttons';
 
 @Component({
@@ -15,6 +15,9 @@ export class PopUpError {
   message = input.required<string>();
   type = input<"success" | "delete" | "error">("error");
 
+  valid = output()
+  close = output()
+
 
   //message  = "Erreur en docuqopsfdzuqiehfi qsdfiozeoie"
   //type : "success" | "delete" | "error" = "delete";
@@ -27,6 +30,15 @@ export class PopUpError {
 
   public gettype(): string {
     return this.type();
+  }
+
+
+  submitValid(){
+    this.valid.emit()
+  }
+
+  submitClose(){
+    this.close.emit()
   }
 
 }
