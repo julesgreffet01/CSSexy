@@ -129,13 +129,12 @@ export class PopUpEditable {
           ports: realport
         };
       } else {
-        console.log('error du form service');
         const portsArray = this.formService.controls['ports'] as FormArray<FormControl<string>>;
+
         portsArray.controls.forEach((control, index) => {
           if (control.hasError('pattern')) {
-            const err = control.errors?.['pattern'];
             this.formErrors.push(
-              `Port ${index + 1} invalide :valeur "${err.actualValue}"format attendu : ${err.requiredPattern}`
+              `Port ${index + 1} invalide : "${control.value}". Le format attendu est number:number`
             );
           }
         });

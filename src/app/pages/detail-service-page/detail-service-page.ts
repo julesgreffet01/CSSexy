@@ -32,7 +32,7 @@ export class DetailServicePage {
   private cpuChartRef?: ElementRef<HTMLCanvasElement>;
   private ramChartRef?: ElementRef<HTMLCanvasElement>;
   private diskChartRef?: ElementRef<HTMLCanvasElement>;
-  
+
   private cpuChartInstance: Chart | null = null;
   private ramChartInstance: Chart | null = null;
   private diskChartInstance: Chart | null = null;
@@ -41,7 +41,7 @@ export class DetailServicePage {
   @ViewChild('cpuChart')
   set cpuChart(el: ElementRef<HTMLCanvasElement> | undefined) {
     if (!el) return;
-    
+
     queueMicrotask(() => {
       this.cpuChartInstance = this.createChart(el, this.cpuChartInstance, 'CPU');
     });
@@ -62,7 +62,7 @@ export class DetailServicePage {
       this.diskChartInstance = this.createChart(el, this.diskChartInstance, 'DISK');
     });
   }
-  
+
   serviceService = inject(serviceServices);
   route = inject(ActivatedRoute);
   currentService = signal<ServiceModel | undefined>(undefined);
@@ -81,6 +81,9 @@ export class DetailServicePage {
   user$: Observable<UtilisateurModel>
   authService = inject(ServiceAuth)
 
+  errorForms = signal<string[] | null>(null);
+  errorFormModal = signal<boolean>(false);
+
 
   private router = inject(Router)
 
@@ -91,7 +94,7 @@ export class DetailServicePage {
     status : "UP",
     ports : []
   }
-  
+
   constructor(){
     this.user$ = this.authService.getUser()
   }
@@ -172,8 +175,19 @@ export class DetailServicePage {
     this.modalDelete.set(true)
   }
 
+  formErrorsShow(errors: string[]){
+    this.errorForms.set(errors)
+    this.errorFormModal.set(true);
+  }
+
+  closeFormError(){
+    this.errorForms.set(null)
+    this.errorForms.set(null);
+    this.errorFormModal.set(false);
+  }
+
   private createChart(chartRef: ElementRef<HTMLCanvasElement>, existing: Chart | null, label: string): Chart {
-    
+
     existing?.destroy();
       const labels = this.getLastHours(8);
       const dataValues = this.getRandomData(8, 1, 100);
@@ -199,7 +213,7 @@ export class DetailServicePage {
           plugins: {
             legend: {
               labels: {
-                color: '#f9fafb', 
+                color: '#f9fafb',
                 font: {
                   size: 14,
                   weight: 'bold',
@@ -210,7 +224,7 @@ export class DetailServicePage {
           scales: {
             x: {
               ticks: {
-                color: '#f9fafb',  
+                color: '#f9fafb',
                 font: {
                   size: 12,
                 }
@@ -221,7 +235,7 @@ export class DetailServicePage {
             },
             y: {
               ticks: {
-                color: '#f9fafb',  
+                color: '#f9fafb',
                 font: {
                   size: 12,
                 }
