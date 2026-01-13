@@ -31,8 +31,6 @@ export class PopUpEditable {
   formService!: FormGroup;
 
   ngOnInit() {
-    console.log(this.oldProjet())
-    console.log(this.oldService())
     if (this.oldProjet() != undefined) {
       this.formProjet = new FormGroup({
         name: new FormControl(this.oldProjet()!.name, {nonNullable: true, validators: [Validators.required]}),
@@ -42,7 +40,7 @@ export class PopUpEditable {
         name: new FormControl(this.oldService()!.name, {nonNullable: true, validators: [Validators.required]}),
         image: new FormControl(this.oldService()!.image, {nonNullable: true}),
         ports: new FormArray<FormControl<string>>(
-          this.oldService()!.ports.map(port => new FormControl(port, {nonNullable: true, validators: [Validators.required]})))
+          this.oldService()!.ports.map(ports => new FormControl(ports, {nonNullable: true, validators: [Validators.required]})))
       });
     }
   }
@@ -95,15 +93,22 @@ export class PopUpEditable {
         services: [],
         createdAt: new Date()
       };
-    } else
+    } else {
+      const realport : string[] = [];
+      this.formService.value.ports!.forEach((element: string) => {
+        if (element.trim() !== "") {
+          realport.push(element);
+        }
+      });
       obj = {
         id: '0',
         name: this.formService.value.name!,
         image: this.formService.value.image!,
         status: "STARTING",
         startedSince: new Date(),
-        ports: this.formService.value.ports!
+        ports: realport
       };
+    }
     if(this.oldService()){
       obj.id = this.oldService()!.id
     }if(this.oldProjet()){

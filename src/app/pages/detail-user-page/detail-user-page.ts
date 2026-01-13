@@ -31,7 +31,6 @@ export class DetailUserPage {
           error: (err) => {
             this.errorProject.set(true);
             this.loading.set(false);
-            console.log(err);
           },
         });
       }

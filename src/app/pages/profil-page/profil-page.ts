@@ -27,7 +27,6 @@ export class ProfilPage {
       error: (err) => {
         this.errorProject.set(true);
         this.loading.set(false);
-        console.log(err);
       },
     });
   }

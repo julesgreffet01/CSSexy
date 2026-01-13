@@ -29,13 +29,17 @@
     @if (gettype() == "delete") {
       <div class="compressor-flex">
         <div class="space-button">
-          <app-buttons (clicked)="submitClose()" label="Annuler" backgroundColor="#" border="secondary-3" size="medium"></app-buttons>
+          <app-buttons (clicked)="submitClose()" label="Annuler" backgroundColor="#" border="secondary-3"
+                       size="medium"></app-buttons>
         </div>
-        <app-buttons (clicked)="submitValid()" label="Oui, je veux supprimer" backgroundColor="secondary-3" size="medium"></app-buttons>
+        <app-buttons (clicked)="submitValid()" label="Oui, je veux supprimer" backgroundColor="secondary-3"
+                     size="medium"></app-buttons>
+
       </div>
     } @else {
       <div class="compressor">
-        <app-buttons label="Continuer" (clicked)="submitValid()" backgroundColor="secondary-3" size="large"></app-buttons>
+        <app-buttons label="Continuer" (clicked)="submitValid()" backgroundColor="secondary-3"
+                     size="large"></app-buttons>
       </div>
     }
   </div>

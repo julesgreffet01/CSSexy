@@ -60,7 +60,7 @@ export class DetailProjectPage {
     name : "",
     image : "",
     status : "UP",
-    ports : []
+    ports : [""]
   }
 
   projet : ProjetModel = {
@@ -89,14 +89,12 @@ export class DetailProjectPage {
               error: (err) => {
                 this.errorProject.set(true);
                 this.loading.set(false);
-                console.log(err);
               },
             });
           },
           error: (err) => {
             this.errorProject.set(true);
             this.loading.set(false);
-            console.log(err);
           },
         });
       }
@@ -132,7 +130,6 @@ export class DetailProjectPage {
         this.currentServiceList.update(lists => [...lists, list]);
       },
       error: (err) => {
-        console.log(err)
         this.errorProject.set(true);
       }
     })
@@ -152,7 +149,7 @@ export class DetailProjectPage {
         this.validateModal.set(false)
       },
       error: err => {
-        
+
       }
     })
   }
