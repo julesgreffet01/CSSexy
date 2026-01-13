@@ -34,9 +34,15 @@
     </div>
   </div>
   <div class="right-content">
-    <div class="graph-cpu">aaa</div>
-    <div class="graph-ram">aaa</div>
-    <div class="graph-disk">aaa</div>
+    <div class="graph-cpu">
+      <canvas #cpuChart ></canvas>
+    </div>
+    <div class="graph-ram">
+      <canvas #ramChart></canvas>
+    </div>
+    <div class="graph-disk">
+      <canvas #diskChart></canvas>
+    </div>
   </div>
 </div>
 }
@@ -57,3 +63,4 @@
         <app-pop-up-error (valid)="onDeleteService()" type="delete" (close)="closeModalDelete()" message="Voulez-vous vraiment supprimer ce service ?"/>
     </div>
 }
+
