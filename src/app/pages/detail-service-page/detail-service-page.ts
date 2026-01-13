@@ -1,9 +1,8 @@
-import {AfterViewInit, Component, ElementRef, inject, input, OnDestroy, signal, ViewChild} from '@angular/core';
-import {Header} from '../../components/header/header';
+import {Component, ElementRef, inject, signal, ViewChild} from '@angular/core';
 import {ServiceModel} from '../../models/service-model';
 import {serviceServices} from '../../core/services/service-services';
 import {Observable} from 'rxjs';
-import {AsyncPipe, CommonModule, NgOptimizedImage} from '@angular/common';
+import {AsyncPipe, CommonModule} from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import {PopUpEditable} from '../../components/popup/pop-up-editable/pop-up-editable';
 import {Location} from '@angular/common'
@@ -11,7 +10,6 @@ import { PopUpValidation } from "../../components/popup/pop-up-validation/pop-up
 import { ProjetModel } from '../../models/projet-model';
 import { PopUpError } from '../../components/popup/pop-up-error/pop-up-error'
 import { UtilisateurModel } from '../../models/utilisateur-model';
-import { serviceUser } from '../../core/services/service-user';
 import { ServiceAuth } from '../../core/services/service-auth';
 import { Chart } from 'chart.js/auto';
 
@@ -131,8 +129,6 @@ export class DetailServicePage {
 
   initNewService(newService: ServiceModel | ProjetModel){
     this.newService.set(newService as ServiceModel)
-    console.log('new service');
-    console.log( this.newService());
     this.modalUpdate.set(false);
     this.validateModal.set(true);
   }

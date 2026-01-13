@@ -1,8 +1,8 @@
 import {Component, input, output, signal} from '@angular/core';
 import {Inputs} from '../../inputs/inputs';
 import {Buttons} from '../../buttons/buttons';
-import {FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {isProjet, ProjetModel} from '../../../models/projet-model';
+import {FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import {ProjetModel} from '../../../models/projet-model';
 import type {ServiceModel} from '../../../models/service-model';
 
 @Component({
@@ -99,7 +99,6 @@ export class PopUpEditable {
           createdAt: new Date()
         };
       } else {
-        console.log('error sur le form projet')
         if(this.formProjet.get('name')?.hasError('required')){
           this.formErrors.push("le nom est requis");
         }
@@ -171,7 +170,6 @@ export class PopUpEditable {
       console.error("erreur d envoie a la popup")
       return
     }
-    console.log('final')
     this.myObj.emit(obj);
   }
 

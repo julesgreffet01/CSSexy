@@ -13,7 +13,6 @@ export class Error403 {
   private location = inject(Location);
 
   goBack(){
-    console.log('go back');
     this.location.back();
   }
 

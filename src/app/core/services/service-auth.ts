@@ -46,7 +46,6 @@ export class ServiceAuth {
   }
 
   public getUser(): Observable<UtilisateurModel> {
-    console.log(`username : ${this.userName}, userId: ${this.userId}`);
     if (this.userId !== null && this.userName !== null && this.name !== null && this.role !== null) {
       return of({
         id: this.userId,

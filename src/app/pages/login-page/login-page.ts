@@ -1,4 +1,4 @@
-import {Component, OnInit, OnDestroy, signal, inject, HostListener} from '@angular/core';
+import {Component, OnInit, OnDestroy, signal, inject} from '@angular/core';
 import {Buttons} from '../../components/buttons/buttons';
 import {LoginInput} from '../../components/login-input/login-input';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';

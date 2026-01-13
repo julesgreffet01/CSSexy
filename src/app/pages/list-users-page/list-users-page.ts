@@ -1,7 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { SwapTab } from '../../components/swap-tab/swap-tab';
 import { Tab } from '../../components/tabs/tab/tab';
-import { Buttons } from '../../components/buttons/buttons';
 import { UtilisateurModel } from '../../models/utilisateur-model';
 import { serviceUser } from '../../core/services/service-user';
 import { ServiceModel } from '../../models/service-model';

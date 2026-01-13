@@ -1,7 +1,6 @@
-import {Component, inject} from '@angular/core';
+import {Component} from '@angular/core';
 import { UserStatus } from '../user-status/user-status';
 import {NgOptimizedImage} from '@angular/common';
-import {ServiceAuth} from '../../core/services/service-auth';
 
 @Component({
   selector: 'app-header',

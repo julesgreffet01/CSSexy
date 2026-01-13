@@ -1,7 +1,6 @@
-import { Component, inject, input, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { Tab } from '../../components/tabs/tab/tab';
 import { Buttons } from '../../components/buttons/buttons';
-import { servicesMock } from '../../../mock/services.mjs';
 import { ServiceModel } from '../../models/service-model';
 import { ServiceProjet } from '../../core/services/service-projet';
 import { serviceServices } from '../../core/services/service-services';
