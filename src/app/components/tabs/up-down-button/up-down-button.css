@@ -1,7 +1,7 @@
 .UpBtn{
     height: 40px;
     width: 40px;
-    background-color: green;
+    background-color: var(--success);
     align-items: center;
     border-radius: 35px;
     border :none;
@@ -17,7 +17,7 @@
 .DownBtn{
     height: 40px;
     width: 40px;
-    background-color: red;
+    background-color: var(--error);
     align-items: center;
     border-radius: 35px;
     border :none;

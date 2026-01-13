@@ -7,17 +7,17 @@
     width: 20px;
     height: 20px;
     border-radius: 100%;
-    background-color: red;
+    background-color: var(--error);
 }
 .Up{
     width: 20px;
     height: 20px;
     border-radius: 100%;
-    background-color: green;
+    background-color: var(--success);
 }
 .Loading{
     width: 20px;
     height: 20px;
     border-radius: 100%;
-    background-color: yellow;
+    background-color: var(--warning);
 }
