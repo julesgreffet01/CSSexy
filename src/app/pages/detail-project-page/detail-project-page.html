@@ -13,7 +13,7 @@
                     <h2>{{currentProject()!.name | titlecase}}</h2>
                     <div class="onUpdateProject">
                     <img src="/pen.svg" (click)="onUpdateProject()">
-                    <img src="/garbage.svg" (click)="onDeleteProject()">
+                    <img src="/garbage.svg" (click)="showModalDelete()">
                     </div>
                 </div>
                 <p>{{currentProject()!.createdAt | date:'medium'}}</p>
@@ -33,7 +33,18 @@
 }
 @if(modalUpdate()){
   <div class="popup">
-    <app-pop-up-editable [oldProjet]="projet"  (closePopup)="closeModalUpdate()"/>
+    <app-pop-up-editable [oldProjet]="projet" (myObj)="initNewProject($event)"  (closePopup)="closeModalUpdate()"/>
   </div>
 }
 
+@if(validateModal()){
+    <div class="popup">
+        <app-pop-up-validation type="Projet" (closePopup)="closePopupValidate()" (validPopup)="updateProject()" [oldObject]="currentProject()!" [newObject]="newProject()!"/>
+    </div>
+}
+
+@if(modalDelete()){
+    <div class="popup">
+        <app-pop-up-error (valid)="deleteProject()" type="delete" (close)="closeModalDelete()" message="Voulez-vous vraiment supprimer ce projet ?"/>
+    </div>
+}
