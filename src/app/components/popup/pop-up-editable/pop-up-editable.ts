@@ -38,7 +38,7 @@ export class PopUpEditable {
     console.log(this.oldService())
     if (this.oldProjet() != undefined) {
       this.formProjet = new FormGroup({
-        name: new FormControl(this.oldProjet()!.name, {nonNullable: true, validators: [Validators.required, Validators.maxLength(2)]}),
+        name: new FormControl(this.oldProjet()!.name, {nonNullable: true, validators: [Validators.required, Validators.maxLength(200)]}),
       });
     } else if (this.oldService() !== undefined) {
       this.formService = new FormGroup({
@@ -105,10 +105,9 @@ export class PopUpEditable {
         if(this.formProjet.get('name')?.hasError('required')){
           this.formErrors.push("le nom est requis");
         }
-        if(this.formProjet.get('name')?.hasError('maxLength')){
+        if(this.formProjet.get('name')?.hasError('maxlength')){
           this.formErrors.push("le nombre de caractères max est de 200");
         }
-        console.log(this.formErrors);
         const errors = this.formErrors
         this.formErrors = []
         this.formErrorsOutput.emit(errors);
@@ -129,14 +128,17 @@ export class PopUpEditable {
         console.log('error du form service');
         const portsArray = this.formService.controls['ports'] as FormArray<FormControl<string>>;
         portsArray.controls.forEach((control, index) => {
-          if (control.invalid) {
-            console.log(`Port ${index}`, control.errors);
+          if (control.hasError('pattern')) {
+            const err = control.errors?.['pattern'];
+            this.formErrors.push(
+              `Port ${index + 1} invalide :valeur "${err.actualValue}"format attendu : ${err.requiredPattern}`
+            );
           }
         });
         if(this.formService.get('name')?.hasError('required')){
           this.formErrors.push("le nom est requis");
         }
-        if(this.formService.get('name')?.hasError('maxLength')){
+        if(this.formService.get('name')?.hasError('maxlength')){
           this.formErrors.push("le nombre de caractères max sur le nom est de 100");
         }
         if(this.formService.get('image')?.hasError('required')){
@@ -148,7 +150,6 @@ export class PopUpEditable {
         if(this.formService.get('image')?.hasError('pattern')){
           this.formErrors.push("le pattern de l'image n est pas bon i doit etre de a forme image:tag");
         }
-        console.log(this.formErrors);
         const errors = this.formErrors
         this.formErrors = []
         this.formErrorsOutput.emit(errors);

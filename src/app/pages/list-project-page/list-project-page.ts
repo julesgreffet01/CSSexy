@@ -3,16 +3,15 @@ import {SwapTab} from '../../components/swap-tab/swap-tab';
 import {Tab} from '../../components/tabs/tab/tab';
 import {Buttons} from '../../components/buttons/buttons';
 import {ProjetModel} from '../../models/projet-model';
-import {projetsMock} from '../../../mock/projets.mjs';
 import {ServiceAuth} from '../../core/services/service-auth';
 import {Observable} from 'rxjs';
 import {UtilisateurModel} from '../../models/utilisateur-model';
 import {AsyncPipe} from '@angular/common';
 import {ServiceProjet} from '../../core/services/service-projet';
-import {ActivatedRoute} from '@angular/router';
 import {PopUpEditable} from '../../components/popup/pop-up-editable/pop-up-editable';
 import type {ServiceModel} from '../../models/service-model';
 import {ReactiveFormsModule} from '@angular/forms';
+import {PopUpError} from '../../components/popup/pop-up-error/pop-up-error';
 
 
 @Component({
@@ -23,7 +22,8 @@ import {ReactiveFormsModule} from '@angular/forms';
     Buttons,
     AsyncPipe,
     PopUpEditable,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    PopUpError
   ],
   templateUrl: './list-project-page.html',
   styleUrl: './list-project-page.css',
@@ -33,7 +33,6 @@ export class ListProjectPage {
 
   serviceProject = inject(ServiceProjet);
   listproject = signal<ProjetModel[] | undefined>(undefined);
-  route = inject(ActivatedRoute);
   loading = signal<boolean>(true);
   errorProject = signal<boolean>(false);
   user$: Observable<UtilisateurModel>
@@ -41,6 +40,8 @@ export class ListProjectPage {
 
   serviceAuth = inject(ServiceAuth)
   modalCreate = signal<boolean>(false);
+  errorForms = signal<string[] | null>(null);
+  errorFormModal = signal<boolean>(false);
 
   projet: ProjetModel = {
     id: 0,
@@ -88,5 +89,16 @@ export class ListProjectPage {
 
   closeModal() {
     this.modalCreate.set(false);
+  }
+
+  formErrorsShow(errors: string[]){
+    this.errorForms.set(errors)
+    this.errorFormModal.set(true);
+  }
+
+  closeFormError(){
+    this.errorForms.set(null)
+    this.errorForms.set(null);
+    this.errorFormModal.set(false);
   }
 }

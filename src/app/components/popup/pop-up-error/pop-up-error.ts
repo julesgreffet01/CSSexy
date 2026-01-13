@@ -14,6 +14,7 @@ export class PopUpError {
   callback = input< ((arg?: string) => void)>()
   message = input.required<string>();
   type = input<"success" | "delete" | "error">("error");
+  errorMessage = input<string[]>();
 
   valid = output()
   close = output()

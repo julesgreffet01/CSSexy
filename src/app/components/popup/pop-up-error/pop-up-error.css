@@ -131,6 +131,10 @@
     width: 70vw;
   }
 
+  .saut-ligne{
+    white-space: pre-line;
+  }
+
   * img{
     width: 10vw;
     height: 10vw;

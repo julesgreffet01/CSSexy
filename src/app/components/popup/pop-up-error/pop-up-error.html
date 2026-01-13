@@ -21,9 +21,19 @@
       }
 
       <div class="center-text">
-        <h1>
-          {{ message() }}
-        </h1>
+        @if(errorMessage()){
+          @if(errorMessage()!.length >= 1){
+            <ul>
+            @for (error of errorMessage(); track $index){
+              <li>{{error}}</li>
+            }
+            </ul>
+          }
+        } @else {
+          <h1 class="saut-ligne">
+            {{ message() }}
+          </h1>
+        }
       </div>
     </div>
     @if (gettype() == "delete") {
