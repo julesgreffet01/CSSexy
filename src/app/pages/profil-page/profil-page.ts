@@ -29,4 +29,7 @@ export class ProfilPage {
       },
     });
   }
+  goBack() {
+    //TODO go back
+  }
 }

@@ -16,8 +16,6 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './detail-service-page.css',
 })
 export class DetailServicePage {
-
-
   serviceService = inject(serviceServices);
   route = inject(ActivatedRoute);
   currentService = signal<ServiceModel | undefined>(undefined);
@@ -42,7 +40,9 @@ export class DetailServicePage {
       }
     });
   }
-
+  goBack() {
+    //TODO go back
+  }
   onUpdateService() {
     console.log("coucou")
     //todo add le update

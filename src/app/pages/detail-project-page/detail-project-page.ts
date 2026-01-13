@@ -19,6 +19,7 @@ import {PopUpEditable} from '../../components/popup/pop-up-editable/pop-up-edita
 })
 export class DetailProjectPage {
 
+
   serviceProject = inject(ServiceProjet);
   serviceService = inject(serviceServices);
   route = inject(ActivatedRoute);
@@ -89,7 +90,9 @@ export class DetailProjectPage {
   onDeleteProject() { 
     //TODO DELETE PROJECT
   }
-
+  goBack() {
+    //TODO GO BACK
+  }
   closeModalUpdate(){
     this.modalUpdate.set(false);
   }

@@ -35,4 +35,7 @@ export class DetailUserPage {
       }
     });
   }
+  goBack() {
+    //TODO go back
+  }
 }
