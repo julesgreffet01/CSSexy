@@ -97,6 +97,8 @@ export class DetailServicePage {
 
   initNewService(newService: ServiceModel | ProjetModel){
     this.newService.set(newService as ServiceModel)
+    console.log('new service');
+    console.log( this.newService());
     this.modalUpdate.set(false);
     this.validateModal.set(true);
   }

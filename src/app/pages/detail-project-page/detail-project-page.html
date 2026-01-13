@@ -34,12 +34,12 @@
 }
 @if(modalCreate()){
   <div class="popup">
-    <app-pop-up-editable [oldService]="service"  (myObj)="createService($event)" (closePopup)="closeModalCreate()"/>
+    <app-pop-up-editable [oldService]="service" (formErrorsOutput)="formErrorsShow($event)"  (myObj)="createService($event)" (closePopup)="closeModalCreate()"/>
   </div>
 }
 @if(modalUpdate()){
   <div class="popup">
-    <app-pop-up-editable [oldProjet]="projet" (myObj)="initNewProject($event)"  (closePopup)="closeModalUpdate()"/>
+    <app-pop-up-editable [oldProjet]="projet" (formErrorsOutput)="formErrorsShow($event)" (myObj)="initNewProject($event)"  (closePopup)="closeModalUpdate()"/>
   </div>
 }
 
@@ -53,4 +53,10 @@
     <div class="popup">
         <app-pop-up-error (valid)="deleteProject()" type="delete" (close)="closeModalDelete()" message="Voulez-vous vraiment supprimer ce projet ?"/>
     </div>
+}
+
+@if(errorFormModal()){
+  <div class="popup">
+    <app-pop-up-error message="message d'erreur" [errorMessage]="errorForms()!" (close)="closeFormError()" (valid)="closeFormError()"/>
+  </div>
 }

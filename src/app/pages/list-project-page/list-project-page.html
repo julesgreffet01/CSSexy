@@ -26,6 +26,12 @@
 
 @if(modalCreate()){
   <div class="popup">
-  <app-pop-up-editable [oldProjet]="projet" (myObj)="createProject($event)" (closePopup)="closeModal()"/>
+  <app-pop-up-editable [oldProjet]="projet" (formErrorsOutput)="formErrorsShow($event)" (myObj)="createProject($event)" (closePopup)="closeModal()"/>
+  </div>
+}
+
+@if(errorFormModal()){
+  <div class="popup">
+    <app-pop-up-error message="message au cas" [errorMessage]="errorForms()!" (close)="closeFormError()" (valid)="closeFormError()"/>
   </div>
 }

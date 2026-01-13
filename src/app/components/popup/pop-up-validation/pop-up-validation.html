@@ -20,6 +20,9 @@
               @if (oldObject().name !== newObject().name) {
                 <p><strong>Nom :</strong> {{ oldObject().name }}</p>
               }
+              @if (forceServiceType(oldObject()).image !== forceServiceType(newObject()).image) {
+                <p><strong>Image :</strong> {{ forceServiceType(oldObject()).image }}</p>
+              }
               @if (oldPorts().length) {
                 <p><strong>Ports supprimés :</strong></p>
                 <ul class="ports">
@@ -44,6 +47,9 @@
               @if (oldObject().name !== newObject().name) {
                 <p><strong>Nom :</strong> {{ newObject().name }}</p>
               }
+              @if (forceServiceType(oldObject()).image !== forceServiceType(newObject()).image) {
+                <p><strong>Image :</strong> {{ forceServiceType(newObject()).image }}</p>
+              }
               @if (newPorts().length) {
                 <p><strong>Ports ajoutés :</strong></p>
                 <ul class="ports">
@@ -55,7 +61,6 @@
             }
           </div>
         </div>
-
       </div>
     </div>
     <div class="popup-footer">
