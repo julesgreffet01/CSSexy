@@ -51,9 +51,7 @@ p{
   font-size: 22px;
 }
 
-.popup{
-  margin-top: -22vw;
-}
+
 .goback{
   border-radius: 10px;
   border: solid var(--police-color-grise);
