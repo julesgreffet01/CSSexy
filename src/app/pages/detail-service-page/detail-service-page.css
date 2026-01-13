@@ -1,9 +1,16 @@
-.center-content{
+.global{
+  display: flex;
+}
+.left-content{
   padding-left: 5vw;
+}
+.right-content{
+  display: flex;
+  flex-direction: column;
 }
 
 h1{
-  font-size: 70px;
+  font-size: 55px;
   font-weight: 400;
 }
 
@@ -31,8 +38,8 @@ h1{
 
 .top{
   display: grid;
-  grid-template-columns: repeat(2, 30vw);
-  padding-top: 4vw;
+  grid-template-columns: repeat(2, 20vw);
+  padding-top: 2vw;
 }
 
 .flex{
