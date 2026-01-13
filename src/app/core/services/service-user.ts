@@ -18,8 +18,9 @@ export class serviceUser {
         //return this.http.get<any>(`${this.baseUrl}/`);
     }
 
-    public getUser(user_uuid: string): Observable<any> {
-        return this.http.get<any>(`${this.baseUrl}/${user_uuid}`);
+    public getUser(id: number): Observable<any> {
+        return of(usersMock.find(p => p.id === id)).pipe(delay(200));
+        //return this.http.get<any>(`${this.baseUrl}/${id}`);
     }
 
     public myUser(): Observable<UtilisateurModel> {

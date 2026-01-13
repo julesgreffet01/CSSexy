@@ -1,0 +1,30 @@
+.flex{
+  margin-left: 100px;
+  margin-right: 100px;
+  display: flex;
+}
+
+.profile-image{
+  width: 20vw;
+  height: 20vw;
+  border-radius: 50%;
+  background: olive;
+}
+
+.right-contain{
+  padding-left: 5vw;
+  padding-top: 1vw;
+}
+
+h1{
+  font-size: 5vw;
+  font-weight: 400;
+}
+
+h2{
+  font-size: 1.5vw;
+  font-weight: 400;
+}
+p{
+  font-size: 1.5vw;
+}

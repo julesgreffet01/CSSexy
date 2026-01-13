@@ -52,7 +52,7 @@ export class Tab {
 
 
   onRowClickUser(user: UtilisateurModel){
-    console.log("click")
+    this.routeur.navigate(['/user-detail', user.id])
   }
   onRowClickProject(project: ProjetModel){
     this.routeur.navigate(['/project', project.id])

@@ -14,7 +14,7 @@ import { Observable } from 'rxjs';
   imports: [    
     SwapTab,
     Tab,
-    Buttons],
+    ],
   templateUrl: './list-users-page.html',
   styleUrl: './list-users-page.css',
 })
