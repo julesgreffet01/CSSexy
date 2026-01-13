@@ -28,17 +28,7 @@ export class Tab {
   routeur = inject(Router)
 
   ngOnInit() {
-    /*
-    if(this.projet() == "PROJECT" && !isProjet(this.InitStat())){
-      throw new Error("Invalid ProjetModel input");
-    }
-    else if(this.projet() == "USER" && !isUtilisateur(this.InitStat())){
-      throw new Error("Invalid UtilisateurModel input");
-    }
-    else if(this.projet() == "SERVICE" && !isService(this.InitStat() )){
-      throw new Error("Invalid ServiceModel input");
-    }
-*/
+    
     if (this.projet() == "PROJECT") {
       this.PROJECT.set(this.InitStat() as ProjetModel[]);
     }
