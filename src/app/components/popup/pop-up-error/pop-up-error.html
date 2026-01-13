@@ -25,7 +25,7 @@
           @if(errorMessage()!.length >= 1){
             <ul>
             @for (error of errorMessage(); track $index){
-              <li>{{error}}</li>
+              <li class="error-message">{{error}}</li>
             }
             </ul>
           }
