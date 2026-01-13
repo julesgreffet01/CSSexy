@@ -89,14 +89,12 @@ export class DetailProjectPage {
               error: (err) => {
                 this.errorProject.set(true);
                 this.loading.set(false);
-                console.log(err);
               },
             });
           },
           error: (err) => {
             this.errorProject.set(true);
             this.loading.set(false);
-            console.log(err);
           },
         });
       }
@@ -132,7 +130,6 @@ export class DetailProjectPage {
         this.currentServiceList.update(lists => [...lists, list]);
       },
       error: (err) => {
-        console.log(err)
         this.errorProject.set(true);
       }
     })

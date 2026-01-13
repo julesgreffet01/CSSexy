@@ -36,7 +36,7 @@ export class DetailServicePage {
   modalUpdate = signal<boolean>(false);
 
   private idService = signal<string | null>(null)
-  
+
   private location = inject(Location);
 
   validateModal = signal(false)
@@ -77,14 +77,13 @@ export class DetailServicePage {
           error: (err) => {
             this.errorProject.set(true);
             this.loading.set(false);
-            console.log(err);
           },
         });
       }
+
     });
   }
   goBack(){
-    console.log('go back');
     this.location.back();
   }
 
@@ -108,7 +107,7 @@ export class DetailServicePage {
         this.router.navigate(['/projects']) //todo a changer pour la prod car on aura l id du projet
       }
     })
-    
+
   }
 
   closePopupValidate(){

@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-list-users-page',
-  imports: [    
+  imports: [
     SwapTab,
     Tab,
     ],
@@ -19,7 +19,7 @@ import { Observable } from 'rxjs';
   styleUrl: './list-users-page.css',
 })
 export class ListUsersPage {
-  
+
     serviceUser = inject(serviceUser);
     listUser = signal<ServiceModel[] | undefined>(undefined);
     route = inject(ActivatedRoute);
@@ -35,13 +35,12 @@ export class ListUsersPage {
     ngOnInit(): void{
       this.serviceUser.getAllUsers().subscribe({
         next: (services) => {
-        this.listUser.set(services);  
-            this.loading.set(false); 
-        }, 
+        this.listUser.set(services);
+            this.loading.set(false);
+        },
         error: (err) => {
             this.errorSignal.set(true);
             this.loading.set(false);
-            console.log(err)
         },
       });
     }

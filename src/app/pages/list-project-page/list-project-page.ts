@@ -63,7 +63,6 @@ export class ListProjectPage {
       error: (err) => {
         this.errorProject.set(true);
         this.loading.set(false);
-        console.log(err)
       },
     });
   }
@@ -76,7 +75,6 @@ export class ListProjectPage {
         this.listproject.set(projects);
       },
       error: (err) => {
-        console.log(err)
         this.errorProject.set(true);
       }
     })
