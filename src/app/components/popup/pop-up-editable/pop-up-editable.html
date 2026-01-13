@@ -9,15 +9,15 @@
         @if (getType() == "Projet") {
           <div class="contain-project">
             <h2>Nom du projet :</h2>
-            <app-inputs formControlName="name"></app-inputs>
+            <app-inputs formControlName="name" required></app-inputs>
           </div>
         } @else if (getType() == "Service") {
           <div class="flex-cote">
             <div class="left-contain">
               <h2>Nom du service :</h2>
-              <app-inputs formControlName="name"></app-inputs>
+              <app-inputs formControlName="name" required></app-inputs>
               <h2>Image :</h2>
-              <app-inputs formControlName="image"></app-inputs>
+              <app-inputs formControlName="image" required></app-inputs>
             </div>
             <div class="right-contain">
               @for (portCtrl of portsArray.controls; track portCtrl; let idx = $index) {

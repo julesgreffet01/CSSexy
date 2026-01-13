@@ -49,6 +49,9 @@ export class DetailProjectPage {
 
   user$: Observable<UtilisateurModel>
 
+  errorForms = signal<string[] | null>(null);
+  errorFormModal = signal<boolean>(false);
+
   constructor(){
     this.user$ = this.authService.getUser()
   }
@@ -172,5 +175,16 @@ export class DetailProjectPage {
 
   closePopupValidate(){
     this.validateModal.set(false)
+  }
+
+  formErrorsShow(errors: string[]){
+    this.errorForms.set(errors)
+    this.errorFormModal.set(true);
+  }
+
+  closeFormError(){
+    this.errorForms.set(null)
+    this.errorForms.set(null);
+    this.errorFormModal.set(false);
   }
 }
