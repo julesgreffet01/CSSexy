@@ -48,8 +48,8 @@ export class PopUpEditable {
     }
   }
 
-  get portsArray(): FormArray<FormControl<string>> {
-    return this.formService.controls['ports'] as FormArray<FormControl<string>>;
+  get portsArray(): FormArray<FormControl<string | null>> {
+    return this.formService.controls['ports'] as FormArray<FormControl<string | null>>;
   }
 
 
@@ -82,7 +82,7 @@ export class PopUpEditable {
   }
 
   addPort = () => {
-    this.portsArray.push(new FormControl('', {nonNullable: true}));
+    this.portsArray.push(new FormControl('', {nonNullable: false, validators: [Validators.pattern('^[1-9]\\d*:[1-9]\\d*$')]}));
   }
 
 
@@ -125,7 +125,7 @@ export class PopUpEditable {
               const errors = this.formErrors;
               this.formErrors = [];
               this.formErrorsOutput.emit(errors);
-              return; // ✅ sort bien de Submit()
+              return;
             }
           }
         }
