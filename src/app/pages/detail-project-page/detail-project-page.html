@@ -26,12 +26,12 @@
 }
 @if(modalCreate()){
   <div class="popup">
-    <app-pop-up-editable type="Service" action="Ajout" (myObj)="createService($event)" (closePopup)="closeModalCreate()"/>
+    <app-pop-up-editable [oldService]="service"  (myObj)="createService($event)" (closePopup)="closeModalCreate()"/>
   </div>
 }
 @if(modalUpdate()){
   <div class="popup">
-    <app-pop-up-editable type="Projet" action="Modification" (closePopup)="closeModalUpdate()"/>
+    <app-pop-up-editable [oldProjet]="projet"  (closePopup)="closeModalUpdate()"/>
   </div>
 }
 
