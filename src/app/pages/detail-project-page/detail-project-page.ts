@@ -8,12 +8,12 @@ import { serviceServices } from '../../core/services/service-services';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ProjetModel } from '../../models/projet-model';
+import { CommonModule } from '@angular/common';
+import {PopUpEditable} from '../../components/popup/pop-up-editable/pop-up-editable';
 
 @Component({
   selector: 'app-detail-project-page',
-  imports: [
-      Tab,
-      Buttons],
+  imports: [CommonModule, Tab, Buttons, PopUpEditable],
   templateUrl: './detail-project-page.html',
   styleUrl: './detail-project-page.css',
 })
@@ -22,38 +22,73 @@ export class DetailProjectPage {
   serviceService = inject(serviceServices);
   route = inject(ActivatedRoute);
   currentProject = signal<ProjetModel | undefined>(undefined);
-  currentServiceList = signal<ServiceModel[] | undefined>(undefined);
+  currentServiceList = signal<ServiceModel[]>([]);
   loading = signal<boolean>(true);
   errorProject = signal<boolean>(false);
 
-ngOnInit(): void{
-  this.route.paramMap.subscribe(params => {
-    const id = params.get('id');
-    const idToNumber = Number(id)
-    if(idToNumber && !isNaN(idToNumber)){
-       this.serviceProject.findProjectById(idToNumber).subscribe({
-        next: (project) => {
-          this.currentProject.set(project);
+  modalCreate = signal<boolean>(false);
+  modalUpdate = signal<boolean>(false);
+
+  private idProject: number = 0;
+
+
+  ngOnInit(): void {
+    this.route.paramMap.subscribe((params) => {
+      const id = params.get('id');
+      const idToNumber = Number(id);
+      this.idProject = idToNumber;
+      if (idToNumber && !isNaN(idToNumber)) {
+        this.serviceProject.findProjectById(idToNumber).subscribe({
+          next: (project) => {
+            this.currentProject.set(project);
             this.serviceService.getAllByProject(project!.id).subscribe({
-              next: (service) =>{
+              next: (service) => {
                 this.currentServiceList.set(service);
                 this.loading.set(false);
               },
-              error: (err) =>{
+              error: (err) => {
                 this.errorProject.set(true);
                 this.loading.set(false);
-                console.log(err)
-              }
-          })
-        },
-        error: (err) => {
-          this.errorProject.set(true);
-          this.loading.set(false);
-          console.log(err)
-        },
-       })
-    }
+                console.log(err);
+              },
+            });
+          },
+          error: (err) => {
+            this.errorProject.set(true);
+            this.loading.set(false);
+            console.log(err);
+          },
+        });
+      }
+    });
+  }
 
-  });
-}
+  onUpdateProject() {
+    this.modalUpdate.set(true);
+  }
+
+  closeModalUpdate(){
+    this.modalUpdate.set(false);
+  }
+
+  showModal(){
+    this.modalCreate.set(true);
+  }
+
+  closeModalCreate(){
+    this.modalCreate.set(false);
+  }
+
+  createService(newService: ProjetModel | ServiceModel){
+    this.serviceService.createService(this.idProject, newService as ServiceModel).subscribe({
+      next: (list) => {
+        this.closeModalCreate();
+        this.currentServiceList.update(lists => [...lists, list]);
+      },
+      error: (err) => {
+        console.log(err)
+        this.errorProject.set(true);
+      }
+    })
+  }
 }

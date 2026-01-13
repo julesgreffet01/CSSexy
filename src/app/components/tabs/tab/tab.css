@@ -3,12 +3,10 @@
   width: 100%;
   color: var(--police-color);
 }
-
-/* 3 colonnes tout le temps => alignement parfait */
 .grid-row {
   
   display: grid;
-  grid-template-columns: 1.2fr 2fr 1fr; /* proche de ton screen */
+  grid-template-columns: 1.2fr 2fr 1fr;
   align-items: center;
   height: 64px;
   padding: 0 12px;
@@ -17,7 +15,7 @@
 .grid-row.clickable{
   cursor: pointer;
 }
-/* Header */
+
 .grid-row.header {
   font-weight: 700;
   font-size: 16px;
@@ -30,8 +28,6 @@
   padding-left: 10%;
 }
 
-
-/* hover comme UI */
 .grid-row:not(.header):hover {
   background: rgba(255, 255, 255, 0.035);
 }

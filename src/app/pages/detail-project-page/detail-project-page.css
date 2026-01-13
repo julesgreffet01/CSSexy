@@ -25,3 +25,31 @@ app-buttons {
   width: 100%;
   height: 22px;
 }
+.info-project-main{
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+img{
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+}
+.onUpdateProject :hover{
+  background-color: var(--secondary-3);
+  border-radius: 10px;
+}
+h2{
+  margin: 0;
+  font-size: 65px;
+  color: var(--police-color);
+}
+p{
+  margin: 0;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 22px;
+}
+
+.popup{
+  margin-top: -15vw;
+}

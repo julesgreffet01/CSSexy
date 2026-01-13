@@ -3,9 +3,12 @@ import {Layout} from '../layout/layout';
 import { LoginPage } from '../pages/login-page/login-page';
 import { authGuard } from '../core/guards/guard-auth';
 import { guardRoleGuard } from '../core/guards/guard-role-guard';
+import {ProfilPage} from '../pages/profil-page/profil-page';
+//import {PopUpEditable} from '../components/popup/pop-up-editable/pop-up-editable';
 
 export const routes: Routes = [
-  {path: '', component: Layout, canActivate: [authGuard], children: [
+  {path: 'maxime', component: ProfilPage,},
+  {path: '', component: Layout, canActivate:[authGuard], children: [
     {
       path: '', redirectTo: '/projects', pathMatch: 'full'
     },
@@ -14,6 +17,15 @@ export const routes: Routes = [
     },
     {
       path: 'users', loadComponent:() => import('../pages/list-users-page/list-users-page').then(m => m.ListUsersPage) , canActivate: [guardRoleGuard], data:{ roles: ['ADMIN'] }
+    },
+    {
+      path: 'project/:id', loadComponent: () => import('../pages/detail-project-page/detail-project-page').then(m => m.DetailProjectPage)
+    },
+    {
+      path: 'service/:id', loadComponent: () => import('../pages/detail-service-page/detail-service-page').then(m => m.DetailServicePage)
+    },
+    {
+      path: 'profile', loadComponent: () => import('../pages/profil-page/profil-page').then(m => m.ProfilPage)
     }
   ]},
   {path: 'login', component: LoginPage},

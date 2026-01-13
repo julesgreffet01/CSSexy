@@ -8,14 +8,30 @@
     @if(currentServiceList()){
         <body>
             <div class="info-project">
-                <h2>{{currentProject()!.name }}</h2>
-                <p>{{currentProject()!.createdAt}}</p>
+                <div class="info-project-main">
+                    <h2>{{currentProject()!.name | titlecase}}</h2>
+                    <div class="onUpdateProject">
+                    <img src="/pen.svg" (click)="onUpdateProject()">
+                    </div>
+                </div>
+                <p>{{currentProject()!.createdAt | date:'medium'}}</p>
             </div>
+
             <app-tab [projet]="'SERVICE'" [InitStat]="currentServiceList()!"></app-tab>
         </body>
         <div class="add-button">
-        <app-buttons label="+" backgroundColor="secondary-3" size="large"></app-buttons>
+        <app-buttons label="+" (clicked)="showModal()" backgroundColor="secondary-3" size="large"></app-buttons>
         </div>
     }
+}
+@if(modalCreate()){
+  <div class="popup">
+    <app-pop-up-editable type="Service" action="Ajout" (myObj)="createService($event)" (closePopup)="closeModalCreate()"/>
+  </div>
+}
+@if(modalUpdate()){
+  <div class="popup">
+    <app-pop-up-editable type="Projet" action="Modification" (closePopup)="closeModalUpdate()"/>
+  </div>
 }
 

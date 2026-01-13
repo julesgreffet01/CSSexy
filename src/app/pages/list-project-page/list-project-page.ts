@@ -11,6 +11,7 @@ import { AsyncPipe } from '@angular/common';
 import { ServiceProjet } from '../../core/services/service-projet';
 import { ActivatedRoute } from '@angular/router';
 import {PopUpEditable} from '../../components/popup/pop-up-editable/pop-up-editable';
+import type {ServiceModel} from '../../models/service-model';
 
 
 @Component({
@@ -60,9 +61,10 @@ export class ListProjectPage {
     }
 
 
-    createProject(newProject: ProjetModel){
-      this.serviceProject.createProjet(newProject).subscribe({
+    createProject(newProject: ProjetModel | ServiceModel){
+      this.serviceProject.createProjet(newProject as ProjetModel).subscribe({
         next: (projects) => {
+          this.closeModal();
           this.listproject.set(projects);
         },
         error: (err) => {

@@ -1,19 +1,30 @@
-<app-header></app-header>
+@if(loading()){
+    <p>Chargement ...</p>
+}
+@else if (errorProject()){
+    <p>Erreur lors de la récupération de votre project</p>
+}
+@else {
 <div class="center-content">
-  <div class="flex">
-    <h1>{{ (service | async)?.name }}</h1>
-    <a class="pen" href=""><img ngSrc="/pen.svg" height="24" width="24"></a>
+  <div class="info-project-main">
+    <h1>{{ currentService()!.name | titlecase }}</h1>
+      <div class="onUpdateService">
+      <img src="/pen.svg" (click)="onUpdateService()">
+      <img src="/garbage.svg" (click)="onDeleteService()">
+      </div>
   </div>
-  <div class="name-and-content">
-    <div class="name">Image :</div>
-    <div class="content">{{ (service | async)?.image }}</div>
-  </div>
+    <div class="name-and-content">
+      <div class="name">Image :</div>
+      <div class="content">{{currentService()!.image }}</div>
+    </div>
+    <div class="bar-image"></div>
   <div class="top">
-    @for (port of (service | async)?.ports; track port; let idx = $index) {
+    @for (port of currentService()!.ports; track port; let idx = $index) {
       <div class="name-and-content">
         <div class="name">Port {{ idx + 1 }}:</div>
         <div class="content">{{ port }}</div>
       </div>
-    }
+    } 
   </div>
 </div>
+}
