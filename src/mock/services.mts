@@ -7,7 +7,7 @@ export const servicesMock: ServiceModel[] = [
     image: "php:8.1-apache",
     status: "UP",
     startedSince: new Date('2023-03-01T10:00:00Z'),
-    ports: ["80:80", "443:443"]
+    ports: ["80:80", "443:443", "443:443", "443:443"]
   },
   {
     id: "2",

@@ -6,26 +6,33 @@
 }
 @else {
 <img class="goback"src="/gobackarrow.svg" (click)="goBack()">
-<div class="center-content">
-  <div class="info-project-main">
-    <h1>{{ currentService()!.name | titlecase }}</h1>
-      <div class="onUpdateService">
-      <img src="/pen.svg" (click)="onUpdateService()">
-      <img src="/garbage.svg" (click)="onDeleteService()">
-      </div>
-  </div>
-    <div class="name-and-content">
-      <div class="name">Image :</div>
-      <div class="content">{{currentService()!.image }}</div>
+<div class="global">
+  <div class="left-content">
+    <div class="info-project-main">
+      <h1>{{ currentService()!.name | titlecase }}</h1>
+        <div class="onUpdateService">
+        <img src="/pen.svg" (click)="onUpdateService()">
+        <img src="/garbage.svg" (click)="onDeleteService()">
+        </div>
     </div>
-    <div class="bar-image"></div>
-  <div class="top">
-    @for (port of currentService()!.ports; track port; let idx = $index) {
       <div class="name-and-content">
-        <div class="name">Port {{ idx + 1 }}:</div>
-        <div class="content">{{ port }}</div>
+        <div class="name">Image :</div>
+        <div class="content">{{currentService()!.image }}</div>
       </div>
-    }
+      <div class="bar-image"></div>
+    <div class="top">
+      @for (port of currentService()!.ports; track port; let idx = $index) {
+        <div class="name-and-content">
+          <div class="name">Port {{ idx + 1 }}:</div>
+          <div class="content">{{ port }}</div>
+        </div>
+      }
+    </div>
+  </div>
+  <div class="right-content">
+    <div class="graph-cpu">aaa</div>
+    <div class="graph-ram">aaa</div>
+    <div class="graph-disk">aaa</div>
   </div>
 </div>
 }
