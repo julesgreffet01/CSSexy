@@ -25,7 +25,12 @@
         <div class="name">Port {{ idx + 1 }}:</div>
         <div class="content">{{ port }}</div>
       </div>
-    } 
+    }
   </div>
 </div>
+}
+@if(modalUpdate()){
+  <div class="popup">
+    <app-pop-up-editable [oldService]="service"  (closePopup)="closeModalUpdate()"/>
+  </div>
 }

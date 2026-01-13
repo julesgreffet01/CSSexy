@@ -45,7 +45,7 @@ img{
   height: 40px;
 }
 .info-project-main{
-  
+
   display: flex;
   gap: 20px;
   align-items: center;
@@ -70,4 +70,8 @@ p{
 }
 .goback :hover{
   background-color: var(--secondary-3);
+}
+
+.popup{
+  margin-top: -15vw;
 }
