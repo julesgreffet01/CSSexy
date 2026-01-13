@@ -6,12 +6,14 @@
 }
 @else {
     @if(currentServiceList()){
+        <img class="goback"src="/gobackarrow.svg" (click)="goBack()">
         <body>
             <div class="info-project">
                 <div class="info-project-main">
                     <h2>{{currentProject()!.name | titlecase}}</h2>
                     <div class="onUpdateProject">
                     <img src="/pen.svg" (click)="onUpdateProject()">
+                    <img src="/garbage.svg" (click)="onDeleteProject()">
                     </div>
                 </div>
                 <p>{{currentProject()!.createdAt | date:'medium'}}</p>
@@ -26,12 +28,12 @@
 }
 @if(modalCreate()){
   <div class="popup">
-    <app-pop-up-editable type="Service" action="Ajout" (myObj)="createService($event)" (closePopup)="closeModalCreate()"/>
+    <app-pop-up-editable [oldService]="service"  (myObj)="createService($event)" (closePopup)="closeModalCreate()"/>
   </div>
 }
 @if(modalUpdate()){
   <div class="popup">
-    <app-pop-up-editable type="Projet" action="Modification" (closePopup)="closeModalUpdate()"/>
+    <app-pop-up-editable [oldProjet]="projet"  (closePopup)="closeModalUpdate()"/>
   </div>
 }
 

@@ -1,4 +1,4 @@
-import type {Routes} from '@angular/router';
+import {RouterLink, type Routes} from '@angular/router';
 import {Layout} from '../layout/layout';
 import { LoginPage } from '../pages/login-page/login-page';
 import { authGuard } from '../core/guards/guard-auth';
@@ -23,6 +23,9 @@ export const routes: Routes = [
     },
     {
       path: 'profile', loadComponent: () => import('../pages/profil-page/profil-page').then(m => m.ProfilPage)
+    },
+    {
+      path: 'user-detail/:id', loadComponent: () => import('../pages/detail-user-page/detail-user-page').then(m => m.DetailUserPage), canActivate: [guardRoleGuard], data: { roles: ['ADMIN']}
     }
   ]},
   {path: 'login', component: LoginPage},

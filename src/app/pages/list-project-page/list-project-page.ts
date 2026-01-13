@@ -1,17 +1,18 @@
-import { Component, inject, signal } from '@angular/core';
-import { SwapTab } from '../../components/swap-tab/swap-tab';
-import { Tab } from '../../components/tabs/tab/tab';
-import { Buttons } from '../../components/buttons/buttons';
-import { ProjetModel } from '../../models/projet-model';
-import { projetsMock } from '../../../mock/projets.mjs';
-import { ServiceAuth } from '../../core/services/service-auth';
-import { Observable } from 'rxjs';
-import { UtilisateurModel } from '../../models/utilisateur-model';
-import { AsyncPipe } from '@angular/common';
-import { ServiceProjet } from '../../core/services/service-projet';
-import { ActivatedRoute } from '@angular/router';
+import {Component, inject, signal} from '@angular/core';
+import {SwapTab} from '../../components/swap-tab/swap-tab';
+import {Tab} from '../../components/tabs/tab/tab';
+import {Buttons} from '../../components/buttons/buttons';
+import {ProjetModel} from '../../models/projet-model';
+import {projetsMock} from '../../../mock/projets.mjs';
+import {ServiceAuth} from '../../core/services/service-auth';
+import {Observable} from 'rxjs';
+import {UtilisateurModel} from '../../models/utilisateur-model';
+import {AsyncPipe} from '@angular/common';
+import {ServiceProjet} from '../../core/services/service-projet';
+import {ActivatedRoute} from '@angular/router';
 import {PopUpEditable} from '../../components/popup/pop-up-editable/pop-up-editable';
 import type {ServiceModel} from '../../models/service-model';
+import {ReactiveFormsModule} from '@angular/forms';
 
 
 @Component({
@@ -21,7 +22,8 @@ import type {ServiceModel} from '../../models/service-model';
     Tab,
     Buttons,
     AsyncPipe,
-    PopUpEditable
+    PopUpEditable,
+    ReactiveFormsModule
   ],
   templateUrl: './list-project-page.html',
   styleUrl: './list-project-page.css',
@@ -29,56 +31,62 @@ import type {ServiceModel} from '../../models/service-model';
 export class ListProjectPage {
 
 
-    serviceProject = inject(ServiceProjet);
-    listproject = signal<ProjetModel[] | undefined>(undefined);
-    route = inject(ActivatedRoute);
-    loading = signal<boolean>(true);
-    errorProject = signal<boolean>(false);
-    user$: Observable<UtilisateurModel>
+  serviceProject = inject(ServiceProjet);
+  listproject = signal<ProjetModel[] | undefined>(undefined);
+  route = inject(ActivatedRoute);
+  loading = signal<boolean>(true);
+  errorProject = signal<boolean>(false);
+  user$: Observable<UtilisateurModel>
 
 
-    serviceAuth = inject(ServiceAuth)
-    modalCreate = signal<boolean>(false);
+  serviceAuth = inject(ServiceAuth)
+  modalCreate = signal<boolean>(false);
+
+  projet: ProjetModel = {
+    id: 0,
+    name: '',
+    services: [],
+    createdAt: new Date()
+  };
+
+  constructor() {
+    this.user$ = this.serviceAuth.getUser()
+  }
 
 
-  constructor(){
-      this.user$ = this.serviceAuth.getUser()
-    }
-
-
-    ngOnInit(): void{
-      this.serviceProject.getAllProjets().subscribe({
-        next: (projects) => {
+  ngOnInit(): void {
+    this.serviceProject.getAllProjets().subscribe({
+      next: (projects) => {
         this.listproject.set(projects);
-            this.loading.set(false);
-        },
-        error: (err) => {
-            this.errorProject.set(true);
-            this.loading.set(false);
-            console.log(err)
-        },
-      });
-    }
+        this.loading.set(false);
+      },
+      error: (err) => {
+        this.errorProject.set(true);
+        this.loading.set(false);
+        console.log(err)
+      },
+    });
+  }
 
 
-    createProject(newProject: ProjetModel | ServiceModel){
-      this.serviceProject.createProjet(newProject as ProjetModel).subscribe({
-        next: (projects) => {
-          this.closeModal();
-          this.listproject.set(projects);
-        },
-        error: (err) => {
-          console.log(err)
-          this.errorProject.set(true);
-        }
-      })
-    }
+  createProject(newProject: ProjetModel | ServiceModel) {
+    this.serviceProject.createProjet(newProject as ProjetModel).subscribe({
+      next: (projects) => {
+        this.closeModal();
+        this.listproject.set(projects);
+      },
+      error: (err) => {
+        console.log(err)
+        this.errorProject.set(true);
+      }
+    })
+  }
 
-    showModal(){
-      this.modalCreate.set(true);
-    }
+  showModal() {
+    this.modalCreate.set(true);
+  }
 
-    closeModal(){
-      this.modalCreate.set(false);
-    }
+  closeModal() {
+    this.modalCreate.set(false);
+  }
 }

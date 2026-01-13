@@ -18,6 +18,8 @@ import {PopUpEditable} from '../../components/popup/pop-up-editable/pop-up-edita
   styleUrl: './detail-project-page.css',
 })
 export class DetailProjectPage {
+
+
   serviceProject = inject(ServiceProjet);
   serviceService = inject(serviceServices);
   route = inject(ActivatedRoute);
@@ -32,6 +34,23 @@ export class DetailProjectPage {
   private idProject: number = 0;
 
 
+
+  service :  ServiceModel = {
+    id : '0' ,
+    name : "",
+    image : "",
+    status : "UP",
+    ports : []
+  }
+
+  projet : ProjetModel = {
+    id : this.idProject,
+    name : "",
+    services : [],
+    createdAt : new Date()
+  }
+
+
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       const id = params.get('id');
@@ -41,6 +60,7 @@ export class DetailProjectPage {
         this.serviceProject.findProjectById(idToNumber).subscribe({
           next: (project) => {
             this.currentProject.set(project);
+            this.projet.name = this.currentProject()!.name;
             this.serviceService.getAllByProject(project!.id).subscribe({
               next: (service) => {
                 this.currentServiceList.set(service);
@@ -67,6 +87,12 @@ export class DetailProjectPage {
     this.modalUpdate.set(true);
   }
 
+  onDeleteProject() { 
+    //TODO DELETE PROJECT
+  }
+  goBack() {
+    //TODO GO BACK
+  }
   closeModalUpdate(){
     this.modalUpdate.set(false);
   }

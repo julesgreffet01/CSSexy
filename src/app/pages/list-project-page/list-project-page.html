@@ -23,6 +23,6 @@
 
 @if(modalCreate()){
   <div class="popup">
-  <app-pop-up-editable type="Projet" action="Ajout" (myObj)="createProject($event)" (closePopup)="closeModal()"/>
+  <app-pop-up-editable [oldProjet]="projet" (myObj)="createProject($event)" (closePopup)="closeModal()"/>
   </div>
 }

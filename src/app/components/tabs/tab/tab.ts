@@ -28,17 +28,7 @@ export class Tab {
   routeur = inject(Router)
 
   ngOnInit() {
-    /*
-    if(this.projet() == "PROJECT" && !isProjet(this.InitStat())){
-      throw new Error("Invalid ProjetModel input");
-    }
-    else if(this.projet() == "USER" && !isUtilisateur(this.InitStat())){
-      throw new Error("Invalid UtilisateurModel input");
-    }
-    else if(this.projet() == "SERVICE" && !isService(this.InitStat() )){
-      throw new Error("Invalid ServiceModel input");
-    }
-*/
+    
     if (this.projet() == "PROJECT") {
       this.PROJECT.set(this.InitStat() as ProjetModel[]);
     }
@@ -52,7 +42,7 @@ export class Tab {
 
 
   onRowClickUser(user: UtilisateurModel){
-    console.log("click")
+    this.routeur.navigate(['/user-detail', user.id])
   }
   onRowClickProject(project: ProjetModel){
     this.routeur.navigate(['/project', project.id])
