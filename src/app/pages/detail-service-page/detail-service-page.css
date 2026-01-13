@@ -82,9 +82,6 @@ p{
   background-color: var(--secondary-3);
 }
 
-.popup{
-  margin: -24vw;
-}
 canvas{
   width: 105%;
   border: solid var(--primary);
