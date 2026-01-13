@@ -60,7 +60,7 @@ export class DetailProjectPage {
     name : "",
     image : "",
     status : "UP",
-    ports : []
+    ports : [""]
   }
 
   projet : ProjetModel = {
@@ -152,7 +152,7 @@ export class DetailProjectPage {
         this.validateModal.set(false)
       },
       error: err => {
-        
+
       }
     })
   }
