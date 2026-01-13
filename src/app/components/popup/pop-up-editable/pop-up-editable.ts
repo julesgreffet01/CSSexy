@@ -41,10 +41,8 @@ export class PopUpEditable {
       this.formService = new FormGroup({
         name: new FormControl(this.oldService()!.name, {nonNullable: true, validators: [Validators.required]}),
         image: new FormControl(this.oldService()!.image, {nonNullable: true}),
-        ports: new FormArray<FormControl<string>>([new FormControl("", {
-          nonNullable: true,
-          validators: [Validators.required]
-        })])
+        ports: new FormArray<FormControl<string>>(
+          this.oldService()!.ports.map(port => new FormControl(port, {nonNullable: true, validators: [Validators.required]})))
       });
     }
   }
