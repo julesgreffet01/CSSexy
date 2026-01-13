@@ -12,7 +12,7 @@
       <h1>{{ currentService()!.name | titlecase }}</h1>
         <div class="onUpdateService">
         <img src="/pen.svg" (click)="onUpdateService()">
-        <img src="/garbage.svg" (click)="onDeleteService()">
+        <img src="/garbage.svg" (click)="showModalDelete()">
         </div>
     </div>
       <div class="name-and-content">
@@ -38,6 +38,18 @@
 }
 @if(modalUpdate()){
   <div class="popup">
-    <app-pop-up-editable [oldService]="service"  (closePopup)="closeModalUpdate()"/>
+    <app-pop-up-editable [oldService]="service" (myObj)="initNewService($event)" (closePopup)="closeModalUpdate()"/>
   </div>
+}
+
+@if(validateModal()){
+    <div class="popup">
+        <app-pop-up-validation type="Service" (closePopup)="closePopupValidate()" (validPopup)="updateService()" [oldObject]="currentService()!" [newObject]="newService()!"/>
+    </div>
+}
+
+@if(modalDelete()){
+    <div class="popup">
+        <app-pop-up-error (valid)="onDeleteService()" type="delete" (close)="closeModalDelete()" message="Voulez-vous vraiment supprimer ce service ?"/>
+    </div>
 }
