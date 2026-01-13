@@ -18,6 +18,7 @@ import {PopUpEditable} from '../../components/popup/pop-up-editable/pop-up-edita
   styleUrl: './detail-project-page.css',
 })
 export class DetailProjectPage {
+
   serviceProject = inject(ServiceProjet);
   serviceService = inject(serviceServices);
   route = inject(ActivatedRoute);
@@ -83,6 +84,10 @@ export class DetailProjectPage {
 
   onUpdateProject() {
     this.modalUpdate.set(true);
+  }
+
+  onDeleteProject() { 
+    //TODO DELETE PROJECT
   }
 
   closeModalUpdate(){
