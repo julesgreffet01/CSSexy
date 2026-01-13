@@ -46,6 +46,9 @@ export class DetailServicePage {
   user$: Observable<UtilisateurModel>
   authService = inject(ServiceAuth)
 
+  errorForms = signal<string[] | null>(null);
+  errorFormModal = signal<boolean>(false);
+
 
   private router = inject(Router)
 
@@ -135,5 +138,16 @@ export class DetailServicePage {
 
     showModalDelete(){
     this.modalDelete.set(true)
+  }
+
+  formErrorsShow(errors: string[]){
+    this.errorForms.set(errors)
+    this.errorFormModal.set(true);
+  }
+
+  closeFormError(){
+    this.errorForms.set(null)
+    this.errorForms.set(null);
+    this.errorFormModal.set(false);
   }
 }

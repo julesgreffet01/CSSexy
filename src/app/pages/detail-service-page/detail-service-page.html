@@ -42,7 +42,7 @@
 }
 @if(modalUpdate()){
   <div class="popup">
-    <app-pop-up-editable [oldService]="service" (myObj)="initNewService($event)" (closePopup)="closeModalUpdate()"/>
+    <app-pop-up-editable [oldService]="service" (formErrorsOutput)="formErrorsShow($event)" (myObj)="initNewService($event)" (closePopup)="closeModalUpdate()"/>
   </div>
 }
 
@@ -56,4 +56,10 @@
     <div class="popup">
         <app-pop-up-error (valid)="onDeleteService()" type="delete" (close)="closeModalDelete()" message="Voulez-vous vraiment supprimer ce service ?"/>
     </div>
+}
+
+@if(errorFormModal()){
+  <div class="popup">
+    <app-pop-up-error message="message d'erreur" [errorMessage]="errorForms()!" (close)="closeFormError()" (valid)="closeFormError()"/>
+  </div>
 }
