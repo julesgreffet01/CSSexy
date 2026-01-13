@@ -25,7 +25,8 @@
                 <app-inputs [formControl]="portCtrl"></app-inputs>
               }
               <div class="btnadd">
-                <app-buttons label="+" type="button" (clicked)="addPort()" backgroundColor="secondary-3" size="large"></app-buttons>
+                <app-buttons label="+" type="button" (clicked)="addPort()" backgroundColor="secondary-3"
+                             size="large"></app-buttons>
               </div>
             </div>
           </div>
@@ -34,7 +35,8 @@
       <div class="compressor-flex">
         <div class="space-button">
 
-          <app-buttons (clicked)="closePopupSubmit()" type="button" label="Annuler" backgroundColor="card-background" border="secondary-3"
+          <app-buttons (clicked)="closePopupSubmit()" type="button" label="Annuler" backgroundColor="card-background"
+                       border="secondary-3"
                        size="medium"></app-buttons>
         </div>
         <app-buttons [label]=getButtonName() backgroundColor="secondary-3" size="medium"></app-buttons>

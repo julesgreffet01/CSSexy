@@ -14,6 +14,11 @@
 }
 
 .center-contain{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -54,6 +59,13 @@
   justify-content: center;
   align-items: center;
   padding-top: 1.2vw;
+}
+
+.error-message{
+  margin-left: -1.2vw;
+  color: var(--error);
+  list-style-type:none;
+  padding-top: 0.5vw;
 }
 
 .icon-alert-delete{
