@@ -15,7 +15,7 @@ export const usersMock: UtilisateurModel[] = [
   },
   {
     id: 3,
-    username: "maxirxx",
+    username: "maxirrx",
     name: "maxime",
     role: "ADMIN"
   }
