@@ -1,3 +1,5 @@
+@let user = user$ | async;
+
 @if(loading()){
     <p>Chargement ...</p>
 }
@@ -10,10 +12,12 @@
   <div class="left-content">
     <div class="info-project-main">
       <h1>{{ currentService()!.name | titlecase }}</h1>
-        <div class="onUpdateService">
-        <img src="/pen.svg" (click)="onUpdateService()">
-        <img src="/garbage.svg" (click)="showModalDelete()">
-        </div>
+          @if(user?.role != 'DEV'){
+            <div class="onUpdateService">
+            <img src="/pen.svg" (click)="onUpdateService()">
+            <img src="/garbage.svg" (click)="showModalDelete()">
+            </div>
+          }
     </div>
       <div class="name-and-content">
         <div class="name">Image :</div>

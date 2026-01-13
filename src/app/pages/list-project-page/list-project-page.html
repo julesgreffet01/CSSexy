@@ -15,11 +15,14 @@
 
     <app-tab [projet]="'PROJECT'" [InitStat]="listproject()!"></app-tab>
 </body>
-<div class="add-button">
 
-<app-buttons label="+" (clicked)="showModal()" backgroundColor="secondary-3" size="large"></app-buttons>
-</div>
+    @if(user?.role != 'DEV'){
+        <div class="add-button">
+            <app-buttons label="+" (clicked)="showModal()" backgroundColor="secondary-3" size="large"></app-buttons>
+        </div>
+    }
 }
+
 
 @if(modalCreate()){
   <div class="popup">

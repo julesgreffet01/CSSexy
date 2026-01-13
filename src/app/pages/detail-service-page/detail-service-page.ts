@@ -10,6 +10,9 @@ import {Location} from '@angular/common'
 import { PopUpValidation } from "../../components/popup/pop-up-validation/pop-up-validation";
 import { ProjetModel } from '../../models/projet-model';
 import { PopUpError } from '../../components/popup/pop-up-error/pop-up-error'
+import { UtilisateurModel } from '../../models/utilisateur-model';
+import { serviceUser } from '../../core/services/service-user';
+import { ServiceAuth } from '../../core/services/service-auth';
 
 @Component({
   selector: 'app-detail-service-page',
@@ -18,7 +21,8 @@ import { PopUpError } from '../../components/popup/pop-up-error/pop-up-error'
     CommonModule,
     PopUpEditable,
     PopUpValidation,
-    PopUpError
+    PopUpError,
+    AsyncPipe
   ],
   templateUrl: './detail-service-page.html',
   styleUrl: './detail-service-page.css',
@@ -39,6 +43,10 @@ export class DetailServicePage {
   modalDelete = signal(false)
   newService = signal<ServiceModel | null>(null)
 
+  user$: Observable<UtilisateurModel>
+  authService = inject(ServiceAuth)
+
+
   private router = inject(Router)
 
   service :  ServiceModel = {
@@ -47,6 +55,10 @@ export class DetailServicePage {
     image : "",
     status : "UP",
     ports : []
+  }
+
+  constructor(){
+    this.user$ = this.authService.getUser()
   }
 
   ngOnInit(): void {

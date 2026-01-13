@@ -2,6 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UtilisateurModel } from '../../models/utilisateur-model';
 import { ServiceAuth } from '../../core/services/service-auth';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-profil-page',
@@ -15,6 +16,7 @@ export class ProfilPage {
   currentUser = signal<UtilisateurModel | undefined>(undefined);
   loading = signal<boolean>(true);
   errorProject = signal<boolean>(false);
+  location = inject(Location)
 
   ngOnInit(): void {
     this.serviceAuth.getUser().subscribe({
@@ -29,7 +31,7 @@ export class ProfilPage {
       },
     });
   }
-  goBack() {
-    //TODO go back
+  goBack(){
+    this.location.back();
   }
 }

@@ -2,6 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { serviceUser } from '../../core/services/service-user';
 import { ActivatedRoute } from '@angular/router';
 import { UtilisateurModel } from '../../models/utilisateur-model';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-detail-user-page',
@@ -15,6 +16,7 @@ export class DetailUserPage {
   currentUser = signal<UtilisateurModel | undefined>(undefined);
   loading = signal<boolean>(true);
   errorProject = signal<boolean>(false);
+  location = inject(Location)
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
@@ -35,7 +37,7 @@ export class DetailUserPage {
       }
     });
   }
-  goBack() {
-    //TODO go back
+  goBack(){
+    this.location.back();
   }
 }

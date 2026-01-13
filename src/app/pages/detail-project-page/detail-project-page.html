@@ -1,3 +1,5 @@
+@let user = user$ | async;
+
 @if(loading()){
     <p>Chargement ...</p>
 }
@@ -11,19 +13,23 @@
             <div class="info-project">
                 <div class="info-project-main">
                     <h2>{{currentProject()!.name | titlecase}}</h2>
+                    @if( user?.role != 'DEV'){
                     <div class="onUpdateProject">
-                    <img src="/pen.svg" (click)="onUpdateProject()">
-                    <img src="/garbage.svg" (click)="showModalDelete()">
+                        <img src="/pen.svg" (click)="onUpdateProject()">
+                        <img src="/garbage.svg" (click)="showModalDelete()">
                     </div>
+                    }
                 </div>
                 <p>{{currentProject()!.createdAt | date:'medium'}}</p>
             </div>
 
             <app-tab [projet]="'SERVICE'" [InitStat]="currentServiceList()!"></app-tab>
         </body>
-        <div class="add-button">
-        <app-buttons label="+" (clicked)="showModal()" backgroundColor="secondary-3" size="large"></app-buttons>
-        </div>
+        @if(user?.role != 'DEV'){
+            <div class="add-button">
+                <app-buttons label="+" (clicked)="showModal()" backgroundColor="secondary-3" size="large"></app-buttons>
+            </div>
+        }
     }
 }
 @if(modalCreate()){

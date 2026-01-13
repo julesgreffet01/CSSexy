@@ -8,15 +8,17 @@ import { serviceServices } from '../../core/services/service-services';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ProjetModel } from '../../models/projet-model';
-import { CommonModule } from '@angular/common';
+import { AsyncPipe, CommonModule } from '@angular/common';
 import {PopUpEditable} from '../../components/popup/pop-up-editable/pop-up-editable';
 import { PopUpValidation } from "../../components/popup/pop-up-validation/pop-up-validation";
 import { PopUpError } from '../../components/popup/pop-up-error/pop-up-error';
 import {Location} from '@angular/common';
+import { ServiceAuth } from '../../core/services/service-auth';
+import { UtilisateurModel } from '../../models/utilisateur-model';
 
 @Component({
   selector: 'app-detail-project-page',
-  imports: [CommonModule, Tab, Buttons, PopUpEditable, PopUpValidation, PopUpError],
+  imports: [CommonModule, Tab, Buttons, PopUpEditable, PopUpValidation, PopUpError, AsyncPipe],
   templateUrl: './detail-project-page.html',
   styleUrl: './detail-project-page.css',
 })
@@ -42,6 +44,14 @@ export class DetailProjectPage {
   modalDelete = signal(false)
 
   private location = inject(Location);
+
+  authService = inject(ServiceAuth)
+
+  user$: Observable<UtilisateurModel>
+
+  constructor(){
+    this.user$ = this.authService.getUser()
+  }
 
 
 
@@ -99,7 +109,6 @@ export class DetailProjectPage {
 
 
   goBack(){
-    console.log('go back');
     this.location.back();
   }
 
