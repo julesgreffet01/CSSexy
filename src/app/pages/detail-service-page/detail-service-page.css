@@ -1,11 +1,14 @@
 .global{
   display: flex;
+  gap: 75px;
 }
 .left-content{
   padding-left: 5vw;
 }
 .right-content{
   display: flex;
+  gap: 40px;
+  align-content: center;
   flex-direction: column;
 }
 
@@ -81,4 +84,11 @@ p{
 
 .popup{
   margin-top: -15vw;
+}
+canvas{
+  width: 105%;
+  border: solid var(--primary);
+  border-bottom: 5px;
+  border-top: 5px;
+  border-radius: 5px;
 }

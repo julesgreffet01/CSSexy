@@ -1,4 +1,4 @@
-import {Component, inject, input, signal} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, inject, input, OnDestroy, signal, ViewChild} from '@angular/core';
 import {Header} from '../../components/header/header';
 import {ServiceModel} from '../../models/service-model';
 import {serviceServices} from '../../core/services/service-services';
@@ -13,6 +13,7 @@ import { PopUpError } from '../../components/popup/pop-up-error/pop-up-error'
 import { UtilisateurModel } from '../../models/utilisateur-model';
 import { serviceUser } from '../../core/services/service-user';
 import { ServiceAuth } from '../../core/services/service-auth';
+import { Chart } from 'chart.js/auto';
 
 @Component({
   selector: 'app-detail-service-page',
@@ -28,6 +29,40 @@ import { ServiceAuth } from '../../core/services/service-auth';
   styleUrl: './detail-service-page.css',
 })
 export class DetailServicePage {
+  private cpuChartRef?: ElementRef<HTMLCanvasElement>;
+  private ramChartRef?: ElementRef<HTMLCanvasElement>;
+  private diskChartRef?: ElementRef<HTMLCanvasElement>;
+  
+  private cpuChartInstance: Chart | null = null;
+  private ramChartInstance: Chart | null = null;
+  private diskChartInstance: Chart | null = null;
+
+
+  @ViewChild('cpuChart')
+  set cpuChart(el: ElementRef<HTMLCanvasElement> | undefined) {
+    if (!el) return;
+    
+    queueMicrotask(() => {
+      this.cpuChartInstance = this.createChart(el, this.cpuChartInstance, 'CPU');
+    });
+  }
+
+  @ViewChild('ramChart')
+  set ramChart(el: ElementRef<HTMLCanvasElement> | undefined) {
+    if (!el) return;
+    queueMicrotask(() => {
+      this.ramChartInstance = this.createChart(el, this.ramChartInstance, 'RAM');
+    });
+  }
+
+  @ViewChild('diskChart')
+  set diskChart(el: ElementRef<HTMLCanvasElement> | undefined) {
+    if (!el) return;
+    queueMicrotask(() => {
+      this.diskChartInstance = this.createChart(el, this.diskChartInstance, 'DISK');
+    });
+  }
+  
   serviceService = inject(serviceServices);
   route = inject(ActivatedRoute);
   currentService = signal<ServiceModel | undefined>(undefined);
@@ -56,7 +91,7 @@ export class DetailServicePage {
     status : "UP",
     ports : []
   }
-
+  
   constructor(){
     this.user$ = this.authService.getUser()
   }
@@ -135,4 +170,86 @@ export class DetailServicePage {
     showModalDelete(){
     this.modalDelete.set(true)
   }
+
+  private createChart(chartRef: ElementRef<HTMLCanvasElement>, existing: Chart | null, label: string): Chart {
+    
+    existing?.destroy();
+      const labels = this.getLastHours(8);
+      const dataValues = this.getRandomData(8, 1, 100);
+
+      const ctx = chartRef.nativeElement.getContext('2d');
+      if (!ctx) throw new Error('Canvas context not available');
+
+      return new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels,
+          datasets: [{
+            label,
+            data: dataValues,
+            fill: true,
+            pointRadius: 2,
+            borderColor: 'rgba(146, 84, 156 ,1)'
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              labels: {
+                color: '#f9fafb', 
+                font: {
+                  size: 14,
+                  weight: 'bold',
+                }
+              }
+            }
+          },
+          scales: {
+            x: {
+              ticks: {
+                color: '#f9fafb',  
+                font: {
+                  size: 12,
+                }
+              },
+              grid: {
+                color: 'rgba(0, 0, 0, 0)', // VERTI
+              }
+            },
+            y: {
+              ticks: {
+                color: '#f9fafb',  
+                font: {
+                  size: 12,
+                }
+              },
+              grid: {
+                color: 'rgba(249, 250, 251, 0.2)', // HORIZ
+              }
+            }
+          }
+        }
+      });
+    }
+  private getLastHours(count: number): string[] {
+    const result: string[] = [];
+    const now = new Date();
+
+    for (let i = count - 1; i >= 0; i--) {
+      const d = new Date(now.getTime() - i * 60 * 60 * 1000);
+      result.push(`${d.getHours()}h`);
+    }
+
+    return result;
+  }
+
+  private getRandomData(count: number, min = 1, max = 100): number[] {
+    return Array.from({ length: count }, () =>
+      Math.floor(Math.random() * (max - min + 1)) + min
+    );
+  }
 }
+
+
