@@ -1,10 +1,9 @@
 import { inject, Injectable } from "@angular/core";
-import { ServiceModel } from "../../models/service-model";
+import type { ServiceModel } from "../../models/service-model";
 import {delay, Observable, of} from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import {servicesMock} from '../../../mock/services.mjs';
 import { environment } from "../../environnements/environnements";
-import { ProjetModel } from "../../models/projet-model";
 import { projetsMock } from "../../../mock/projets.mjs";
 
 @Injectable({
@@ -38,18 +37,21 @@ export class serviceServices {
     return of(newService).pipe(delay(100));
   }
 
-    public updateService(service: ServiceModel): Observable<ServiceModel> {
-        servicesMock.forEach((s: ServiceModel) => {
-      if (s.id === service.id) {
-        s.name = service.name;
-        s.image = service.image;
-        s.ports = service.ports;
-        s.status = service.status;
-      }
-    })
-    return of(service).pipe(delay(200));
-        //return this.http.put<ServiceModel>(`${this.baseUrl}/${service.id}`, service);
+  public updateService(service: ServiceModel): Observable<ServiceModel> {
+    const existingService = servicesMock.find(s => s.id === service.id);
+
+    if (!existingService) {
+      throw new Error(`Service ${service.id} introuvable`);
     }
+
+    existingService.name = service.name;
+    existingService.image = service.image;
+    existingService.ports = service.ports;
+    existingService.status = service.status;
+
+    return of(existingService).pipe(delay(200));
+    //return this.http.put<ServiceModel>(`${this.baseUrl}/${service.id}`, service);
+  }
 
     public deleteService(service_uuid: string){
     const serviceIndex = servicesMock.findIndex(
