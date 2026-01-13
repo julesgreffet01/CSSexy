@@ -87,13 +87,7 @@ export class DetailServicePage {
 
   private router = inject(Router)
 
-  service :  ServiceModel = {
-    id : this.idService() ?? "" ,
-    name : "",
-    image : "",
-    status : "UP",
-    ports : []
-  }
+  service = signal<ServiceModel | null>(null)
 
   constructor(){
     this.user$ = this.authService.getUser()
@@ -108,9 +102,11 @@ export class DetailServicePage {
             this.currentService.set(service);
             this.idService.set(service?.id ?? null)
             this.loading.set(false);
-            this.service.name = this.currentService()!.name
-            this.service.image = this.currentService()!.image
-            this.service.ports = this.currentService()!.ports
+            if(service){
+              this.service.set(service)
+            } else {
+              throw Error('Service not found');
+            }
           },
           error: (err) => {
             this.errorProject.set(true);

@@ -48,7 +48,7 @@
 }
 @if(modalUpdate()){
   <div class="popup">
-    <app-pop-up-editable [oldService]="service" (formErrorsOutput)="formErrorsShow($event)" (myObj)="initNewService($event)" (closePopup)="closeModalUpdate()"/>
+    <app-pop-up-editable [oldService]="service()!" (formErrorsOutput)="formErrorsShow($event)" (myObj)="initNewService($event)" (closePopup)="closeModalUpdate()"/>
   </div>
 }
 

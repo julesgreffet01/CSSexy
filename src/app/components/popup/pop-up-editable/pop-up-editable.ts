@@ -114,12 +114,21 @@ export class PopUpEditable {
     } else if(this.getType() === 'Service') {
       this.formService.markAllAsTouched();
       if(this.formService.valid) {
-        const realport : string[] = [];
-        this.formService.value.ports!.forEach((element: string) => {
+        const realport: string[] = [];
+        for (const element of this.formService.value.ports) {
           if (element.trim() !== "") {
-            realport.push(element);
+            if (!realport.includes(element)) {
+              realport.push(element);
+            } else {
+              this.formErrors.push(`le port ${element} est deja dans ce service`);
+
+              const errors = this.formErrors;
+              this.formErrors = [];
+              this.formErrorsOutput.emit(errors);
+              return; // ✅ sort bien de Submit()
+            }
           }
-        });
+        }
         obj = {
           id: this.oldService()?.id ?? '0',
           name: this.formService.value.name,
@@ -162,6 +171,7 @@ export class PopUpEditable {
       console.error("erreur d envoie a la popup")
       return
     }
+    console.log('final')
     this.myObj.emit(obj);
   }
 
