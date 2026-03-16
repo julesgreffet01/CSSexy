@@ -19,6 +19,7 @@ export class Layout {
   project: ProjetModel = {
     id: 1,
     name: 'Mon Projet',
+    dockerComp: 'aaaah',
     services: [],
     createdAt: new Date(),
   }
@@ -26,6 +27,7 @@ export class Layout {
   newProject: ProjetModel = {
     id: 1,
     name: 'Mon Projet Modifié',
+    dockerComp: 'aaaah',
     services: [],
     createdAt: new Date(),
   }
@@ -35,6 +37,9 @@ export class Layout {
     name: 'Mon Service',
     ports: ['80', '443'],
     image: "bi",
+    gitRepo: "test",
+    envFile: "",
+    dockerFile: "",
     status: "UP",
   }
 
@@ -44,6 +49,9 @@ export class Layout {
     ports: ['20', '443', 'aa', 'bb', 'cc', 'dd', 'aa', 'aa', 'aa', 'aa',
     'aa', 'aa'],
     image: "bi",
+    gitRepo: "test",
+    envFile: "",
+    dockerFile: "",
     status: "UP",
   }
 }

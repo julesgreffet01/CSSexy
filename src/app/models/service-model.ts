@@ -2,6 +2,9 @@ export interface ServiceModel {
   id: string;
   name: string;
   image: string;
+  gitRepo: string;
+  envFile: string;
+  dockerFile: string;
   status: "UP" | "DOWN" | "STARTING" | "STOP";
   startedSince?: Date;
   ports: string[];
@@ -13,6 +16,9 @@ export function isService(obj: any): obj is ServiceModel {
     typeof obj.id === "string" &&
     typeof obj.name === "string" &&
     typeof obj.image === "string" &&
+    typeof obj.gitRepo === "string" &&
+    typeof obj.envFile === "string" &&
+    typeof obj.dockerFile === "string" &&
     SERVICE_STATUS.includes(obj.status) &&
     Array.isArray(obj.ports) &&
     obj.ports.every((p: unknown) => typeof p === "string") &&

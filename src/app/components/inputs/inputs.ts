@@ -44,7 +44,7 @@ export class Inputs implements ControlValueAccessor{
     this.onTouched();
   }
 
-  public type = input<"text" | "number" | "date" | "select" | "checkbox" | "email" >("text")
+  public type = input<"text" | "number" | "date" | "select" | "checkbox" | "email" | "file">("text")
   public id = input<string>('id')
   public placeholder = input<string>('')
 }

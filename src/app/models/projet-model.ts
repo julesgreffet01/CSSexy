@@ -3,6 +3,7 @@ import {ServiceModel} from './service-model';
 export interface ProjetModel {
   id: number;
   name: string;
+  dockerComp: string;
   services: ServiceModel[]
   createdAt: Date;
 }

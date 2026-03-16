@@ -61,6 +61,9 @@ export class DetailProjectPage {
     id : '0' ,
     name : "",
     image : "",
+    gitRepo: "",
+    envFile: "",
+    dockerFile: "",
     status : "UP",
     ports : [""]
   }
@@ -68,6 +71,7 @@ export class DetailProjectPage {
   projet : ProjetModel = {
     id : this.idProject,
     name : "",
+    dockerComp: 'aaaah',
     services : [],
     createdAt : new Date()
   }

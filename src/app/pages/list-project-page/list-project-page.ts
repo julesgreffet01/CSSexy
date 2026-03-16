@@ -46,6 +46,7 @@ export class ListProjectPage {
   projet: ProjetModel = {
     id: 0,
     name: '',
+    dockerComp: '',
     services: [],
     createdAt: new Date()
   };

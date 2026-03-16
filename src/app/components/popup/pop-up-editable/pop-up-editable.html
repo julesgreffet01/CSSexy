@@ -10,6 +10,8 @@
           <div class="contain-project">
             <h2>Nom du projet :</h2>
             <app-inputs formControlName="name" required></app-inputs>
+            <h2>Docker compose : </h2>
+            <input class="input" formControlName="dockerComp" type="file" (change)="previewFile($event.target, 'dockerCompose')">
           </div>
         } @else if (getType() == "Service") {
           <div class="flex-cote">
@@ -18,6 +20,12 @@
               <app-inputs formControlName="name" required></app-inputs>
               <h2>Image :</h2>
               <app-inputs formControlName="image" required></app-inputs>
+              <h2>Repository git:</h2>
+              <app-inputs formControlName="gitRepo" required></app-inputs>
+              <h2>Fichier .env</h2>
+              <input class="input" formControlName="envFile" type="file" (change)="previewFile($event.target, 'envFile')">
+              <h2>DockerFile Path</h2>
+              <app-inputs formControlName="dockerFile"></app-inputs>
             </div>
             <div class="right-contain">
               @for (portCtrl of portsArray.controls; track portCtrl; let idx = $index) {

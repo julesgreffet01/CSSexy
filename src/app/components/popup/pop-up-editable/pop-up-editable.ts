@@ -26,6 +26,8 @@ export class PopUpEditable {
   oldProjet = input<ProjetModel>()
   oldService = input<ServiceModel>()
 
+  envFileStr = '';
+  dockerComposeStr = '';
 
   formProjet!: FormGroup;
   formService!: FormGroup;
@@ -37,11 +39,15 @@ export class PopUpEditable {
     if (this.oldProjet() != undefined) {
       this.formProjet = new FormGroup({
         name: new FormControl(this.oldProjet()!.name, {nonNullable: true, validators: [Validators.required, Validators.maxLength(200)]}),
+        dockerComp: new FormControl(this.oldProjet()!.dockerComp,{nonNullable: false, validators: [Validators.maxLength(200)] } )
       });
     } else if (this.oldService() !== undefined) {
       this.formService = new FormGroup({
         name: new FormControl(this.oldService()!.name, {nonNullable: true, validators: [Validators.required, Validators.maxLength(100)]}),
         image: new FormControl(this.oldService()!.image, {nonNullable: true, validators: [Validators.required, Validators.maxLength(100), Validators.pattern('^[^:]+:[^:]+$')]}),
+        gitRepo: new FormControl(this.oldService()!.gitRepo, {nonNullable: true, validators: [Validators.required]}),
+        envFile: new FormControl(this.oldService()!.envFile, {nonNullable: true, validators: []}),
+        dockerFile: new FormControl(this.oldService()!.dockerFile, {nonNullable: true, validators: []}),
         ports: new FormArray<FormControl<string | null>>(
           this.oldService()!.ports.map(port => new FormControl(port, {nonNullable: false, validators: [Validators.pattern('^[1-9]\\d*:[1-9]\\d*$')]})))
       });
@@ -95,6 +101,7 @@ export class PopUpEditable {
         obj = {
           id: this.oldProjet()?.id ?? 0,
           name: this.formProjet.value.name,
+          dockerComp: this.dockerComposeStr,
           services: [],
           createdAt: new Date()
         };
@@ -104,6 +111,9 @@ export class PopUpEditable {
         }
         if(this.formProjet.get('name')?.hasError('maxlength')){
           this.formErrors.push("le nombre de caractères max est de 200");
+        }
+        if(this.formProjet.get('dockerComp')?.hasError('maxlenght')){
+          this.formErrors.push("le nombre de caractères max est de 200")
         }
         const errors = this.formErrors
         this.formErrors = []
@@ -132,10 +142,14 @@ export class PopUpEditable {
           id: this.oldService()?.id ?? '0',
           name: this.formService.value.name,
           image: this.formService.value.image,
+          gitRepo: this.formService.value.gitRepo,
+          envFile: this.envFileStr,
+          dockerFile: this.formService.value.dockerFile,
           status: "STARTING",
           startedSince: new Date(),
           ports: realport
         };
+        console.log(obj);
       } else {
         const portsArray = this.formService.controls['ports'] as FormArray<FormControl<string>>;
 
@@ -161,6 +175,9 @@ export class PopUpEditable {
         if(this.formService.get('image')?.hasError('pattern')){
           this.formErrors.push("le pattern de l'image n est pas bon i doit etre de a forme image:tag");
         }
+        if(this.formService.get('gitRepo')?.hasError('required')){
+          this.formErrors.push("le repository git est requis");
+        }
         const errors = this.formErrors
         this.formErrors = []
         this.formErrorsOutput.emit(errors);
@@ -175,5 +192,24 @@ export class PopUpEditable {
 
   public closePopupSubmit() {
     this.closePopup.emit()
+  }
+
+  public previewFile(fileInput: HTMLInputElement, typeInput: 'envFile' | 'dockerCompose' ) {
+    if (fileInput.files && fileInput.files[0]) {
+      const file = fileInput.files[0];
+      const reader = new FileReader();
+    
+      reader.addEventListener("load", () => {
+        switch (typeInput) {
+          case 'envFile':
+            this.envFileStr = reader.result as string;
+            break;
+          case 'dockerCompose':
+            this.dockerComposeStr = reader.result as string;
+            break;
+        }
+      });
+      reader.readAsText(file);
+    }
   }
 }
