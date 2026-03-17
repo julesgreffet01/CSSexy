@@ -12,6 +12,7 @@ import { PopUpError } from '../../components/popup/pop-up-error/pop-up-error'
 import { UtilisateurModel } from '../../models/utilisateur-model';
 import { ServiceAuth } from '../../core/services/service-auth';
 import { Chart } from 'chart.js/auto';
+import { ButtonReload } from "../../components/button-reload/button-reload";
 
 @Component({
   selector: 'app-detail-service-page',
@@ -21,8 +22,9 @@ import { Chart } from 'chart.js/auto';
     PopUpEditable,
     PopUpValidation,
     PopUpError,
-    AsyncPipe
-  ],
+    AsyncPipe,
+    ButtonReload
+],
   templateUrl: './detail-service-page.html',
   styleUrl: './detail-service-page.css',
 })

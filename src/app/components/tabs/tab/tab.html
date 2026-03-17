@@ -4,29 +4,33 @@
     @if (projet() === "PROJECT") {
       <div>Nom</div>
       <div>Nombre de services</div>
+      <div>Restart</div>
       <div class="right">Création</div>
+      
     }
 
     @if (projet() === "USER") {
       <div>Username</div>
       <div>Nom</div>
       <div class="right">Rôle</div>
+      <div></div>
     }
 
     @if (projet() === "SERVICE") {
       <div>Nom</div>
       <div>Status</div>
-      <div class="right">Action</div>
+      <div>Start/Stop</div>
+      <div>Restart</div>
     }
   </div>
 
-  <!-- BODY (1 ligne) -->
   @switch (projet()) {
     @case ("PROJECT") {
       @for (p of PROJECT(); track p.id){
       <div class="grid-row clickable" (click)="onRowClickProject(p)">
         <div>{{ p.name }}</div>
         <div>{{ p.services.length }}</div>
+        <app-reload-button [projectToReload]="p"></app-reload-button>
         <div class="right">{{ p.createdAt | date:'short' }}</div>
       </div>
        }
@@ -48,8 +52,10 @@
         <div>
           <app-status-tab [status]="s.status"></app-status-tab>
         </div>
-        <div class="right">
+        <div>
           <app-up-down-button [InitStat]="s.status === 'UP'"></app-up-down-button>
+        </div>
+        <div> 
           <app-reload-button [serviceToReload]="s"></app-reload-button>
         </div>
       </div>

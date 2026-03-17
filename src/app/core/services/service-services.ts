@@ -101,4 +101,8 @@ export class serviceServices {
     public serviceMonitoringMesures(service_uuid: string, name: string, datetime: Date): Observable<any> {
         return this.http.get<any>(`${this.baseUrl}/${service_uuid}/monitoring/${name}/mesures/${datetime.toISOString()}`);
     }
+    
+    public serviceMonitoringReloadMesures(service_uuid: string, name: string): Observable<any> {
+        return this.http.post<any>(`${this.baseUrl}/${service_uuid}/monitoring/${name}/mesures/reload`, {});
+    }
 }

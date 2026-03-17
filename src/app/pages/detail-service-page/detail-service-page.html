@@ -34,14 +34,19 @@
     </div>
   </div>
   <div class="right-content">
-    <div class="graph-cpu">
-      <canvas #cpuChart ></canvas>
-    </div>
-    <div class="graph-ram">
-      <canvas #ramChart></canvas>
-    </div>
-    <div class="graph-disk">
-      <canvas #diskChart></canvas>
+    <div class="chart-reload">
+      <div class="graph-cpu">
+        <canvas #cpuChart ></canvas>
+      </div>
+      <app-button-reload [serviceMonitoringToReload]="currentService()!" [name]="'cpu'"></app-button-reload>
+      <div class="graph-ram">
+        <canvas #ramChart></canvas>
+      </div>
+      <app-button-reload [serviceMonitoringToReload]="currentService()!" [name]="'ram'"></app-button-reload>      
+      <div class="graph-disk">
+        <canvas #diskChart></canvas>
+      </div>
+      <app-button-reload [serviceMonitoringToReload]="currentService()!" [name]="'disk'"></app-button-reload>
     </div>
   </div>
 </div>

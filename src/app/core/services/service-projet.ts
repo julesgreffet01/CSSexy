@@ -2,7 +2,7 @@ import {inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environnements/environnements';
 import {projetsMock} from '../../../mock/projets.mjs';
-import {delay, of} from 'rxjs';
+import {delay, Observable, of} from 'rxjs';
 import {type ProjetModel} from '../../models/projet-model';
 
 @Injectable({
@@ -13,23 +13,23 @@ export class ServiceProjet {
   private http = inject(HttpClient)
   private basUrl = environment.apiBaseUrl + 'projects';
 
-  getAllProjets() {
+  public getAllProjets() {
     return of(projetsMock).pipe(delay(200));
     // return this.http.get<any[]>(this.basUrl);  pour quand on aura une api
   }
 
-  findProjectById(id: number) {
+  public findProjectById(id: number) {
     return of(projetsMock.find(p => p.id === id)).pipe(delay(200));
   }
 
-  createProjet(projet: ProjetModel) {
+  public createProjet(projet: ProjetModel) {
     projet.id = Math.floor(Math.random() * 1000);
     projetsMock.push(projet);
     return of(projetsMock).pipe(delay(200));
     // return this.http.post<any>(this.basUrl + '/' + projet.id, projet);
   }
 
-  updateProjet(projet: ProjetModel) {
+  public updateProjet(projet: ProjetModel) {
     projetsMock.forEach((p: ProjetModel) => {
       if (p.id === projet.id) {
         p.name = projet.name;
@@ -40,7 +40,7 @@ export class ServiceProjet {
     // return this.http.put<any>(this.basUrl + '/' + projet.id, projet);
   }
 
-  deleteProjet(id: number) {
+  public deleteProjet(id: number) {
     projetsMock.forEach((projet, index) => {
       if (projet.id === id) {
         projetsMock.splice(index, 1);
@@ -48,5 +48,9 @@ export class ServiceProjet {
     });
     return of({message: `delete success on id ${id}`}).pipe(delay(200));
     // return this.http.delete<any>(this.basUrl + '/' + id);
+  }
+
+  public restartProject(projetid: number): Observable<void> {
+    return this.http.post<void>(`${this.basUrl}/${projetid}/restart`, {});
   }
 }

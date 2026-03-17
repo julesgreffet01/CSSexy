@@ -6,7 +6,7 @@
 .grid-row {
 
   display: grid;
-  grid-template-columns: 1.2fr 2fr 1fr;
+  grid-template-columns: 1.2fr 2fr 1fr 1fr;
   align-items: center;
   height: 64px;
   padding: 0 12px;
