@@ -11,7 +11,7 @@ import { projetsMock } from "../../../mock/projets.mjs";
 })
 export class serviceServices {
     private readonly http = inject(HttpClient);
-    private baseUrl = environment.apiBaseUrl + '/services';
+    private baseUrl = environment.apiBaseUrl + 'services';
     private baseUrlProject = environment.apiBaseUrl + '/projects'
 
     public getAllByProject(projectId: number): Observable<ServiceModel[]>{
