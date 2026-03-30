@@ -13,15 +13,15 @@
             <h3>Avant</h3>
 
             @if (type() == "Projet") {
-              @if (oldObject().name !== newObject().name) {
-                <p><strong>Nom :</strong> {{ oldObject().name }}</p>
+              @if (oldObject().Name !== newObject().Name) {
+                <p><strong>Nom :</strong> {{ oldObject().Name }}</p>
               }
             } @else if (type() === "Service") {
-              @if (oldObject().name !== newObject().name) {
-                <p><strong>Nom :</strong> {{ oldObject().name }}</p>
+              @if (oldObject().Name !== newObject().Name) {
+                <p><strong>Nom :</strong> {{ oldObject().Name }}</p>
               }
-              @if (forceServiceType(oldObject()).image !== forceServiceType(newObject()).image) {
-                <p><strong>Image :</strong> {{ forceServiceType(oldObject()).image }}</p>
+              @if (forceServiceType(oldObject()).Image !== forceServiceType(newObject()).Image) {
+                <p><strong>Image :</strong> {{ forceServiceType(oldObject()).Image }}</p>
               }
               @if (oldPorts().length) {
                 <p><strong>Ports supprimés :</strong></p>
@@ -40,15 +40,15 @@
             <h3>Après</h3>
 
             @if (type() == "Projet") {
-              @if (oldObject().name !== newObject().name) {
-                <p><strong>Nom :</strong> {{ newObject().name }}</p>
+              @if (oldObject().Name !== newObject().Name) {
+                <p><strong>Nom :</strong> {{ newObject().Name }}</p>
               }
             } @else if (type() === "Service") {
-              @if (oldObject().name !== newObject().name) {
-                <p><strong>Nom :</strong> {{ newObject().name }}</p>
+              @if (oldObject().Name !== newObject().Name) {
+                <p><strong>Nom :</strong> {{ newObject().Name }}</p>
               }
-              @if (forceServiceType(oldObject()).image !== forceServiceType(newObject()).image) {
-                <p><strong>Image :</strong> {{ forceServiceType(newObject()).image }}</p>
+              @if (forceServiceType(oldObject()).Image !== forceServiceType(newObject()).Image) {
+                <p><strong>Image :</strong> {{ forceServiceType(newObject()).Image }}</p>
               }
               @if (newPorts().length) {
                 <p><strong>Ports ajoutés :</strong></p>

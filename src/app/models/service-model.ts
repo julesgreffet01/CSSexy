@@ -1,14 +1,14 @@
 export interface ServiceModel {
-  id: string;
-  name: string;
-  image: string;
-  status: "UP" | "DOWN" | "STARTING" | "STOP";
-  startedSince?: Date;
-  ports: string[];
+  Uuid: string;
+  Name: string;
+  Image: string;
+  Status: "up" | "down" | "starting" | "stop";
+  StartedSince?: Date;
+  Ports: string[];
 }
 
 export function isService(obj: any): obj is ServiceModel {
-  const SERVICE_STATUS = ["UP", "DOWN", "STARTING", "STOP"];
+  const SERVICE_STATUS = ["up", "down", "starting", "stop"];
   return (
     typeof obj.id === "string" &&
     typeof obj.name === "string" &&

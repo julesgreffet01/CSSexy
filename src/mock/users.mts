@@ -5,18 +5,18 @@ export const usersMock: UtilisateurModel[] = [
     id: 1,
     username: "juluffy",
     name: "jules",
-    role: "DEV"
+    role: "dev"
   },
   {
     id: 2,
     username: "itikatchi",
     name: "yann",
-    role: "DEV_OPS"
+    role: "dev_ops"
   },
   {
     id: 3,
     username: "maxirrx",
     name: "maxime",
-    role: "ADMIN"
+    role: "admin"
   }
 ]

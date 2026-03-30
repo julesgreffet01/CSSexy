@@ -13,7 +13,7 @@ export const routes: Routes = [
       path: 'projects', loadComponent: () => import('../pages/list-project-page/list-project-page').then(m => m.ListProjectPage)
     },
     {
-      path: 'users', loadComponent:() => import('../pages/list-users-page/list-users-page').then(m => m.ListUsersPage) , canActivate: [guardRoleGuard], data:{ roles: ['ADMIN'] }
+      path: 'users', loadComponent:() => import('../pages/list-users-page/list-users-page').then(m => m.ListUsersPage) , canActivate: [guardRoleGuard], data:{ roles: ['admin'] }
     },
     {
       path: 'project/:id', loadComponent: () => import('../pages/detail-project-page/detail-project-page').then(m => m.DetailProjectPage)
@@ -25,7 +25,7 @@ export const routes: Routes = [
       path: 'profile', loadComponent: () => import('../pages/profil-page/profil-page').then(m => m.ProfilPage)
     },
     {
-      path: 'user-detail/:id', loadComponent: () => import('../pages/detail-user-page/detail-user-page').then(m => m.DetailUserPage), canActivate: [guardRoleGuard], data: { roles: ['ADMIN']}
+      path: 'user-detail/:id', loadComponent: () => import('../pages/detail-user-page/detail-user-page').then(m => m.DetailUserPage), canActivate: [guardRoleGuard], data: { roles: ['admin']}
     }
   ]},
   {path: 'login', component: LoginPage},

@@ -5,29 +5,33 @@
       <div>Nom</div>
       <div>Nombre de services</div>
       <div class="right">Création</div>
+      <div></div>
     }
 
     @if (projet() === "USER") {
       <div>Username</div>
       <div>Nom</div>
       <div class="right">Rôle</div>
+      <div></div>
     }
 
     @if (projet() === "SERVICE") {
       <div>Nom</div>
       <div>Status</div>
+      <div>Restart</div>
       <div class="right">Action</div>
+      
     }
   </div>
 
   <!-- BODY (1 ligne) -->
   @switch (projet()) {
     @case ("PROJECT") {
-      @for (p of PROJECT(); track p.id){
+      @for (p of PROJECT(); track $index){
       <div class="grid-row clickable" (click)="onRowClickProject(p)">
-        <div>{{ p.name }}</div>
-        <div>{{ p.services.length }}</div>
-        <div class="right">{{ p.createdAt | date:'short' }}</div>
+        <div>{{ p.Name }}</div>
+        <div></div>
+        <div class="right">{{ p.CreatedAt | date:'short' }}</div>
       </div>
        }
     }
@@ -42,14 +46,16 @@
     }
   }
     @case ("SERVICE") {
-      @for (s of SERVICE(); track s.id){
+      @for (s of SERVICE(); track s.Uuid){
       <div class="grid-row clickable" (click)="onRowClickService(s)">
-        <div>{{ s.name }}</div>
+        <div>{{ s.Name }}</div>
         <div>
-          <app-status-tab [status]="s.status"></app-status-tab>
+          <app-status-tab [status]="s.Status.libelle"></app-status-tab>
         </div>
         <div class="right">
-          <app-up-down-button [InitStat]="s.status === 'UP'"></app-up-down-button>
+          <app-up-down-button [InitStat]="s.Status.libelle === 'up'"></app-up-down-button>
+        </div>
+        <div>
           <app-reload-button [serviceToReload]="s"></app-reload-button>
         </div>
       </div>

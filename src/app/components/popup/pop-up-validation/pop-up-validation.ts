@@ -33,13 +33,13 @@ export class PopUpValidation {
     } else if(this.type() === "Service" && !(isService(this.oldObject()) || isService(this.newObject()) )) {
       throw new Error('Invalid service type');
     } else if(this.type() === "Service") {
-      (this.oldObject() as ServiceModel).ports.forEach((port) => {
-        if(!(this.newObject() as ServiceModel).ports.includes(port)) {
+      (this.oldObject() as ServiceModel).Ports.forEach((port) => {
+        if(!(this.newObject() as ServiceModel).Ports.includes(port)) {
           this.oldPorts.update(ports => [...ports, port])
         }
       });
-      (this.newObject() as ServiceModel).ports.forEach((port) => {
-        if(!(this.oldObject() as ServiceModel).ports.includes(port)) {
+      (this.newObject() as ServiceModel).Ports.forEach((port) => {
+        if(!(this.oldObject() as ServiceModel).Ports.includes(port)) {
           this.newPorts.update(ports => [...ports, port])
         }
       });

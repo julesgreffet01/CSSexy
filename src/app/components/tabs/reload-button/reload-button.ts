@@ -15,12 +15,12 @@ export class ReloadButton {
 
   reload(): void {
 
-    this.Service.restartService(this.serviceToReload().id).subscribe({
+    this.Service.restartService(this.serviceToReload().Uuid).subscribe({
       next: () => {
-        console.log(`Service ${this.serviceToReload().id} reloaded successfully.`);
+        console.log(`Service ${this.serviceToReload().Uuid} reloaded successfully.`);
       },
       error: (err) => {
-        console.error(`Failed to reload service ${this.serviceToReload().id}:`, err);
+        console.error(`Failed to reload service ${this.serviceToReload().Uuid}:`, err);
       }
     });
     

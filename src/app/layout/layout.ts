@@ -17,33 +17,33 @@ import {ServiceModel} from '../models/service-model';
 export class Layout {
 
   project: ProjetModel = {
-    id: 1,
-    name: 'Mon Projet',
-    services: [],
-    createdAt: new Date(),
+    Id: 1,
+    Name: 'Mon Projet',
+    User: [],
+    CreatedAt: new Date(),
   }
 
   newProject: ProjetModel = {
-    id: 1,
-    name: 'Mon Projet Modifié',
-    services: [],
-    createdAt: new Date(),
+    Id: 1,
+    Name: 'Mon Projet Modifié',
+    User: [],
+    CreatedAt: new Date(),
   }
 
   service: ServiceModel = {
-    id: '1',
-    name: 'Mon Service',
-    ports: ['80', '443'],
-    image: "bi",
-    status: "UP",
+    Uuid: '1',
+    Name: 'Mon Service',
+    Ports: ['80', '443'],
+    Image: "bi",
+    Status: "up",
   }
 
   newService: ServiceModel = {
-    id: '1',
-    name: 'Mon Service update',
-    ports: ['20', '443', 'aa', 'bb', 'cc', 'dd', 'aa', 'aa', 'aa', 'aa',
+    Uuid: '1',
+    Name: 'Mon Service update',
+    Ports: ['20', '443', 'aa', 'bb', 'cc', 'dd', 'aa', 'aa', 'aa', 'aa',
     'aa', 'aa'],
-    image: "bi",
-    status: "UP",
+    Image: "bi",
+    Status: "up",
   }
 }

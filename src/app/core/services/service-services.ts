@@ -11,43 +11,45 @@ import { projetsMock } from "../../../mock/projets.mjs";
 })
 export class serviceServices {
     private readonly http = inject(HttpClient);
-    private baseUrl = environment.apiBaseUrl + 'services';
-    private baseUrlProject = environment.apiBaseUrl + '/projects'
+    private baseUrl = 'services';
+    private baseUrlProject = environment.apiBaseUrl + 'projects'
+    private baseUrlService = environment.apiBaseUrl + 'services';
 
-    public getAllByProject(projectId: number): Observable<ServiceModel[]>{
-        return of(projetsMock.find(p => p.id === projectId)?.services ?? []).pipe(delay(200));
-        //return this.http.get<ServiceModel[]>(`${this.baseUrlProject}/${projectId}/${this.baseUrl}`)
+    public getAllByProject(projectId: number): Observable<{Success: boolean; Data: ServiceModel[]; Message: string}>{
+        //return of(projetsMock.find(p => p.Id === projectId)?.services ?? []).pipe(delay(200));
+        return this.http.get<{Success: boolean; Data: ServiceModel[]; Message: string}>
+        (`${this.baseUrlProject}/${projectId}/${this.baseUrl}`)
     }
 
-    public getServices(service_uuid: string): Observable<ServiceModel | undefined> {
-      //return this.http.get<ServiceModel>(`${this.baseUrl}/${service_uuid}`);
-      return of(servicesMock.find(s => s.id === service_uuid)).pipe(delay(200));
+    public getServices(service_uuid: string): Observable<any> {
+      return this.http.get<any>(`${this.baseUrlService}/${service_uuid}`);
+      //return of(servicesMock.find(s => s.Uuid === service_uuid)).pipe(delay(200));
 
     }
 
 
   public createService(projectId: number, newService: ServiceModel) {
-    newService.id = crypto.randomUUID()
+    newService.Uuid = crypto.randomUUID()
     servicesMock.push(newService);
-    const projet = projetsMock.find(p => p.id === projectId);
+    const projet = projetsMock.find(p => p.Id === projectId);
     if (!projet) {
       throw new Error(`Projet avec id ${projectId} introuvable`);
     }
-    projet.services.push(newService);
+    //projet.services.push(newService);
     return of(newService).pipe(delay(100));
   }
 
   public updateService(service: ServiceModel): Observable<ServiceModel> {
-    const existingService = servicesMock.find(s => s.id === service.id);
+    const existingService = servicesMock.find(s => s.Uuid === service.Uuid);
 
     if (!existingService) {
-      throw new Error(`Service ${service.id} introuvable`);
+      throw new Error(`Service ${service.Uuid} introuvable`);
     }
 
-    existingService.name = service.name;
-    existingService.image = service.image;
-    existingService.ports = service.ports;
-    existingService.status = service.status;
+    existingService.Name = service.Name;
+    existingService.Image = service.Image;
+    existingService.Ports = service.Ports;
+    existingService.Status = service.Status;
 
     return of(existingService).pipe(delay(200));
     //return this.http.put<ServiceModel>(`${this.baseUrl}/${service.id}`, service);
@@ -55,16 +57,16 @@ export class serviceServices {
 
     public deleteService(service_uuid: string){
     const serviceIndex = servicesMock.findIndex(
-    service => service.id === service_uuid
+    service => service.Uuid === service_uuid
     );
     if (serviceIndex !== -1) {
       servicesMock.splice(serviceIndex, 1);
     }
 
     projetsMock.forEach(projet => {
-      projet.services = projet.services.filter(
-        service => service.id !== service_uuid
-      );
+      //projet.services = projet.services.filter(
+      //  service => service.id !== service_uuid
+      //);
     });
 
     return of({ message: 'supprimé' }).pipe(delay(200));
@@ -83,7 +85,7 @@ export class serviceServices {
     }
 
     public serviceMonitoring(service_uuid: string): Observable<any> {
-        return this.http.get<any>(`${this.baseUrl}/${service_uuid}/monitoring`);
+        return this.http.get<any>(`${this.baseUrlService}/${service_uuid}/monitoring`);
     }
 
     public serviceMonitoringDetails(service_uuid: string, name: string): Observable<any> {
@@ -95,7 +97,7 @@ export class serviceServices {
     }
 
     public serviceMonitoringIndactors(service: ServiceModel, name: string): Observable<any> {
-        return this.http.put<any>(`${this.baseUrl}/${service.id}/monitoring/${name}`, service);
+        return this.http.put<any>(`${this.baseUrl}/${service.Uuid}/monitoring/${name}`, service);
     }
 
     public serviceMonitoringMesures(service_uuid: string, name: string, datetime: Date): Observable<any> {

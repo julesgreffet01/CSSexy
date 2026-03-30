@@ -11,8 +11,8 @@
 <div class="global">
   <div class="left-content">
     <div class="info-project-main">
-      <h1>{{ currentService()!.name | titlecase }}</h1>
-          @if(user?.role != 'DEV'){
+      <h1>{{ currentService()!.Name | titlecase }}</h1>
+          @if(user?.role != 'dev'){
             <div class="onUpdateService">
             <img src="/pen.svg" (click)="onUpdateService()">
             <img src="/garbage.svg" (click)="showModalDelete()">
@@ -21,11 +21,11 @@
     </div>
       <div class="name-and-content">
         <div class="name">Image :</div>
-        <div class="content">{{currentService()!.image }}</div>
+        <div class="content">{{currentService()!.Image }}</div>
       </div>
       <div class="bar-image"></div>
     <div class="top">
-      @for (port of currentService()!.ports; track port; let idx = $index) {
+      @for (port of currentService()!.Ports; track port; let idx = $index) {
         <div class="name-and-content">
           <div class="name">Port {{ idx + 1 }}:</div>
           <div class="content">{{ port }}</div>

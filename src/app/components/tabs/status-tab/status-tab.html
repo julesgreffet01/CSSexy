@@ -1,11 +1,11 @@
 <div class="status"> 
-@if(status() == "UP"){
+@if(status() == "up"){
 <p>Up</p><div class="Up"></div>
 }
-@else if(status() == "DOWN"){
+@else if(status() == "down"){
 <p>Down</p><div class="Down"></div>
 }
-@else if (status() == "STARTING"  || status() == "STOP"){
+@else if (status() == "starting"  || status() == "stop"){
 <p>Loading</p><div class="Loading"></div>
 }
 </div>

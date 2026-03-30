@@ -37,17 +37,16 @@ export class ListProjectPage {
   errorProject = signal<boolean>(false);
   user$: Observable<UtilisateurModel>
 
-
   serviceAuth = inject(ServiceAuth)
   modalCreate = signal<boolean>(false);
   errorForms = signal<string[] | null>(null);
   errorFormModal = signal<boolean>(false);
 
   projet: ProjetModel = {
-    id: 0,
-    name: '',
-    services: [],
-    createdAt: new Date()
+    Id: 0,
+    Name: '',
+    User: [],
+    CreatedAt: new Date()
   };
 
   constructor() {
@@ -56,9 +55,9 @@ export class ListProjectPage {
 
 
   ngOnInit(): void {
-    this.serviceProject.getAllProjets().subscribe({
+    this.serviceProject.getAllProjets().subscribe({      
       next: (projects) => {
-        this.listproject.set(projects);
+        this.listproject.set(projects.Data ?? []);
         this.loading.set(false);
       },
       error: (err) => {

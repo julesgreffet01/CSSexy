@@ -28,7 +28,7 @@ export class DetailProjectPage {
   serviceService = inject(serviceServices);
   route = inject(ActivatedRoute);
   currentProject = signal<ProjetModel | undefined>(undefined);
-  currentServiceList = signal<ServiceModel[]>([]);
+  currentServiceList = signal<any>([]);
   loading = signal<boolean>(true);
   errorProject = signal<boolean>(false);
   router = inject(Router)
@@ -58,18 +58,18 @@ export class DetailProjectPage {
 
 
   service :  ServiceModel = {
-    id : '0' ,
-    name : "",
-    image : "",
-    status : "UP",
-    ports : [""]
+    Uuid : '0' ,
+    Name : "",
+    Image : "",
+    Status : "up",
+    Ports : [""]
   }
 
   projet : ProjetModel = {
-    id : this.idProject,
-    name : "",
-    services : [],
-    createdAt : new Date()
+    Id : this.idProject,
+    Name : "",
+    User : [],
+    CreatedAt : new Date()
   }
 
 
@@ -81,11 +81,27 @@ export class DetailProjectPage {
       if (idToNumber && !isNaN(idToNumber)) {
         this.serviceProject.findProjectById(idToNumber).subscribe({
           next: (project) => {
-            this.currentProject.set(project);
-            this.projet.name = this.currentProject()!.name;
-            this.serviceService.getAllByProject(project!.id).subscribe({
+            this.currentProject.set(project.Data);
+            this.projet.Name = this.currentProject()!.Name;
+            this.serviceService.getAllByProject(project.Data.Id).subscribe({
               next: (service) => {
-                this.currentServiceList.set(service);
+              const mappedServices = (service.Data).map((service: any) => ({
+                  Uuid: service.Uuid,
+                  Name: service.Name,
+                  Image: service.Image,
+                  Ports: service.Ports,
+                  StartedSince: service.StartedSince,
+                  Project: {
+                    Id: service.Project?.Id,
+                    Name: service.Project?.Name,
+                    CreatedAt: service.Project?.CreatedAt
+                  },
+                  Status: {
+                    id: service.Status?.Id,
+                    libelle: service.Status?.Libelle
+                  }
+                }));
+                this.currentServiceList.set(mappedServices);
                 this.loading.set(false);
               },
               error: (err) => {
@@ -162,7 +178,7 @@ export class DetailProjectPage {
   }
 
   deleteProject(){
-    this.serviceProject.deleteProjet(this.currentProject()!.id).subscribe({
+    this.serviceProject.deleteProjet(this.currentProject()!.Id).subscribe({
       next: value => {
         this.router.navigate(['/projects'])
       }

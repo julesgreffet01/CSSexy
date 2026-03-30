@@ -36,14 +36,14 @@ export class PopUpEditable {
   ngOnInit() {
     if (this.oldProjet() != undefined) {
       this.formProjet = new FormGroup({
-        name: new FormControl(this.oldProjet()!.name, {nonNullable: true, validators: [Validators.required, Validators.maxLength(200)]}),
+        name: new FormControl(this.oldProjet()!.Name, {nonNullable: true, validators: [Validators.required, Validators.maxLength(200)]}),
       });
     } else if (this.oldService() !== undefined) {
       this.formService = new FormGroup({
-        name: new FormControl(this.oldService()!.name, {nonNullable: true, validators: [Validators.required, Validators.maxLength(100)]}),
-        image: new FormControl(this.oldService()!.image, {nonNullable: true, validators: [Validators.required, Validators.maxLength(100), Validators.pattern('^[^:]+:[^:]+$')]}),
-        ports: new FormArray<FormControl<string | null>>(
-          this.oldService()!.ports.map(port => new FormControl(port, {nonNullable: false, validators: [Validators.pattern('^[1-9]\\d*:[1-9]\\d*$')]})))
+        Name: new FormControl(this.oldService()!.Name, {nonNullable: true, validators: [Validators.required, Validators.maxLength(100)]}),
+        Image: new FormControl(this.oldService()!.Image, {nonNullable: true, validators: [Validators.required, Validators.maxLength(100), Validators.pattern('^[^:]+:[^:]+$')]}),
+        Ports: new FormArray<FormControl<string | null>>(
+          this.oldService()!.Ports.map(port => new FormControl(port, {nonNullable: false, validators: [Validators.pattern('^[1-9]\\d*:[1-9]\\d*$')]})))
       });
     }
   }
@@ -65,10 +65,10 @@ export class PopUpEditable {
     const projet = this.oldProjet();
     const service = this.oldService();
     if (projet) {
-      return projet.name ? 'Modification' : 'Ajout';
+      return projet.Name ? 'Modification' : 'Ajout';
     }
     if (service) {
-      return service.name ? 'Modification' : 'Ajout';
+      return service.Name ? 'Modification' : 'Ajout';
     }
     return 'Ajout';
   }
@@ -93,10 +93,10 @@ export class PopUpEditable {
       this.formProjet.markAllAsTouched();
       if(this.formProjet.valid) {
         obj = {
-          id: this.oldProjet()?.id ?? 0,
-          name: this.formProjet.value.name,
-          services: [],
-          createdAt: new Date()
+          Id: this.oldProjet()?.Id ?? 0,
+          Name: this.formProjet.value.name,
+          User: [],
+          CreatedAt: new Date()
         };
       } else {
         if(this.formProjet.get('name')?.hasError('required')){
@@ -129,12 +129,12 @@ export class PopUpEditable {
           }
         }
         obj = {
-          id: this.oldService()?.id ?? '0',
-          name: this.formService.value.name,
-          image: this.formService.value.image,
-          status: "STARTING",
-          startedSince: new Date(),
-          ports: realport
+          Uuid: this.oldService()?.Uuid ?? '0',
+          Name: this.formService.value.name,
+          Image: this.formService.value.image,
+          Status: "starting",
+          StartedSince: new Date(),
+          Ports: realport
         };
       } else {
         const portsArray = this.formService.controls['ports'] as FormArray<FormControl<string>>;

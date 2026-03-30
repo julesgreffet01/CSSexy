@@ -12,20 +12,20 @@
         <body>
             <div class="info-project">
                 <div class="info-project-main">
-                    <h2>{{currentProject()!.name | titlecase}}</h2>
-                    @if( user?.role != 'DEV'){
+                    <h2>{{currentProject()!.Name | titlecase}}</h2>
+                    @if( user?.role != 'dev'){
                     <div class="onUpdateProject">
                         <img src="/pen.svg" (click)="onUpdateProject()">
                         <img src="/garbage.svg" (click)="showModalDelete()">
                     </div>
                     }
                 </div>
-                <p>{{currentProject()!.createdAt | date:'medium'}}</p>
+                <p>{{currentProject()!.CreatedAt | date:'medium'}}</p>
             </div>
 
             <app-tab [projet]="'SERVICE'" [InitStat]="currentServiceList()!"></app-tab>
         </body>
-        @if(user?.role != 'DEV'){
+        @if(user?.role != 'dev'){
             <div class="add-button">
                 <app-buttons label="+" (clicked)="showModal()" backgroundColor="secondary-3" size="large"></app-buttons>
             </div>

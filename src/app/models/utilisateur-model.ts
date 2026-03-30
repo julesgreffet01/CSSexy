@@ -4,7 +4,7 @@ export interface UtilisateurModel {
   id: number;
   username: string;
   name: string;
-  role: "DEV" | "ADMIN" | "DEV_OPS";
+  role: "dev" | "admin" | "dev_ops";
 }
 
 export function isUtilisateur(obj: any): boolean {

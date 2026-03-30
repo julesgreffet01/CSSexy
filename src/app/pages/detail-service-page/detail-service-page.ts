@@ -83,16 +83,16 @@ export class DetailServicePage {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
-      const id = params.get('id');
-      if (!id) return;
+      const uuid = params.get('id');
+      if (!uuid) return;
 
-      this.serviceService.getServices(id).subscribe({
+      this.serviceService.getServices(uuid).subscribe({
         next: (service) => {
-          this.currentService.set(service);
-          this.idService.set(service?.id ?? null);
-
-          this.serviceService.serviceMonitoring("059ba85a-e341-467a-8463-867d85d84551").subscribe({
+          this.currentService.set(service.Data);
+          this.idService.set(service.Data.Uuid);
+          this.serviceService.serviceMonitoring(this.idService()!).subscribe({
             next: (monitoring) => {
+              console.log(monitoring);
               this.dataArray = monitoring.Data ?? [];
 
               console.log(this.dataArray);
@@ -162,7 +162,7 @@ export class DetailServicePage {
   }
 
   onDeleteService() {
-    this.serviceService.deleteService(this.currentService()!.id).subscribe({
+    this.serviceService.deleteService(this.currentService()!.Uuid).subscribe({
       next: value => {
         this.router.navigate(['/projects']);
       }

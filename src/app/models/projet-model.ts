@@ -1,10 +1,10 @@
 import {ServiceModel} from './service-model';
 
 export interface ProjetModel {
-  id: number;
-  name: string;
-  services: ServiceModel[]
-  createdAt: Date;
+  Id: number;
+  Name: string;
+  CreatedAt: Date;
+  User: any[];
 }
 
 export function isProjet(obj: any): boolean {

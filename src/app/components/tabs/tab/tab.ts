@@ -24,11 +24,10 @@ export class Tab {
   projet = input<"PROJECT" | "USER" | "SERVICE">("SERVICE");
   PROJECT = signal<ProjetModel[]>([] as ProjetModel[]);
   USER = signal<UtilisateurModel[]>([] as UtilisateurModel[]);
-  SERVICE = signal<ServiceModel[]>([] as ServiceModel[]);
+  SERVICE = signal<any>([] as any[]);
   routeur = inject(Router)
 
-  ngOnInit() {
-    
+  ngOnInit() {   
     if (this.projet() == "PROJECT") {
       this.PROJECT.set(this.InitStat() as ProjetModel[]);
     }
@@ -36,7 +35,7 @@ export class Tab {
       this.USER.set(this.InitStat() as UtilisateurModel[]);
     }
     else if (this.projet() == "SERVICE") {
-      this.SERVICE.set(this.InitStat() as ServiceModel[]);
+      this.SERVICE.set(this.InitStat());
     }
   }
 
@@ -45,9 +44,9 @@ export class Tab {
     this.routeur.navigate(['/user-detail', user.id])
   }
   onRowClickProject(project: ProjetModel){
-    this.routeur.navigate(['/project', project.id])
+    this.routeur.navigate(['/project', project.Id])
   }
   onRowClickService(service: ServiceModel){
-    this.routeur.navigate(['/service', service.id])
+    this.routeur.navigate(['/service', service.Uuid])
   }
 }

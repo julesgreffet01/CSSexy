@@ -24,7 +24,7 @@ export class ServiceAuth {
   private token: string | null = null;
   private userName: string | null = null;
   private name: string | null = null;
-  private role: "DEV" | "ADMIN" | "DEV_OPS" | null = null;
+  private role: "dev" | "admin" | "dev_ops" | null = null;
   private userId: number | null = null;
 
   public getToken(): string | null {

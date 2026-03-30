@@ -9,7 +9,7 @@ import { Component, input } from '@angular/core';
 export class StatusTab {
   
 
-   status = input.required<"UP" | "DOWN" | "STARTING" | "STOP">();
+   status = input.required<"up" | "down" | "starting" | "stop">();
 
   
 }
