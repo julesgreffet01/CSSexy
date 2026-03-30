@@ -8,7 +8,8 @@ import {serviceUser} from './service-user';
 import {usersMock} from '../../../mock/users.mjs';
 
 interface loginOutput {
-  token: string;
+  Success: boolean;
+  Data: {token: string};
 }
 
 @Injectable({
@@ -66,25 +67,26 @@ export class ServiceAuth {
   }
 
   public login(userName: string, password: string) {
-    const utilisateur = usersMock.find(
-      user => user.username === userName
-    );
-
-    if (utilisateur) {
-      this.userId = utilisateur.id;
-      this.name = utilisateur.name;
-      this.role = utilisateur.role;
-      this.userName = utilisateur.username;
-      return of(utilisateur).pipe(delay(100));
-    }
-    return throwError(() => new Error('Unable to login'));
-    // return this.http.post<loginOutput>(`${this.BASE_URL}/auth/login`, { userName, password }).pipe(
-    //   tap(res => {
-    //     if(res.token.trim().length > 0) {
-    //       this.setToken(res.token);
-    //     }
-    //   }),
+    // const utilisateur = usersMock.find(
+    //   user => user.username === userName
     // );
+
+    // if (utilisateur) {
+    //   this.userId = utilisateur.id;
+    //   this.name = utilisateur.name;
+    //   this.role = utilisateur.role;
+    //   this.userName = utilisateur.username; 
+    //   return of(utilisateur).pipe(delay(100));
+    // }
+    //return throwError(() => new Error('Unable to login'));
+    return this.http.post<loginOutput>(`https://api-culteur.greffetjules.com/auth/login`, { username: userName, password }).pipe(
+       tap(res => {
+        console.log(res);
+         if(res.Data.token.trim().length > 0) {
+           this.setToken(res.Data.token);
+         }
+      }),
+     );
   }
 
   public logout(): void {

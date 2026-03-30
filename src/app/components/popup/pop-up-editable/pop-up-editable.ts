@@ -1,9 +1,11 @@
-import {Component, input, output, signal} from '@angular/core';
+import {Component, inject, input, output, signal} from '@angular/core';
 import {Inputs} from '../../inputs/inputs';
 import {Buttons} from '../../buttons/buttons';
 import {FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {ProjetModel} from '../../../models/projet-model';
 import type {ServiceModel} from '../../../models/service-model';
+import { ServiceAuth } from '../../../core/services/service-auth';
+import { UtilisateurModel } from '../../../models/utilisateur-model';
 
 @Component({
   selector: 'app-pop-up-editable',
@@ -20,7 +22,7 @@ export class PopUpEditable {
 
   myObj = output<ProjetModel | ServiceModel>()
   closePopup = output<void>()
-
+  serviceAuth = inject(ServiceAuth);
 
 
   oldProjet = input<ProjetModel>()
@@ -32,9 +34,18 @@ export class PopUpEditable {
 
   formErrors: string[] = []
   formErrorsOutput = output<string[]>()
+  currentUser = signal<UtilisateurModel | undefined>(undefined);
 
   ngOnInit() {
     if (this.oldProjet() != undefined) {
+      this.serviceAuth.getUser().subscribe({
+        next: (user) => {
+          this.currentUser.set(user);
+        },
+        error: (err) => {
+          console.error("Erreur lors de la récupération de l'utilisateur :", err);
+        },
+      });
       this.formProjet = new FormGroup({
         name: new FormControl(this.oldProjet()!.Name, {nonNullable: true, validators: [Validators.required, Validators.maxLength(200)]}),
       });
@@ -93,16 +104,16 @@ export class PopUpEditable {
       this.formProjet.markAllAsTouched();
       if(this.formProjet.valid) {
         obj = {
-          Id: this.oldProjet()?.Id ?? 0,
+          Id: this.oldProjet()!.Id,
           Name: this.formProjet.value.name,
-          User: [],
+          User: this.currentUser(),
           CreatedAt: new Date()
         };
       } else {
-        if(this.formProjet.get('name')?.hasError('required')){
+        if(this.formProjet.get('Name')?.hasError('required')){
           this.formErrors.push("le nom est requis");
         }
-        if(this.formProjet.get('name')?.hasError('maxlength')){
+        if(this.formProjet.get('Name')?.hasError('maxlength')){
           this.formErrors.push("le nombre de caractères max est de 200");
         }
         const errors = this.formErrors

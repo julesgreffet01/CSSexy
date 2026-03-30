@@ -36,6 +36,7 @@ export class DetailProjectPage {
   modalCreate = signal<boolean>(false);
   modalUpdate = signal<boolean>(false);
 
+  
   private idProject: number = 0;
 
   newProject = signal<ProjetModel | null>(null)
@@ -81,8 +82,8 @@ export class DetailProjectPage {
       if (idToNumber && !isNaN(idToNumber)) {
         this.serviceProject.findProjectById(idToNumber).subscribe({
           next: (project) => {
-            this.currentProject.set(project.Data);
-            this.projet.Name = this.currentProject()!.Name;
+            this.currentProject.set(project.Data);  
+            this.projet = this.currentProject()!;
             this.serviceService.getAllByProject(project.Data.Id).subscribe({
               next: (service) => {
               const mappedServices = (service.Data).map((service: any) => ({

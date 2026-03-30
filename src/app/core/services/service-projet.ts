@@ -24,21 +24,21 @@ export class ServiceProjet {
   }
 
   createProjet(projet: ProjetModel) {
-    projet.Id = Math.floor(Math.random() * 1000);
-    projetsMock.push(projet);
-    return of(projetsMock).pipe(delay(200));
-    // return this.http.post<any>(this.basUrl + '/' + projet.Id, projet);
+    //projet.Id = Math.floor(Math.random() * 1000);
+    //projetsMock.push(projet);
+    //return of(projetsMock).pipe(delay(200));
+    return this.http.post<any>(this.basUrl, {name: projet.Name, userId: 2});
   }
 
   updateProjet(projet: ProjetModel) {
-    projetsMock.forEach((p: ProjetModel) => {
-      if (p.Id === projet.Id) {
-        p.Name = projet.Name;
-        p.User = projet.User;
-      }
-    })
-    return of({message: `pudate reussi sur le projet ${projet.Id}`}).pipe(delay(200));
-    // return this.http.put<any>(this.basUrl + '/' + projet.Id, projet);
+    //projetsMock.forEach((p: ProjetModel) => {
+    //  if (p.Id === projet.Id) {
+    //    p.Name = projet.Name;
+    //    p.User = projet.User;
+    //  }
+    //})
+    //return of({message: `pudate reussi sur le projet ${projet.Id}`}).pipe(delay(200));
+    return this.http.put<any>(this.basUrl + '/' + projet.Id, {name: projet.Name, userId: 2});
   }
 
   deleteProjet(id: number) {
