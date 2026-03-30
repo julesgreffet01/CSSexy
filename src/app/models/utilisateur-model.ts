@@ -1,10 +1,10 @@
 import {ServiceModel} from './service-model';
 
 export interface UtilisateurModel {
-  id: number;
-  username: string;
-  name: string;
-  role: "dev" | "admin" | "dev_ops";
+  Id: number;
+  Username: string;
+  Name: string;
+  Role: "developer" | "admin" | "dev_ops";
 }
 
 export function isUtilisateur(obj: any): boolean {

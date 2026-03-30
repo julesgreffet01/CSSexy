@@ -2,21 +2,21 @@ import type {UtilisateurModel} from "../app/models/utilisateur-model";
 
 export const usersMock: UtilisateurModel[] = [
   {
-    id: 1,
-    username: "juluffy",
-    name: "jules",
-    role: "dev"
+    Id: 1,
+    Username: "juluffy",
+    Name: "jules",
+    Role: "developer"
   },
   {
-    id: 2,
-    username: "itikatchi",
-    name: "yann",
-    role: "dev_ops"
+    Id: 2,
+    Username: "itikatchi",
+    Name: "yann",
+    Role: "dev_ops"
   },
   {
-    id: 3,
-    username: "maxirrx",
-    name: "maxime",
-    role: "admin"
+    Id: 3,
+    Username: "maxirrx",
+    Name: "maxime",
+    Role: "admin"
   }
 ]

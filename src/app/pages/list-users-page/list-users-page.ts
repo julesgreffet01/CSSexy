@@ -20,7 +20,7 @@ import { Observable } from 'rxjs';
 export class ListUsersPage {
 
     serviceUser = inject(serviceUser);
-    listUser = signal<ServiceModel[] | undefined>(undefined);
+    listUser = signal<UtilisateurModel[] | undefined>(undefined);
     route = inject(ActivatedRoute);
     loading = signal<boolean>(true);
     errorSignal = signal<boolean>(false);
@@ -33,8 +33,8 @@ export class ListUsersPage {
     }
     ngOnInit(): void{
       this.serviceUser.getAllUsers().subscribe({
-        next: (services) => {
-        this.listUser.set(services);
+        next: (users) => {
+            this.listUser.set(users.Data);
             this.loading.set(false);
         },
         error: (err) => {

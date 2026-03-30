@@ -7,7 +7,7 @@
 }
 @else {
 <body>
-    @if(user?.role === 'admin'){
+    @if(user?.Role === 'admin'){
     <app-swap-tab></app-swap-tab>
     } @else {
         <div class="swap-tab-replace"></div>
@@ -16,7 +16,7 @@
     <app-tab [projet]="'PROJECT'" [InitStat]="listproject()!"></app-tab>
 </body>
 
-    @if(user?.role != 'dev'){
+    @if(user?.Role != 'developer'){
         <div class="add-button">
             <app-buttons label="+" (clicked)="showModal()" backgroundColor="secondary-3" size="large"></app-buttons>
         </div>

@@ -42,12 +42,16 @@ export class ServiceProjet {
   }
 
   deleteProjet(id: number) {
-    projetsMock.forEach((projet, index) => {
-      if (projet.Id === id) {
-        projetsMock.splice(index, 1);
-      }
-    });
-    return of({message: `delete success on id ${id}`}).pipe(delay(200));
-    // return this.http.delete<any>(this.basUrl + '/' + id);
+    // projetsMock.forEach((projet, index) => {
+    //   if (projet.Id === id) {
+    //     projetsMock.splice(index, 1);
+    //   }
+    // });
+    // return of({message: `delete success on id ${id}`}).pipe(delay(200));
+    return this.http.delete<any>(this.basUrl + '/' + id);
+  }
+
+  GetCountServiceOfProject(id: number){
+    return this.http.get<{Success: boolean; Data: number; Message: string}>(this.basUrl + '/servicesCount/' + id)
   }
 }

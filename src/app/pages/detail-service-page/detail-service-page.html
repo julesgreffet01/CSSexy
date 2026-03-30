@@ -12,7 +12,7 @@
   <div class="left-content">
     <div class="info-project-main">
       <h1>{{ currentService()!.Name | titlecase }}</h1>
-          @if(user?.role != 'dev'){
+          @if(user?.Role != 'developer'){
             <div class="onUpdateService">
             <img src="/pen.svg" (click)="onUpdateService()">
             <img src="/garbage.svg" (click)="showModalDelete()">

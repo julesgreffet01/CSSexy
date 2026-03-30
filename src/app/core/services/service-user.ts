@@ -10,21 +10,21 @@ import {usersMock} from '../../../mock/users.mjs';
 })
 export class serviceUser {
     private readonly http = inject(HttpClient);
-    private baseUrl = environment.apiBaseUrl + '/users';
+    private baseUrl = 'https://api-culteur.greffetjules.com/users';
 
 
-    public getAllUsers(): Observable<any> {
-        return of(usersMock).pipe(delay(200));
-        //return this.http.get<any>(`${this.baseUrl}/`);
+    public getAllUsers(): Observable<{Success: boolean; Data: UtilisateurModel[]; Message: string}> {
+       // return of(usersMock).pipe(delay(200));
+        return this.http.get<{Success: boolean; Data: UtilisateurModel[]; Message: string}>(`${this.baseUrl}/`);
     }
 
     public getUser(id: number): Observable<any> {
-        return of(usersMock.find(p => p.id === id)).pipe(delay(200));
-        //return this.http.get<any>(`${this.baseUrl}/${id}`);
+        //return of(usersMock.find(p => p.Id === id)).pipe(delay(200));
+        return this.http.get<any>(`${this.baseUrl}/${id}`);
     }
 
-    public myUser(): Observable<UtilisateurModel> {
-      return of(usersMock[2]);
-        // return this.http.get<UtilisateurModel>(`${this.baseUrl}/me`);
+    public myUser(): Observable<{Success: boolean; Data: UtilisateurModel; Message: string}> {
+        //return of(usersMock[2]):
+        return this.http.get<{Success: boolean; Data: UtilisateurModel; Message: string}>(`${this.baseUrl}/me`);
     }
 }

@@ -6,6 +6,9 @@ export interface ProjetModel {
   CreatedAt: Date;
   User: any;
 }
+export type ProjetWithCount = ProjetModel & {
+  serviceCount: number;
+};
 
 export function isProjet(obj: any): boolean {
   return (

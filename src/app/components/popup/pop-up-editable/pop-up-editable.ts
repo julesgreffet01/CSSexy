@@ -47,7 +47,7 @@ export class PopUpEditable {
         },
       });
       this.formProjet = new FormGroup({
-        name: new FormControl(this.oldProjet()!.Name, {nonNullable: true, validators: [Validators.required, Validators.maxLength(200)]}),
+        Name: new FormControl(this.oldProjet()!.Name, {nonNullable: true, validators: [Validators.required, Validators.maxLength(200)]}),
       });
     } else if (this.oldService() !== undefined) {
       this.formService = new FormGroup({
@@ -60,7 +60,7 @@ export class PopUpEditable {
   }
 
   get portsArray(): FormArray<FormControl<string | null>> {
-    return this.formService.controls['ports'] as FormArray<FormControl<string | null>>;
+    return this.formService.controls['Ports'] as FormArray<FormControl<string | null>>;
   }
 
 
@@ -71,7 +71,7 @@ export class PopUpEditable {
       return "Service";
     }
   }
-
+  
   public getAction():string {
     const projet = this.oldProjet();
     const service = this.oldService();
@@ -105,7 +105,7 @@ export class PopUpEditable {
       if(this.formProjet.valid) {
         obj = {
           Id: this.oldProjet()!.Id,
-          Name: this.formProjet.value.name,
+          Name: this.formProjet.value.Name,
           User: this.currentUser(),
           CreatedAt: new Date()
         };
@@ -141,8 +141,8 @@ export class PopUpEditable {
         }
         obj = {
           Uuid: this.oldService()?.Uuid ?? '0',
-          Name: this.formService.value.name,
-          Image: this.formService.value.image,
+          Name: this.formService.value.Name,
+          Image: this.formService.value.Image,
           Status: "starting",
           StartedSince: new Date(),
           Ports: realport
@@ -157,19 +157,19 @@ export class PopUpEditable {
             );
           }
         });
-        if(this.formService.get('name')?.hasError('required')){
+        if(this.formService.get('Name')?.hasError('required')){
           this.formErrors.push("le nom est requis");
         }
-        if(this.formService.get('name')?.hasError('maxlength')){
+        if(this.formService.get('Name')?.hasError('maxlength')){
           this.formErrors.push("le nombre de caractères max sur le nom est de 100");
         }
-        if(this.formService.get('image')?.hasError('required')){
+        if(this.formService.get('Image')?.hasError('required')){
           this.formErrors.push("l'image est requis");
         }
-        if(this.formService.get('image')?.hasError('maxLength')){
+        if(this.formService.get('Image')?.hasError('maxLength')){
           this.formErrors.push("le nombre sur de caractères max l'image est de 100");
         }
-        if(this.formService.get('image')?.hasError('pattern')){
+        if(this.formService.get('Image')?.hasError('pattern')){
           this.formErrors.push("le pattern de l'image n est pas bon i doit etre de a forme image:tag");
         }
         const errors = this.formErrors

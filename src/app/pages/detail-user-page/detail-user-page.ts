@@ -25,7 +25,7 @@ export class DetailUserPage {
     if (idToNumber && !isNaN(idToNumber)) {
         this.serviceUser.getUser(idToNumber).subscribe({
           next: (user) => {
-            this.currentUser.set(user);
+            this.currentUser.set(user.Data);
             this.loading.set(false);
           },
           error: (err) => {

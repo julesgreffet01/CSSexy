@@ -1,5 +1,5 @@
 import { Component, inject, input, signal } from '@angular/core';
-import { ProjetModel } from '../../../models/projet-model';
+import { ProjetModel, ProjetWithCount } from '../../../models/projet-model';
 import { ServiceModel } from '../../../models/service-model';
 import { UtilisateurModel } from '../../../models/utilisateur-model';
 import { CommonModule } from '@angular/common';
@@ -20,16 +20,16 @@ import { Router } from '@angular/router';
 })
 export class Tab {
 
-  InitStat = input.required<UtilisateurModel[] | ProjetModel[] | ServiceModel[]>();
+  InitStat = input.required<UtilisateurModel[] | ProjetWithCount[] | ServiceModel[]>();
   projet = input<"PROJECT" | "USER" | "SERVICE">("SERVICE");
-  PROJECT = signal<ProjetModel[]>([] as ProjetModel[]);
+  PROJECT = signal<ProjetWithCount[]>([] as ProjetWithCount[]);
   USER = signal<UtilisateurModel[]>([] as UtilisateurModel[]);
   SERVICE = signal<any>([] as any[]);
   routeur = inject(Router)
 
   ngOnInit() {   
     if (this.projet() == "PROJECT") {
-      this.PROJECT.set(this.InitStat() as ProjetModel[]);
+      this.PROJECT.set(this.InitStat() as ProjetWithCount[]);
     }
     else if (this.projet() == "USER") {
       this.USER.set(this.InitStat() as UtilisateurModel[]);
@@ -41,9 +41,9 @@ export class Tab {
 
 
   onRowClickUser(user: UtilisateurModel){
-    this.routeur.navigate(['/user-detail', user.id])
+    this.routeur.navigate(['/user-detail', user.Id])
   }
-  onRowClickProject(project: ProjetModel){
+  onRowClickProject(project: ProjetWithCount){
     this.routeur.navigate(['/project', project.Id])
   }
   onRowClickService(service: ServiceModel){

@@ -1,7 +1,7 @@
 import {inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environnements/environnements';
-import {tap, of, Observable, delay, throwError} from 'rxjs';
+import {tap, of, Observable, delay, throwError, map} from 'rxjs';
 import {Router} from '@angular/router';
 import {UtilisateurModel} from '../../models/utilisateur-model';
 import {serviceUser} from './service-user';
@@ -23,10 +23,10 @@ export class ServiceAuth {
   private userService = inject(serviceUser);
 
   private token: string | null = null;
-  private userName: string | null = null;
-  private name: string | null = null;
-  private role: "dev" | "admin" | "dev_ops" | null = null;
-  private userId: number | null = null;
+  private UserName: string | null = null;
+  private Name: string | null = null;
+  private Role: "developer" | "admin" | "dev_ops" | null = null;
+  private UserId: number | null = null;
 
   public getToken(): string | null {
     if(this.token) {
@@ -47,21 +47,29 @@ export class ServiceAuth {
   }
 
   public getUser(): Observable<UtilisateurModel> {
-    if (this.userId !== null && this.userName !== null && this.name !== null && this.role !== null) {
+    if (this.UserId !== null && this.UserName !== null && this.Name !== null && this.Role !== null) {
       return of({
-        id: this.userId,
-        username: this.userName,
-        name: this.name,
-        role: this.role,
+        Id: this.UserId,
+        Username: this.UserName,
+        Name: this.Name,
+        Role: this.Role,
       });
     }
 
     return this.userService.myUser().pipe(
-      tap(user => {
-        this.userId = user.id;
-        this.userName = user.username;
-        this.name = user.name;
-        this.role = user.role;
+      tap(response => {
+        this.UserId = response.Data.Id;
+        this.UserName = response.Data.Username;
+        this.Name = response.Data.Name;
+        this.Role = response.Data.Role;
+      }),map(res => {
+        return{
+          Id: res.Data.Id,
+          Username: res.Data.Username,
+          Name: res.Data.Name,
+          Role: res.Data.Role,
+        }
+
       })
     );
   }
@@ -91,10 +99,10 @@ export class ServiceAuth {
 
   public logout(): void {
     this.clearToken();
-    this.userId = null;
-    this.userName = null;
-    this.role = null;
-    this.name = null;
+    this.UserId = null;
+    this.UserName = null;
+    this.Role = null;
+    this.Name = null;
     this.router.navigate(['/login'], {replaceUrl: true});
   }
 }
