@@ -56,22 +56,23 @@ export class serviceServices {
   }
 
     public deleteService(service_uuid: string){
-    const serviceIndex = servicesMock.findIndex(
-    service => service.Uuid === service_uuid
-    );
-    if (serviceIndex !== -1) {
-      servicesMock.splice(serviceIndex, 1);
+    // const serviceIndex = servicesMock.findIndex(
+    // service => service.Uuid === service_uuid
+    // );
+    // if (serviceIndex !== -1) {
+    //   servicesMock.splice(serviceIndex, 1);
+    // }
+
+    // projetsMock.forEach(projet => {
+    //   //projet.services = projet.services.filter(
+    //   //  service => service.id !== service_uuid
+    //   //);
+    // });
+
+    // return of({ message: 'supprimé' }).pipe(delay(200));
+    return this.http.delete<void>(`${this.baseUrlService}/${service_uuid}`);
     }
 
-    projetsMock.forEach(projet => {
-      //projet.services = projet.services.filter(
-      //  service => service.id !== service_uuid
-      //);
-    });
-
-    return of({ message: 'supprimé' }).pipe(delay(200));
-    //return this.http.delete<void>(`${this.baseUrl}/${service_uuid}`);
-    }
     public startService(service_uuid: string): Observable<void> {
         return this.http.post<void>(`${this.baseUrlService}/${service_uuid}/start`, {});
     }
@@ -88,19 +89,4 @@ export class serviceServices {
         return this.http.get<any>(`${this.baseUrlService}/${service_uuid}/monitoring`);
     }
 
-    public serviceMonitoringDetails(service_uuid: string, name: string): Observable<any> {
-        return this.http.get<any>(`${this.baseUrl}/${service_uuid}/monitoring/${name}`);
-    }
-
-    public serviceDefMonitoring(service_uuid: string): Observable<any> {
-        return this.http.post<any>(`${this.baseUrl}/${service_uuid}/monitoring`, {});
-    }
-
-    public serviceMonitoringIndactors(service: ServiceModel, name: string): Observable<any> {
-        return this.http.put<any>(`${this.baseUrl}/${service.Uuid}/monitoring/${name}`, service);
-    }
-
-    public serviceMonitoringMesures(service_uuid: string, name: string, datetime: Date): Observable<any> {
-        return this.http.get<any>(`${this.baseUrl}/${service_uuid}/monitoring/${name}/mesures/${datetime.toISOString()}`);
-    }
 }
