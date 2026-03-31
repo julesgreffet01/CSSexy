@@ -1,0 +1,16 @@
+services:
+  front-app:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    container_name: front-cssexy
+    networks:
+      - api-culteur-network
+      - caddy_net
+    volumes:
+      - ./docker/nginx.conf:/etc/nginx/conf.d/default.conf
+networks:
+  caddy_net:
+    external: true
+  api-culteur-network:
+    external: true
