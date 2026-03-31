@@ -28,7 +28,7 @@
       @for (port of currentService()!.Ports; track port; let idx = $index) {
         <div class="name-and-content">
           <div class="name">Port {{ idx + 1 }}:</div>
-          <div class="content">{{ port }}</div>
+          <div class="content">{{ port | json }}</div>
         </div>
       }
     </div>
