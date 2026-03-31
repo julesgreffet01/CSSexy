@@ -118,9 +118,8 @@ export class DetailServicePage {
   private RenderCharts(): void {
     if (!this.dataArray.length) return;
 
-    const cpuData = this.getMonitoringByLabel('CPU');
-    const ramData = this.getMonitoringByLabel('RAM');
- 
+    const cpuData = this.getMonitoringByLabel('cpu');
+    const ramData = this.getMonitoringByLabel('ram');
 
     if (this.cpuChartRef) {
       this.cpuChartInstance = this.createChart(this.cpuChartRef, this.cpuChartInstance, 'CPU', cpuData);
