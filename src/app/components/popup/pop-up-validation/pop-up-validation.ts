@@ -19,7 +19,7 @@ export class PopUpValidation {
 
   oldPorts = signal<string[]>([])
   newPorts = signal<string[]>([])
-
+  loading = signal<boolean>(false);
   closePopup = output<void>()
   validPopup = output<void>()
 
@@ -47,11 +47,15 @@ export class PopUpValidation {
   }
 
   onClosePopup(){
+    this.loading.set(true)
     this.closePopup.emit()
+    this.loading.set(false)
   }
 
   onValidPopup(){
+    this.loading.set(true)
     this.validPopup.emit()
+    this.loading.set(false)
   }
 
 }

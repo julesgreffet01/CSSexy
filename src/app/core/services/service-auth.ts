@@ -87,9 +87,8 @@ export class ServiceAuth {
     //   return of(utilisateur).pipe(delay(100));
     // }
     //return throwError(() => new Error('Unable to login'));
-    return this.http.post<loginOutput>(`https://api-culteur.greffetjules.com/auth/login`, { username: userName, password }).pipe(
+    return this.http.post<loginOutput>(`https://api-culteur.greffetjules.fr/auth/login`, { username: userName, password }).pipe(
        tap(res => {
-        console.log(res);
          if(res.Data.token.trim().length > 0) {
            this.setToken(res.Data.token);
          }

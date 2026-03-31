@@ -125,7 +125,7 @@ export class PopUpEditable {
       this.formService.markAllAsTouched();
       if(this.formService.valid) {
         const realport: string[] = [];
-        for (const element of this.formService.value.ports) {
+        for (const element of this.formService.value.Ports) {
           if (element.trim() !== "") {
             if (!realport.includes(element)) {
               realport.push(element);

@@ -1,5 +1,7 @@
 <div class="blur" (click)="onClosePopup()">
-
+    @if(loading()){
+      <p>Chargment</p>
+    }@else{
   <div class="container-popup" (click)="$event.stopPropagation()">
     <div class="contain-top">
       <h1>Validation</h1>
@@ -70,5 +72,6 @@
       <app-buttons backgroundColor="secondary-3" size="medium" (clicked)="onValidPopup()" label="Valider"/>
     </div>
 
-  </div>
+  </div>}
 </div>
+    

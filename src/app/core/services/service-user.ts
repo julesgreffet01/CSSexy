@@ -10,7 +10,7 @@ import {usersMock} from '../../../mock/users.mjs';
 })
 export class serviceUser {
     private readonly http = inject(HttpClient);
-    private baseUrl = 'https://api-culteur.greffetjules.com/users';
+    private baseUrl = environment.apiBaseUrl +'users';
 
 
     public getAllUsers(): Observable<{Success: boolean; Data: UtilisateurModel[]; Message: string}> {

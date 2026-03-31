@@ -92,11 +92,7 @@ export class DetailServicePage {
           this.idService.set(service.Data.Uuid);
           this.serviceService.serviceMonitoring(this.idService()!).subscribe({
             next: (monitoring) => {
-              console.log(monitoring);
               this.dataArray = monitoring.Data ?? [];
-
-              console.log(this.dataArray);
-
               this.RenderCharts();
               this.loading.set(false);
             },
@@ -105,9 +101,8 @@ export class DetailServicePage {
               this.loading.set(false);
             }
           });
-
           if (service) {
-            this.service.set(service);
+            this.service.set(service.Data);
           } else {
             throw Error('Service not found');
           }

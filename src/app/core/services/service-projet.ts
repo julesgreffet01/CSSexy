@@ -4,6 +4,7 @@ import {environment} from '../../environnements/environnements';
 import {projetsMock} from '../../../mock/projets.mjs';
 import {delay, of} from 'rxjs';
 import {type ProjetModel} from '../../models/projet-model';
+import { ServiceModel } from '../../models/service-model';
 
 @Injectable({
   providedIn: 'root',
@@ -53,5 +54,9 @@ export class ServiceProjet {
 
   GetCountServiceOfProject(id: number){
     return this.http.get<{Success: boolean; Data: number; Message: string}>(this.basUrl + '/servicesCount/' + id)
+  }
+
+  createService(service: ServiceModel, projectId: number){
+    return this.http.post<any>(this.basUrl + '/' + projectId + '/services',{Name: service.Name, Image: service.Image, Ports: service.Ports})
   }
 }

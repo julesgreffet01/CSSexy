@@ -10,16 +10,16 @@ export interface ServiceModel {
 export function isService(obj: any): obj is ServiceModel {
   const SERVICE_STATUS = ["up", "down", "starting", "stop"];
   return (
-    typeof obj.id === "string" &&
-    typeof obj.name === "string" &&
-    typeof obj.image === "string" &&
-    SERVICE_STATUS.includes(obj.status) &&
-    Array.isArray(obj.ports) &&
-    obj.ports.every((p: unknown) => typeof p === "string") &&
+    typeof obj.Uuid === "string" &&
+    typeof obj.Name === "string" &&
+    typeof obj.Image === "string" &&
+    SERVICE_STATUS.includes(obj.Status) &&
+    Array.isArray(obj.Ports) &&
+    obj.Ports.every((p: unknown) => typeof p === "string") &&
     (
-      obj.startedSince === undefined ||
-      obj.startedSince instanceof Date ||
-      (typeof obj.startedSince === "string" && !isNaN(Date.parse(obj.startedSince)))
+      obj.StartedSince === undefined ||
+      obj.StartedSince instanceof Date ||
+      (typeof obj.StartedSince === "string" && !isNaN(Date.parse(obj.StartedSince)))
     )
   );
 }

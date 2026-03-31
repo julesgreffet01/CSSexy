@@ -1,4 +1,4 @@
-import { Component, inject, input, output, signal } from '@angular/core';
+import { Component, effect, inject, input, output, signal } from '@angular/core';
 import { serviceServices } from '../../../core/services/service-services';
 
 @Component({
@@ -10,24 +10,26 @@ import { serviceServices } from '../../../core/services/service-services';
 })
 
 export class UpDownButton {
-  serviceServices = new serviceServices();
   Service = inject(serviceServices);
 
   InitStat = input<boolean>(true);
+  uuid = input<string>("");
   toggle = output<boolean>();
   
   protected UpDownStat = signal<boolean>(true);
   
 
   constructor() {
-    this.UpDownStat.set(this.InitStat());
+    effect(() => {
+      this.UpDownStat.set(this.InitStat());
+    });
   }
 
   SwitchState() {
   this.UpDownStat.update(v => {
     const next = !v;
     if (next) {
-      this.Service.startService('service_uuid').subscribe({
+      this.Service.startService(this.uuid()).subscribe({
         next: () => {
           console.log('Service started successfully.');
         },
@@ -36,7 +38,7 @@ export class UpDownButton {
         }
       });
     } else {
-      this.Service.stopService('service_uuid').subscribe({
+      this.Service.stopService(this.uuid()).subscribe({
         next: () => {
           console.log('Service stopped successfully.');
         },

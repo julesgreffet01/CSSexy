@@ -18,9 +18,8 @@
     @if (projet() === "SERVICE") {
       <div>Nom</div>
       <div>Status</div>
-      <div>Restart</div>
-      <div class="right">Action</div>
-      
+      <div>Stop/Start</div>
+      <div class="right">Restart</div>
     }
   </div>
 
@@ -52,10 +51,14 @@
         <div>
           <app-status-tab [status]="s.Status.libelle"></app-status-tab>
         </div>
-        <div class="right">
-          <app-up-down-button [InitStat]="s.Status.libelle === 'up'"></app-up-down-button>
+        <div class="right" (click)="$event.stopPropagation()">
+          @if(s.Status.libelle === "down" ){
+          <app-up-down-button [InitStat]=false [uuid]='s.Uuid'></app-up-down-button>
+          }@else{
+          <app-up-down-button [InitStat]=true [uuid]='s.Uuid'></app-up-down-button>
+          }
         </div>
-        <div>
+        <div (click)="$event.stopPropagation()">
           <app-reload-button [serviceToReload]="s"></app-reload-button>
         </div>
       </div>

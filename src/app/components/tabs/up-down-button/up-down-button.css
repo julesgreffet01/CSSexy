@@ -1,23 +1,23 @@
 .UpBtn{
     height: 40px;
     width: 40px;
-    background-color: var(--success);
+    background-color: darkgreen;
     align-items: center;
     border-radius: 35px;
     border :none;
 }
 .UpBtn:hover {
-    background-color: darkgreen;
+    background-color: rgb(5, 51, 5);
 }
 .UpBtn:active {
     transform: translateY(1px);
-    box-shadow: 0 2px 0 darkgreen;
+    box-shadow: 0 2px 0 rgb(2, 43, 2);
 }
 
 .DownBtn{
     height: 40px;
     width: 40px;
-    background-color: var(--error);
+    background-color: rgb(184, 4, 4);
     align-items: center;
     border-radius: 35px;
     border :none;

@@ -22,7 +22,7 @@ export class serviceServices {
     }
 
     public getServices(service_uuid: string): Observable<any> {
-      return this.http.get<any>(`${this.baseUrlService}/${service_uuid}`);
+      return this.http.get<{Success: boolean; Data: ServiceModel; Message: string}>(`${this.baseUrlService}/${service_uuid}`);
       //return of(servicesMock.find(s => s.Uuid === service_uuid)).pipe(delay(200));
 
     }
@@ -40,19 +40,19 @@ export class serviceServices {
   }
 
   public updateService(service: ServiceModel): Observable<ServiceModel> {
-    const existingService = servicesMock.find(s => s.Uuid === service.Uuid);
+    // const existingService = servicesMock.find(s => s.Uuid === service.Uuid);
 
-    if (!existingService) {
-      throw new Error(`Service ${service.Uuid} introuvable`);
-    }
+    // if (!existingService) {
+    //   throw new Error(`Service ${service.Uuid} introuvable`);
+    // }
 
-    existingService.Name = service.Name;
-    existingService.Image = service.Image;
-    existingService.Ports = service.Ports;
-    existingService.Status = service.Status;
+    // existingService.Name = service.Name;
+    // existingService.Image = service.Image;
+    // existingService.Ports = service.Ports;
+    // existingService.Status = service.Status;
 
-    return of(existingService).pipe(delay(200));
-    //return this.http.put<ServiceModel>(`${this.baseUrl}/${service.id}`, service);
+    // return of(existingService).pipe(delay(200));
+    return this.http.put<any>(`${this.baseUrlService}/${service.Uuid}`, {Name: service.Name});
   }
 
     public deleteService(service_uuid: string){
@@ -73,15 +73,15 @@ export class serviceServices {
     //return this.http.delete<void>(`${this.baseUrl}/${service_uuid}`);
     }
     public startService(service_uuid: string): Observable<void> {
-        return this.http.post<void>(`${this.baseUrl}/${service_uuid}/start`, {});
+        return this.http.post<void>(`${this.baseUrlService}/${service_uuid}/start`, {});
     }
 
     public stopService(service_uuid: string): Observable<void> {
-        return this.http.post<void>(`${this.baseUrl}/${service_uuid}/stop`, {});
+        return this.http.post<void>(`${this.baseUrlService}/${service_uuid}/stop`, {});
     }
 
     public restartService(service_uuid: string): Observable<void> {
-        return this.http.post<void>(`${this.baseUrl}/${service_uuid}/restart`, {});
+        return this.http.post<void>(`${this.baseUrlService}/${service_uuid}/restart`, {});
     }
 
     public serviceMonitoring(service_uuid: string): Observable<any> {

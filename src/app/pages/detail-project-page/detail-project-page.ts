@@ -143,7 +143,7 @@ export class DetailProjectPage {
   }
 
   createService(newService: ProjetModel | ServiceModel){
-    this.serviceService.createService(this.idProject, newService as ServiceModel).subscribe({
+    this.serviceProject.createService(newService as ServiceModel, this.idProject).subscribe({
       next: (list) => {
         this.closeModalCreate();
         this.currentServiceList.update(lists => [...lists, list]);
